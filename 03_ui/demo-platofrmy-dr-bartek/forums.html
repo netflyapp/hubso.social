@@ -1,0 +1,395 @@
+<html lang="pl" class="antialiased">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Forum — Dr Bartek | Społeczność Zdrowia</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <style>:root { --font-inter: 'Inter', sans-serif; } body { font-family: var(--font-inter); } ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 3px; } .dark ::-webkit-scrollbar-thumb { background: #334155; } .no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }</style>
+        <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { green: '#2D8F4E' }, dark: { bg: '#050505', surface: '#0F1115', border: '#222226' } }, boxShadow: { 'soft': '0 2px 10px rgba(0,0,0,0.03)', 'card': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)', 'dark-card': '0 0 0 1px rgba(255,255,255,0.06), 0 4px 8px rgba(0,0,0,0.2)' }, fontSize: { xxs: '0.625rem' } } }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark') } else { document.documentElement.classList.remove('dark') }
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'; }
+    </script>
+    </head>
+    <body class="text-slate-600 dark:text-slate-400 bg-[#F7F8FA] dark:bg-dark-bg h-screen flex flex-col overflow-hidden transition-colors duration-300">
+        <!-- HEADER -->
+        <header class="h-16 bg-white dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border flex items-center justify-between px-4 lg:px-6 shrink-0 z-50 sticky top-0 transition-colors duration-300">
+            <div class="flex items-center gap-12">
+                <a href="home-full.html" class="flex items-center gap-2.5"> <div class="w-8 h-8 rounded-full bg-[#2D8F4E] flex items-center justify-center text-white">
+                        <iconify-icon icon="solar:heart-pulse-bold" width="20" height="20"></iconify-icon>
+                    </div> <div class="flex flex-col">
+                        <span class="font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-none text-sm">Dr Bartek</span>
+                        <span class="font-medium text-slate-500 text-xs tracking-tight">Społeczność Zdrowia</span>
+                    </div> </a>
+            </div>
+            <nav class="hidden md:flex items-center h-full gap-1">
+                <a href="home-full.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:feed-linear" width="24" height="24"></iconify-icon></a>
+                <a href="profile.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="24" height="24"></iconify-icon></a>
+                <a href="groups.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="24" height="24"></iconify-icon></a>
+                <a href="messages.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-round-dots-linear" width="24" height="24"></iconify-icon></a>
+                <a href="members.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="24" height="24"></iconify-icon></a>
+                <a href="forums.html" class="h-full flex items-center border-b-[2px] border-emerald-600 px-3 text-emerald-600 dark:text-emerald-400"><iconify-icon icon="solar:chat-line-linear" width="24" height="24"></iconify-icon></a>
+                <a href="courses.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:square-academic-cap-linear" width="24" height="24"></iconify-icon></a>
+                <a href="events.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calendar-linear" width="24" height="24"></iconify-icon></a>
+                <a href="shop.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="24" height="24"></iconify-icon></a>
+                <a href="documents.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:document-text-linear" width="24" height="24"></iconify-icon></a>
+                <a href="recipes.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="24" height="24"></iconify-icon></a>
+                <a href="video.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="24" height="24"></iconify-icon></a>
+                <a href="apps.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calculator-linear" width="24" height="24"></iconify-icon></a>
+                <a href="health-journal.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="24" height="24"></iconify-icon></a>
+            </nav>
+            <div class="flex items-center gap-5">
+                <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <iconify-icon icon="solar:magnifer-linear" width="22" height="22"></iconify-icon>
+                </button>
+                <button onclick="toggleDarkMode()" class="text-slate-400 hover:text-slate-600 dark:hover:text-yellow-400 transition-colors">
+                    <iconify-icon class="block dark:hidden" icon="solar:moon-linear" width="22" height="22"></iconify-icon>
+                    <iconify-icon class="hidden dark:block" icon="solar:sun-2-linear" width="22" height="22"></iconify-icon>
+                </button>
+                <div class="flex items-center gap-4 border-l border-gray-200 dark:border-dark-border pl-4">
+                    <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <iconify-icon icon="solar:bag-3-linear" width="22" height="22"></iconify-icon>
+                        <span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">1</span>
+                    </button>
+                    <a href="notifications.html" class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:bell-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">8</span></a>
+                    <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <iconify-icon icon="solar:cart-large-linear" width="22" height="22"></iconify-icon>
+                        <span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">4</span>
+                    </button>
+                </div>
+                <div class="flex items-center gap-3 pl-2">
+                    <span class="text-sm font-medium text-slate-700 dark:text-slate-200 hidden sm:block">Jan</span>
+                    <img src="/media/avatars/jan.jpg" alt="Jan" class="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-slate-700">
+                </div>
+            </div>
+        </header>
+        <div class="flex flex-1 overflow-hidden">
+            <!-- SIDEBAR -->
+            <aside class="hidden xl:flex w-[260px] flex-col bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border overflow-y-auto shrink-0 pb-6 transition-colors duration-300">
+                <div class="p-6">
+                    <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <iconify-icon icon="solar:sidebar-minimalistic-linear" width="24" height="24"></iconify-icon>
+                    </button>
+                </div>
+                <nav class="flex-1 px-4 space-y-8">
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Osobisty</div>
+                        <a href="profile.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="20" height="20"></iconify-icon>Profil</a>
+                        <a href="home.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:graph-up-linear" width="20" height="20"></iconify-icon>Oś czasu</a>
+                        <a href="messages.html" class="flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><div class="flex items-center gap-3">
+                                <iconify-icon icon="solar:inbox-linear" width="20" height="20"></iconify-icon>                                Skrzynka
+                            </div><span class="bg-gray-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-semibold px-1.5 py-0.5 rounded">3</span></a>
+                        <a href="health-journal.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="20" height="20"></iconify-icon>Dziennik Zdrowia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Wspólnota</div>
+                        <a href="groups.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="20" height="20"></iconify-icon>Grupy</a>
+                        <a href="members.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="20" height="20"></iconify-icon>Połączenia</a>
+                        <a href="forums.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 rounded-md"><iconify-icon icon="solar:chat-line-linear" width="20" height="20"></iconify-icon>Dyskusje</a>
+                        <a href="courses.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:diploma-linear" width="20" height="20"></iconify-icon>Kursy</a>
+                        <a href="events.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calendar-linear" width="20" height="20"></iconify-icon>Wydarzenia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Zdrowie & Wiedza</div>
+                        <a href="recipes.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="20" height="20"></iconify-icon>Przepisy</a>
+                        <a href="video.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="20" height="20"></iconify-icon>Video & Wiedza</a>
+                        <a href="apps.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calculator-linear" width="20" height="20"></iconify-icon>Narzędzia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Multimedia</div>
+                        <a href="photos.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:gallery-linear" width="20" height="20"></iconify-icon>Zdjęcia</a>
+                        <a href="documents.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:folder-linear" width="20" height="20"></iconify-icon>Dokumenty</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Sklep</div>
+                        <a href="shop.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="20" height="20"></iconify-icon>Sklep</a>
+                    </div>
+                </nav>
+                <div class="mt-auto px-4 pt-6">
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:settings-linear" width="20" height="20"></iconify-icon>Ustawienia konta</a>
+                </div>
+            </aside>
+            <!-- MAIN -->
+            <main class="flex-1 overflow-y-auto p-4 lg:p-8">
+                <div class="max-w-5xl mx-auto">
+                    <!-- Header -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h1 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Forum dyskusyjne</h1>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">5 kategorii · 48 wątków</p>
+                        </div>
+                        <button class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2">
+                            <iconify-icon icon="solar:add-circle-linear" width="18" height="18"></iconify-icon>
+                            Nowa dyskusja
+                        </button>
+                    </div>
+                    <!-- Search + filter -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+                        <div class="relative flex-1 max-w-md">
+                            <iconify-icon icon="solar:magnifer-linear" width="16" height="16" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></iconify-icon>
+                            <input type="text" placeholder="Szukaj w dyskusjach..." class="w-full pl-9 pr-3 py-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-lg text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-shadow">
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="px-4 py-1.5 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-full text-xs font-medium text-slate-700 dark:text-slate-200">Wszystkie</button>
+                            <button class="px-4 py-1.5 bg-gray-100 dark:bg-dark-surface border border-transparent dark:border-dark-border rounded-full text-xs font-medium text-slate-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-800 transition-colors">Moje wątki</button>
+                            <button class="px-4 py-1.5 bg-gray-100 dark:bg-dark-surface border border-transparent dark:border-dark-border rounded-full text-xs font-medium text-slate-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-800 transition-colors">Obserwowane</button>
+                        </div>
+                    </div>
+                    <!-- Forum Categories -->
+                    <div class="space-y-6">
+                        <!-- Category 1: Dieta i Żywienie -->
+                        <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden">
+                            <div class="px-5 py-4 bg-gradient-to-r from-emerald-50 to-transparent dark:from-emerald-500/5 dark:to-transparent border-b border-gray-100 dark:border-dark-border flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center">
+                                        <iconify-icon icon="solar:leaf-linear" width="20" height="20" class="text-emerald-600 dark:text-emerald-400"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-sm font-bold text-slate-900 dark:text-white">Dieta i Żywienie</h2>
+                                        <p class="text-xs text-slate-400">Diety, makroskładniki, jadłospisy, meal prep</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs text-slate-400">18 wątków</span>
+                            </div>
+                            <div class="divide-y divide-gray-50 dark:divide-dark-border">
+                                <div class="px-5 py-3.5 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer">
+                                    <img src="/media/avatars/jan.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center gap-2">
+                                            <h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Dieta śródziemnomorska — od czego zacząć?</h3>
+                                            <span class="px-2 py-0.5 bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400 text-[10px] font-medium rounded-full shrink-0">Przypięty</span>
+                                        </div>
+                                        <p class="text-xs text-slate-400 mt-0.5">Jan Kowalski · 3 godz. temu · 42 odpowiedzi</p>
+                                    </div>
+                                    <div class="text-right shrink-0 hidden sm:block">
+                                        <div class="flex items-center gap-3 text-xs text-slate-400">
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:chat-round-dots-linear" width="14" height="14"></iconify-icon>42</span>
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:eye-linear" width="14" height="14"></iconify-icon>318</span>
+                                        </div>
+                                        <div class="flex items-center gap-1 mt-1 justify-end">
+                                            <div class="flex -space-x-1">
+                                                <img src="/media/avatars/ania.jpg" class="w-5 h-5 rounded-full border border-white dark:border-dark-surface" alt="">
+                                                <img src="/media/avatars/tomek.jpg" class="w-5 h-5 rounded-full border border-white dark:border-dark-surface" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-5 py-3.5 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer">
+                                    <img src="/media/avatars/ewa.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center gap-2">
+                                            <h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Dieta przeciwzapalna — moje efekty po 30 dniach 🔥</h3>
+                                            <span class="px-2 py-0.5 bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 text-[10px] font-medium rounded-full shrink-0">Gorący</span>
+                                        </div>
+                                        <p class="text-xs text-slate-400 mt-0.5">Ewa Kamińska · 6 godz. temu · 28 odpowiedzi</p>
+                                    </div>
+                                    <div class="text-right shrink-0 hidden sm:block">
+                                        <div class="flex items-center gap-3 text-xs text-slate-400">
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:chat-round-dots-linear" width="14" height="14"></iconify-icon>28</span>
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:eye-linear" width="14" height="14"></iconify-icon>245</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-5 py-3.5 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer">
+                                    <img src="/media/avatars/adam.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                                    <div class="flex-1 min-w-0">
+                                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Post przerywany 16:8 — wasze doświadczenia?</h3>
+                                        <p class="text-xs text-slate-400 mt-0.5">Adam Wójcik · wczoraj · 15 odpowiedzi</p>
+                                    </div>
+                                    <div class="text-right shrink-0 hidden sm:block">
+                                        <div class="flex items-center gap-3 text-xs text-slate-400">
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:chat-round-dots-linear" width="14" height="14"></iconify-icon>15</span>
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:eye-linear" width="14" height="14"></iconify-icon>189</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Category 2: Suplementacja -->
+                        <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden">
+                            <div class="px-5 py-4 bg-gradient-to-r from-blue-50 to-transparent dark:from-blue-500/5 dark:to-transparent border-b border-gray-100 dark:border-dark-border flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center">
+                                        <iconify-icon icon="solar:jar-of-pills-linear" width="20" height="20" class="text-blue-600 dark:text-blue-400"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-sm font-bold text-slate-900 dark:text-white">Suplementacja</h2>
+                                        <p class="text-xs text-slate-400">Witaminy, minerały, probiotyki, adaptogeny</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs text-slate-400">12 wątków</span>
+                            </div>
+                            <div class="divide-y divide-gray-50 dark:divide-dark-border">
+                                <div class="px-5 py-3.5 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer">
+                                    <img src="media/avatars/6.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center gap-2">
+                                            <h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Witamina D3+K2 — jakie dawki stosujecie zimą?</h3>
+                                            <span class="px-2 py-0.5 bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 text-[10px] font-medium rounded-full shrink-0">Gorący</span>
+                                        </div>
+                                        <p class="text-xs text-slate-400 mt-0.5">Piotr Mazur · 2 godz. temu · 31 odpowiedzi</p>
+                                    </div>
+                                    <div class="text-right shrink-0 hidden sm:block">
+                                        <div class="flex items-center gap-3 text-xs text-slate-400">
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:chat-round-dots-linear" width="14" height="14"></iconify-icon>31</span>
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:eye-linear" width="14" height="14"></iconify-icon>412</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-5 py-3.5 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer">
+                                    <img src="media/avatars/Zrzut%20ekranu%202026-02-18%20o%2011.44.32.png" class="w-9 h-9 rounded-full shrink-0" alt="">
+                                    <div class="flex-1 min-w-0">
+                                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Omega-3 — kwasy EPA vs DHA, co ważniejsze?</h3>
+                                        <p class="text-xs text-slate-400 mt-0.5">Michał Szymański · 1d · 14 odpowiedzi</p>
+                                    </div>
+                                    <div class="text-right shrink-0 hidden sm:block">
+                                        <div class="flex items-center gap-3 text-xs text-slate-400">
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:chat-round-dots-linear" width="14" height="14"></iconify-icon>14</span>
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:eye-linear" width="14" height="14"></iconify-icon>156</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-5 py-3.5 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer">
+                                    <img src="/media/avatars/zofia.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                                    <div class="flex-1 min-w-0">
+                                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Probiotyki — które szczepy naprawdę działają?</h3>
+                                        <p class="text-xs text-slate-400 mt-0.5">Zofia Dąbrowska · 2d · 19 odpowiedzi</p>
+                                    </div>
+                                    <div class="text-right shrink-0 hidden sm:block">
+                                        <div class="flex items-center gap-3 text-xs text-slate-400">
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:chat-round-dots-linear" width="14" height="14"></iconify-icon>19</span>
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:eye-linear" width="14" height="14"></iconify-icon>203</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Category 3: Aktywność Fizyczna -->
+                        <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden">
+                            <div class="px-5 py-4 bg-gradient-to-r from-orange-50 to-transparent dark:from-orange-500/5 dark:to-transparent border-b border-gray-100 dark:border-dark-border flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center">
+                                        <iconify-icon icon="solar:running-round-linear" width="20" height="20" class="text-orange-600 dark:text-orange-400"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-sm font-bold text-slate-900 dark:text-white">Aktywność Fizyczna</h2>
+                                        <p class="text-xs text-slate-400">Ćwiczenia, treningi, joga, spacery, regeneracja</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs text-slate-400">9 wątków</span>
+                            </div>
+                            <div class="divide-y divide-gray-50 dark:divide-dark-border">
+                                <div class="px-5 py-3.5 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer">
+                                    <img src="/media/avatars/kasia.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                                    <div class="flex-1 min-w-0">
+                                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Trening siłowy po 40-tce — od czego zacząć? 💪</h3>
+                                        <p class="text-xs text-slate-400 mt-0.5">Katarzyna Lewandowska · 5 godz. temu · 16 odpowiedzi</p>
+                                    </div>
+                                    <div class="text-right shrink-0 hidden sm:block">
+                                        <div class="flex items-center gap-3 text-xs text-slate-400">
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:chat-round-dots-linear" width="14" height="14"></iconify-icon>16</span>
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:eye-linear" width="14" height="14"></iconify-icon>134</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-5 py-3.5 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer">
+                                    <img src="/media/avatars/ania.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                                    <div class="flex-1 min-w-0">
+                                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">10 000 kroków dziennie — mit czy konieczność?</h3>
+                                        <p class="text-xs text-slate-400 mt-0.5">Anna Nowak · 3d · 12 odpowiedzi</p>
+                                    </div>
+                                    <div class="text-right shrink-0 hidden sm:block">
+                                        <div class="flex items-center gap-3 text-xs text-slate-400">
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:chat-round-dots-linear" width="14" height="14"></iconify-icon>12</span>
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:eye-linear" width="14" height="14"></iconify-icon>98</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Category 4: Zdrowie Psychiczne i Sen -->
+                        <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden">
+                            <div class="px-5 py-4 bg-gradient-to-r from-purple-50 to-transparent dark:from-purple-500/5 dark:to-transparent border-b border-gray-100 dark:border-dark-border flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-purple-100 dark:bg-purple-500/20 flex items-center justify-center">
+                                        <iconify-icon icon="solar:moon-sleep-linear" width="20" height="20" class="text-purple-600 dark:text-purple-400"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-sm font-bold text-slate-900 dark:text-white">Zdrowie Psychiczne i Sen</h2>
+                                        <p class="text-xs text-slate-400">Stres, mindfulness, higiena snu, relaksacja</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs text-slate-400">7 wątków</span>
+                            </div>
+                            <div class="divide-y divide-gray-50 dark:divide-dark-border">
+                                <div class="px-5 py-3.5 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer">
+                                    <img src="/media/avatars/marta.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                                    <div class="flex-1 min-w-0">
+                                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Jak poprawić jakość snu? Moje sprawdzone sposoby 🌙</h3>
+                                        <p class="text-xs text-slate-400 mt-0.5">Marta Wiśniewska · 1d · 21 odpowiedzi</p>
+                                    </div>
+                                    <div class="text-right shrink-0 hidden sm:block">
+                                        <div class="flex items-center gap-3 text-xs text-slate-400">
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:chat-round-dots-linear" width="14" height="14"></iconify-icon>21</span>
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:eye-linear" width="14" height="14"></iconify-icon>167</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-5 py-3.5 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer">
+                                    <img src="/media/avatars/tomek.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                                    <div class="flex-1 min-w-0">
+                                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Medytacja poranna — jak zacząć i nie porzucić?</h3>
+                                        <p class="text-xs text-slate-400 mt-0.5">Tomasz Zieliński · 4d · 8 odpowiedzi</p>
+                                    </div>
+                                    <div class="text-right shrink-0 hidden sm:block">
+                                        <div class="flex items-center gap-3 text-xs text-slate-400">
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:chat-round-dots-linear" width="14" height="14"></iconify-icon>8</span>
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:eye-linear" width="14" height="14"></iconify-icon>72</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Category 5: Sugestie & Feedback -->
+                        <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden">
+                            <div class="px-5 py-4 bg-gradient-to-r from-green-50 to-transparent dark:from-green-500/5 dark:to-transparent border-b border-gray-100 dark:border-dark-border flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-green-100 dark:bg-green-500/20 flex items-center justify-center">
+                                        <iconify-icon icon="solar:flag-linear" width="20" height="20" class="text-green-600 dark:text-green-400"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-sm font-bold text-slate-900 dark:text-white">Sugestie & Feedback</h2>
+                                        <p class="text-xs text-slate-400">Propozycje zmian, pomysły na nowe kursy i funkcje</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs text-slate-400">2 wątki</span>
+                            </div>
+                            <div class="divide-y divide-gray-50 dark:divide-dark-border">
+                                <div class="px-5 py-3.5 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors cursor-pointer">
+                                    <img src="/media/avatars/jan.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                                    <div class="flex-1 min-w-0">
+                                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Pomysł: kurs o zdrowiu tarczycy 🙏</h3>
+                                        <p class="text-xs text-slate-400 mt-0.5">Jan Kowalski · 5d · 7 odpowiedzi</p>
+                                    </div>
+                                    <div class="text-right shrink-0 hidden sm:block">
+                                        <div class="flex items-center gap-3 text-xs text-slate-400">
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:chat-round-dots-linear" width="14" height="14"></iconify-icon>7</span>
+                                            <span class="flex items-center gap-1"><iconify-icon icon="solar:eye-linear" width="14" height="14"></iconify-icon>54</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

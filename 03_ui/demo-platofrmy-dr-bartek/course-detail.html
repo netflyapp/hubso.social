@@ -1,0 +1,463 @@
+<html lang="pl" class="antialiased">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Życie w szczęściu i spełnieniu — Dr Bartek | Społeczność Zdrowia</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <style>:root { --font-inter: 'Inter', sans-serif; } body { font-family: var(--font-inter); } ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 3px; } .dark ::-webkit-scrollbar-thumb { background: #334155; } .no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; } .lesson-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; } .lesson-content.open { max-height: 600px; }</style>
+        <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { green: '#2D8F4E' }, dark: { bg: '#050505', surface: '#0F1115', border: '#222226' } }, boxShadow: { 'soft': '0 2px 10px rgba(0,0,0,0.03)', 'card': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)', 'dark-card': '0 0 0 1px rgba(255,255,255,0.06), 0 4px 8px rgba(0,0,0,0.2)' }, fontSize: { xxs: '0.625rem' } } }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark') } else { document.documentElement.classList.remove('dark') }
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'; }
+        function toggleLesson(el) {
+            const content = el.closest('.lesson-item').querySelector('.lesson-content');
+            const icon = el.querySelector('.expand-icon');
+            content.classList.toggle('open');
+            icon.style.transform = content.classList.contains('open') ? 'rotate(90deg)' : 'rotate(0deg)';
+        }
+        function expandAll() {
+            document.querySelectorAll('.lesson-content').forEach(c => c.classList.add('open'));
+            document.querySelectorAll('.expand-icon').forEach(i => i.style.transform = 'rotate(90deg)');
+        }
+    </script>
+    </head>
+    <body class="text-slate-600 dark:text-slate-400 bg-[#F7F8FA] dark:bg-dark-bg h-screen flex flex-col overflow-hidden transition-colors duration-300">
+        <!-- HEADER -->
+        <header class="h-16 bg-white dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border flex items-center justify-between px-4 lg:px-6 shrink-0 z-50 sticky top-0 transition-colors duration-300">
+            <div class="flex items-center gap-12">
+                <a href="home-full.html" class="flex items-center gap-2.5"> <div class="w-8 h-8 rounded-full bg-[#2D8F4E] flex items-center justify-center text-white">
+                        <iconify-icon icon="solar:heart-pulse-bold" width="20" height="20"></iconify-icon>
+                    </div> <div class="flex flex-col">
+                        <span class="font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-none text-sm">Dr Bartek</span>
+                        <span class="font-medium text-slate-500 text-xs tracking-tight">Społeczność Zdrowia</span>
+                    </div> </a>
+            </div>
+            <nav class="hidden md:flex items-center h-full gap-1">
+                <a href="home-full.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:feed-linear" width="24" height="24"></iconify-icon></a>
+                <a href="profile.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="24" height="24"></iconify-icon></a>
+                <a href="groups.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="24" height="24"></iconify-icon></a>
+                <a href="messages.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-round-dots-linear" width="24" height="24"></iconify-icon></a>
+                <a href="members.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="24" height="24"></iconify-icon></a>
+                <a href="forums.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="24" height="24"></iconify-icon></a>
+                <a href="courses.html" class="h-full flex items-center border-b-[2px] border-emerald-600 px-3 text-emerald-600 dark:text-emerald-400"><iconify-icon icon="solar:square-academic-cap-linear" width="24" height="24"></iconify-icon></a>
+                <a href="events.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calendar-linear" width="24" height="24"></iconify-icon></a>
+                <a href="shop.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="24" height="24"></iconify-icon></a>
+                <a href="documents.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:document-text-linear" width="24" height="24"></iconify-icon></a>
+                <a href="recipes.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="24" height="24"></iconify-icon></a>
+                <a href="video.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="24" height="24"></iconify-icon></a>
+                <a href="apps.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calculator-linear" width="24" height="24"></iconify-icon></a>
+                <a href="health-journal.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="24" height="24"></iconify-icon></a>
+            </nav>
+            <div class="flex items-center gap-5">
+                <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <iconify-icon icon="solar:magnifer-linear" width="22" height="22"></iconify-icon>
+                </button>
+                <button onclick="toggleDarkMode()" class="text-slate-400 hover:text-slate-600 dark:hover:text-yellow-400 transition-colors">
+                    <iconify-icon class="block dark:hidden" icon="solar:moon-linear" width="22" height="22"></iconify-icon>
+                    <iconify-icon class="hidden dark:block" icon="solar:sun-2-linear" width="22" height="22"></iconify-icon>
+                </button>
+                <div class="flex items-center gap-4 border-l border-gray-200 dark:border-dark-border pl-4">
+                    <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <iconify-icon icon="solar:bag-3-linear" width="22" height="22"></iconify-icon>
+                        <span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">1</span>
+                    </button>
+                    <a href="notifications.html" class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:bell-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">8</span></a>
+                    <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <iconify-icon icon="solar:cart-large-linear" width="22" height="22"></iconify-icon>
+                        <span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">4</span>
+                    </button>
+                </div>
+                <div class="flex items-center gap-3 pl-2">
+                    <span class="text-sm font-medium text-slate-700 dark:text-slate-200 hidden sm:block">Jan</span>
+                    <img src="/media/avatars/jan.jpg" alt="Jan" class="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-slate-700">
+                </div>
+            </div>
+        </header>
+        <div class="flex flex-1 overflow-hidden">
+            <!-- SIDEBAR -->
+            <aside class="hidden xl:flex w-[260px] flex-col bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border overflow-y-auto shrink-0 pb-6 transition-colors duration-300">
+                <div class="p-6">
+                    <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <iconify-icon icon="solar:sidebar-minimalistic-linear" width="24" height="24"></iconify-icon>
+                    </button>
+                </div>
+                <nav class="flex-1 px-4 space-y-8">
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Osobisty</div>
+                        <a href="profile.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="20" height="20"></iconify-icon>Profil</a>
+                        <a href="home.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:graph-up-linear" width="20" height="20"></iconify-icon>Oś czasu</a>
+                        <a href="messages.html" class="flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><div class="flex items-center gap-3">
+                                <iconify-icon icon="solar:inbox-linear" width="20" height="20"></iconify-icon>                                Skrzynka
+                            </div><span class="bg-gray-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-semibold px-1.5 py-0.5 rounded">3</span></a>
+                        <a href="health-journal.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="20" height="20"></iconify-icon>Dziennik Zdrowia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Wspólnota</div>
+                        <a href="groups.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="20" height="20"></iconify-icon>Grupy</a>
+                        <a href="members.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="20" height="20"></iconify-icon>Połączenia</a>
+                        <a href="forums.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="20" height="20"></iconify-icon>Dyskusje</a>
+                        <a href="courses.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 rounded-md"><iconify-icon icon="solar:diploma-linear" width="20" height="20"></iconify-icon>Kursy</a>
+                        <a href="events.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calendar-linear" width="20" height="20"></iconify-icon>Wydarzenia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Zdrowie & Wiedza</div>
+                        <a href="recipes.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="20" height="20"></iconify-icon>Przepisy</a>
+                        <a href="video.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="20" height="20"></iconify-icon>Video & Wiedza</a>
+                        <a href="apps.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calculator-linear" width="20" height="20"></iconify-icon>Narzędzia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Multimedia</div>
+                        <a href="photos.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:gallery-linear" width="20" height="20"></iconify-icon>Zdjęcia</a>
+                        <a href="documents.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:folder-linear" width="20" height="20"></iconify-icon>Dokumenty</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Sklep</div>
+                        <a href="shop.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="20" height="20"></iconify-icon>Sklep</a>
+                    </div>
+                </nav>
+                <div class="mt-auto px-4 pt-6">
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:settings-linear" width="20" height="20"></iconify-icon>Ustawienia konta</a>
+                </div>
+            </aside>
+            <!-- MAIN -->
+            <main class="flex-1 overflow-y-auto">
+                <!-- Breadcrumb -->
+                <div class="px-4 lg:px-8 pt-4">
+                    <div class="max-w-6xl mx-auto">
+                        <nav class="flex items-center gap-1.5 text-sm text-slate-400 dark:text-slate-500">
+                            <a href="home-full.html" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Strona główna</a>
+                            <iconify-icon icon="solar:alt-arrow-right-linear" width="14" height="14"></iconify-icon>
+                            <a href="courses.html" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Kursy</a>
+                            <iconify-icon icon="solar:alt-arrow-right-linear" width="14" height="14"></iconify-icon>
+                            <span class="text-slate-700 dark:text-slate-200 font-medium">Kolagenowa Przemiana</span>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Hero Section -->
+                <div class="px-4 lg:px-8 pt-6 pb-2">
+                    <div class="max-w-6xl mx-auto">
+                        <div class="relative rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 p-6 lg:p-10">
+                            <div class="absolute inset-0 opacity-10">
+                                <div class="absolute top-0 right-0 w-96 h-96 bg-white rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl"></div>
+                                <div class="absolute bottom-0 left-0 w-64 h-64 bg-emerald-300 rounded-full translate-y-1/2 -translate-x-1/4 blur-3xl"></div>
+                            </div>
+                            <div class="relative z-10">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/15 backdrop-blur-sm text-white text-xs font-semibold rounded-full border border-white/20 mb-4"> <iconify-icon icon="solar:book-2-bold" width="14" height="14"></iconify-icon>
+                                Ebook </span>
+                                <h1 class="text-2xl md:text-4xl font-bold text-white mb-2 leading-tight">Kolagenowa Przemiana</h1>
+                                <p class="text-base text-white/80 mb-5 max-w-xl leading-relaxed">Kompleksowy plan żywieniowy wspierający produkcję kolagenu</p>
+                                <div class="flex items-center gap-4 mb-5">
+                                    <img src="media/avatars/Zrzut%20ekranu%202026-02-18%20o%2011.44.32.png" alt="Dr Bartek Kulczyński" class="w-10 h-10 rounded-full object-cover border-2 border-white/30">
+                                    <div>
+                                        <div class="text-sm font-semibold text-white">Dr Bartek Kulczyński</div>
+                                        <div class="text-xs text-white/60">Autor kursu</div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap items-center gap-3 text-sm text-white/80 mb-5">
+                                    <span class="flex items-center gap-1.5"><iconify-icon icon="solar:layers-linear" width="16" height="16"></iconify-icon>4 moduły</span>
+                                    <span class="text-white/30">·</span>
+                                    <span class="flex items-center gap-1.5"><iconify-icon icon="solar:notebook-linear" width="16" height="16"></iconify-icon>16 lekcji</span>
+                                    <span class="text-white/30">·</span>
+                                    <span class="flex items-center gap-1.5"><iconify-icon icon="solar:documents-linear" width="16" height="16"></iconify-icon>249 stron</span>
+                                    <span class="text-white/30">·</span>
+                                    <span class="flex items-center gap-1.5 text-emerald-200 font-semibold"><iconify-icon icon="solar:chart-2-linear" width="16" height="16"></iconify-icon>75% ukończone</span>
+                                </div>
+                                <div class="max-w-md">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-xs text-white/60">Postęp</span>
+                                        <span class="text-xs font-semibold text-white">75%</span>
+                                    </div>
+                                    <div class="w-full h-2.5 bg-white/20 rounded-full overflow-hidden">
+                                        <div class="h-full bg-white rounded-full transition-all duration-500" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 lg:p-8">
+                    <div class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8">
+                        <!-- Left Content - Course Modules -->
+                        <div class="flex-1 min-w-0 space-y-5">
+                            <!-- Module 1: Teoria kolagenu — COMPLETED -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden">
+                                <div class="px-5 py-4 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-500/10 dark:to-teal-500/10 border-b border-emerald-100 dark:border-emerald-500/20 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:check-circle-bold" width="18" height="18" class="text-white"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Moduł 1: Teoria kolagenu</h3>
+                                            <span class="text-xs text-emerald-600 dark:text-emerald-400 font-medium">4 lekcje · Ukończony</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-2.5 py-1 bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-semibold rounded-full">4/4</span>
+                                </div>
+                                <div class="divide-y divide-gray-50 dark:divide-white/5">
+                                    <a href="#" class="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"> <div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:check-read-linear" width="14" height="14" class="text-white"></iconify-icon>
+                                        </div> <span class="text-sm text-slate-600 dark:text-slate-300 line-through decoration-slate-300 dark:decoration-slate-600">Lekcja 1: Czym jest kolagen i dlaczego jest ważny</span> </a>
+                                    <a href="#" class="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"> <div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:check-read-linear" width="14" height="14" class="text-white"></iconify-icon>
+                                        </div> <span class="text-sm text-slate-600 dark:text-slate-300 line-through decoration-slate-300 dark:decoration-slate-600">Lekcja 2: Typy kolagenu w organizmie</span> </a>
+                                    <a href="#" class="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"> <div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:check-read-linear" width="14" height="14" class="text-white"></iconify-icon>
+                                        </div> <span class="text-sm text-slate-600 dark:text-slate-300 line-through decoration-slate-300 dark:decoration-slate-600">Lekcja 3: Czynniki niszczące kolagen</span> </a>
+                                    <a href="#" class="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"> <div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:check-read-linear" width="14" height="14" class="text-white"></iconify-icon>
+                                        </div> <span class="text-sm text-slate-600 dark:text-slate-300 line-through decoration-slate-300 dark:decoration-slate-600">Lekcja 4: Suplementacja kolagenu - fakty i mity</span> </a>
+                                </div>
+                            </div>
+                            <!-- Module 2: Praktyka żywieniowa — IN PROGRESS -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden">
+                                <div class="px-5 py-4 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-500/10 dark:to-orange-500/10 border-b border-amber-100 dark:border-amber-500/20 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:play-circle-bold" width="18" height="18" class="text-white"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Moduł 2: Praktyka żywieniowa</h3>
+                                            <span class="text-xs text-amber-600 dark:text-amber-400 font-medium">4 lekcje · W trakcie</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-2.5 py-1 bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-400 text-xs font-semibold rounded-full">2/4</span>
+                                </div>
+                                <div class="divide-y divide-gray-50 dark:divide-white/5">
+                                    <a href="#" class="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"> <div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:check-read-linear" width="14" height="14" class="text-white"></iconify-icon>
+                                        </div> <span class="text-sm text-slate-600 dark:text-slate-300 line-through decoration-slate-300 dark:decoration-slate-600">Lekcja 5: Produkty bogate w kolagen</span> </a>
+                                    <a href="#" class="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors"> <div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:check-read-linear" width="14" height="14" class="text-white"></iconify-icon>
+                                        </div> <span class="text-sm text-slate-600 dark:text-slate-300 line-through decoration-slate-300 dark:decoration-slate-600">Lekcja 6: Witamina C i synteza kolagenu</span> </a>
+                                    <a href="#" class="flex items-center gap-3 px-5 py-3 bg-amber-50 dark:bg-amber-500/5 border-l-4 border-amber-500"> <div class="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center shrink-0 ring-4 ring-amber-100 dark:ring-amber-500/20">
+                                            <iconify-icon icon="solar:play-bold" width="12" height="12" class="text-white ml-0.5"></iconify-icon>
+                                        </div> <div>
+                                            <span class="text-sm font-semibold text-amber-700 dark:text-amber-300">Lekcja 7: Aminokwasy budulcowe kolagenu</span>
+                                            <span class="block text-xs text-amber-500 dark:text-amber-400 mt-0.5">Aktualna lekcja</span>
+                                        </div> </a>
+                                    <div class="flex items-center gap-3 px-5 py-3 opacity-60">
+                                        <div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:lock-keyhole-linear" width="14" height="14" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                        </div>
+                                        <span class="text-sm text-slate-500 dark:text-slate-500">Lekcja 8: Antyoksydanty i ochrona kolagenu</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Module 3: Przepisy kolagenowe — LOCKED -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden">
+                                <div class="px-5 py-4 bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-500/5 dark:to-gray-500/5 border-b border-slate-100 dark:border-slate-500/20 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-slate-300 dark:bg-slate-600 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:lock-keyhole-bold" width="18" height="18" class="text-white"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Moduł 3: Przepisy kolagenowe</h3>
+                                            <span class="text-xs text-slate-400 dark:text-slate-500 font-medium">4 lekcje · Zablokowany</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-500/20 text-slate-500 dark:text-slate-400 text-xs font-semibold rounded-full">0/4</span>
+                                </div>
+                                <div class="divide-y divide-gray-50 dark:divide-white/5 opacity-60">
+                                    <div class="flex items-center gap-3 px-5 py-3">
+                                        <div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:lock-keyhole-linear" width="14" height="14" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                        </div>
+                                        <span class="text-sm text-slate-500 dark:text-slate-500">Lekcja 9: Bulion kostny - przepis bazowy</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 px-5 py-3">
+                                        <div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:lock-keyhole-linear" width="14" height="14" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                        </div>
+                                        <span class="text-sm text-slate-500 dark:text-slate-500">Lekcja 10: Smoothie kolagenowe</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 px-5 py-3">
+                                        <div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:lock-keyhole-linear" width="14" height="14" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                        </div>
+                                        <span class="text-sm text-slate-500 dark:text-slate-500">Lekcja 11: Dania główne wspierające kolagen</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 px-5 py-3">
+                                        <div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:lock-keyhole-linear" width="14" height="14" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                        </div>
+                                        <span class="text-sm text-slate-500 dark:text-slate-500">Lekcja 12: Desery i przekąski</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Module 4: Quick Protocol — LOCKED -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden">
+                                <div class="px-5 py-4 bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-500/5 dark:to-gray-500/5 border-b border-slate-100 dark:border-slate-500/20 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-slate-300 dark:bg-slate-600 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:lock-keyhole-bold" width="18" height="18" class="text-white"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Moduł 4: Quick Protocol</h3>
+                                            <span class="text-xs text-slate-400 dark:text-slate-500 font-medium">4 lekcje · Zablokowany</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-500/20 text-slate-500 dark:text-slate-400 text-xs font-semibold rounded-full">0/4</span>
+                                </div>
+                                <div class="divide-y divide-gray-50 dark:divide-white/5 opacity-60">
+                                    <div class="flex items-center gap-3 px-5 py-3">
+                                        <div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:lock-keyhole-linear" width="14" height="14" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                        </div>
+                                        <span class="text-sm text-slate-500 dark:text-slate-500">Lekcja 13: 7-dniowy jadłospis kolagenowy</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 px-5 py-3">
+                                        <div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:lock-keyhole-linear" width="14" height="14" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                        </div>
+                                        <span class="text-sm text-slate-500 dark:text-slate-500">Lekcja 14: Lista zakupów (do pobrania)</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 px-5 py-3">
+                                        <div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:lock-keyhole-linear" width="14" height="14" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                        </div>
+                                        <span class="text-sm text-slate-500 dark:text-slate-500">Lekcja 15: Poranna rutyna kolagenowa</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 px-5 py-3">
+                                        <div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:lock-keyhole-linear" width="14" height="14" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                        </div>
+                                        <span class="text-sm text-slate-500 dark:text-slate-500">Lekcja 16: Podsumowanie i plan utrzymania</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- About Instructor -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-5">
+                                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-4">O autorze</h3>
+                                <div class="flex items-center gap-4">
+                                    <img src="media/avatars/Zrzut%20ekranu%202026-02-18%20o%2011.44.32.png" alt="Dr Bartek Kulczyński" class="w-14 h-14 rounded-full object-cover border-2 border-emerald-200 dark:border-emerald-700">
+                                    <div>
+                                        <a href="profile.html" class="text-sm font-semibold text-slate-900 dark:text-slate-100 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Dr Bartek Kulczyński</a>
+                                        <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Ekspert ds. żywienia · 12 kursów</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Right Sidebar -->
+                        <div class="w-full lg:w-80 shrink-0 space-y-6">
+                            <!-- Current Lesson Preview -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden lg:sticky lg:top-4">
+                                <div class="relative aspect-video overflow-hidden group cursor-pointer">
+                                    <img src="https://images.unsplash.com/photo-1505576399279-0d06b2000de6?w=600&q=80" alt="Lekcja 7" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <div class="w-12 h-12 bg-emerald-600/90 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform">
+                                            <iconify-icon icon="solar:play-bold" width="20" height="20" class="text-white ml-0.5"></iconify-icon>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-3 left-3">
+                                        <span class="px-2 py-1 bg-amber-500 text-white text-xs font-semibold rounded-md flex items-center gap-1"> <iconify-icon icon="solar:play-circle-bold" width="12" height="12"></iconify-icon>
+                                        Aktualna lekcja </span>
+                                    </div>
+                                    <div class="absolute bottom-3 left-3 right-3">
+                                        <p class="text-sm font-semibold text-white leading-snug">Lekcja 7: Aminokwasy budulcowe kolagenu</p>
+                                        <p class="text-xs text-white/70 mt-1">Moduł 2 · Praktyka żywieniowa</p>
+                                    </div>
+                                </div>
+                                <div class="p-5 space-y-4">
+                                    <!-- CTA Button -->
+                                    <button class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20">
+                                        <iconify-icon icon="solar:play-bold" width="16" height="16"></iconify-icon>
+                                        Kontynuuj naukę
+                                    </button>
+                                    <!-- Progress summary -->
+                                    <div class="flex items-center justify-between text-sm">
+                                        <span class="text-slate-500 dark:text-slate-400">Postęp kursu</span>
+                                        <span class="font-semibold text-emerald-600 dark:text-emerald-400">75%</span>
+                                    </div>
+                                    <div class="w-full h-1.5 bg-gray-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                        <div class="h-full bg-emerald-500 rounded-full" style="width: 75%"></div>
+                                    </div>
+                                    <!-- Course Info -->
+                                    <div class="pt-3 border-t border-gray-100 dark:border-white/5">
+                                        <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-3">Kurs zawiera</h4>
+                                        <ul class="space-y-2.5">
+                                            <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                                                <iconify-icon icon="solar:layers-linear" width="16" height="16" class="text-emerald-500 shrink-0"></iconify-icon>
+                                                4 moduły
+                                            </li>
+                                            <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                                                <iconify-icon icon="solar:notebook-linear" width="16" height="16" class="text-emerald-500 shrink-0"></iconify-icon>
+                                                16 lekcji
+                                            </li>
+                                            <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                                                <iconify-icon icon="solar:documents-linear" width="16" height="16" class="text-emerald-500 shrink-0"></iconify-icon>
+                                                249 stron materiałów
+                                            </li>
+                                            <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                                                <iconify-icon icon="solar:diploma-linear" width="16" height="16" class="text-emerald-500 shrink-0"></iconify-icon>
+                                                Certyfikat ukończenia
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Achievements -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-5">
+                                <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2"> <iconify-icon icon="solar:cup-star-bold" width="18" height="18" class="text-amber-500"></iconify-icon>
+                                Osiągnięcia kursu </h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center gap-3 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20">
+                                        <div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:star-bold" width="20" height="20" class="text-white"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm font-semibold text-emerald-800 dark:text-emerald-300">Pierwszy moduł</span>
+                                            <p class="text-xs text-emerald-600 dark:text-emerald-400">Ukończono Moduł 1</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20">
+                                        <div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:fire-bold" width="20" height="20" class="text-white"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm font-semibold text-emerald-800 dark:text-emerald-300">Seria 7 dni</span>
+                                            <p class="text-xs text-emerald-600 dark:text-emerald-400">Nauka 7 dni z rzędu</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20">
+                                        <div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                                            <iconify-icon icon="solar:book-2-bold" width="20" height="20" class="text-white"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm font-semibold text-emerald-800 dark:text-emerald-300">Połowa drogi</span>
+                                            <p class="text-xs text-emerald-600 dark:text-emerald-400">Ukończono 50% materiału</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Community Discussion -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-5">
+                                <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2"> <iconify-icon icon="solar:chat-round-dots-bold" width="18" height="18" class="text-emerald-500"></iconify-icon>
+                                Dyskusja społeczności </h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Dołącz do dyskusji z innymi uczestnikami kursu. Dziel się swoimi postępami i pytaniami.</p>
+                                <div class="flex items-center gap-2 mb-4">
+                                    <div class="flex -space-x-2">
+                                        <img src="/media/avatars/alice.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface object-cover">
+                                        <img src="/media/avatars/anna.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface object-cover">
+                                        <img src="/media/avatars/alice.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface object-cover">
+                                        <img src="/media/avatars/anna.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface object-cover">
+                                    </div>
+                                    <span class="text-xs text-slate-500 dark:text-slate-400">32 aktywnych uczestników</span>
+                                </div>
+                                <a href="forums.html" class="w-full py-2.5 border border-emerald-200 dark:border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm font-semibold rounded-xl transition-colors hover:bg-emerald-50 dark:hover:bg-emerald-500/10 flex items-center justify-center gap-2"> <iconify-icon icon="solar:chat-line-linear" width="16" height="16"></iconify-icon>
+                                Przejdź do dyskusji </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

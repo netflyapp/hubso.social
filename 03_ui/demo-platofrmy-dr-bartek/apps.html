@@ -1,0 +1,372 @@
+<html lang="pl" class="antialiased"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narzędzia — Dr Bartek | Społeczność Zdrowia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --font-inter: 'Inter', sans-serif; }
+        body { font-family: var(--font-inter); }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 3px; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { green: '#2D8F4E' }, dark: { bg: '#050505', surface: '#0F1115', border: '#222226' } }, boxShadow: { 'soft': '0 2px 10px rgba(0,0,0,0.03)', 'card': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)', 'dark-card': '0 0 0 1px rgba(255,255,255,0.06), 0 4px 8px rgba(0,0,0,0.2)' }, fontSize: { xxs: '0.625rem' } } }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark') } else { document.documentElement.classList.remove('dark') }
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'; }
+    </script>
+</head>
+<body class="text-slate-600 dark:text-slate-400 bg-[#F7F8FA] dark:bg-dark-bg h-screen flex flex-col overflow-hidden transition-colors duration-300">
+
+    <!-- HEADER -->
+    <header class="h-16 bg-white dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border flex items-center justify-between px-4 lg:px-6 shrink-0 z-50 sticky top-0 transition-colors duration-300">
+        <div class="flex items-center gap-12">
+            <a href="home-full.html" class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-[#2D8F4E] flex items-center justify-center text-white"><iconify-icon icon="solar:heart-pulse-bold" width="20" height="20"></iconify-icon></div>
+                <div class="flex flex-col"><span class="font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-none text-sm">Dr Bartek</span><span class="font-medium text-slate-500 text-xs tracking-tight">Społeczność Zdrowia</span></div>
+            </a>
+        </div>
+        <nav class="hidden md:flex items-center h-full gap-1">
+            <a href="home-full.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:feed-linear" width="24" height="24"></iconify-icon></a>
+            <a href="profile.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="24" height="24"></iconify-icon></a>
+            <a href="groups.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="24" height="24"></iconify-icon></a>
+            <a href="messages.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-round-dots-linear" width="24" height="24"></iconify-icon></a>
+            <a href="members.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="24" height="24"></iconify-icon></a>
+            <a href="forums.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="24" height="24"></iconify-icon></a>
+            <a href="courses.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:square-academic-cap-linear" width="24" height="24"></iconify-icon></a>
+            <a href="events.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calendar-linear" width="24" height="24"></iconify-icon></a>
+            <a href="shop.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="24" height="24"></iconify-icon></a>
+            <a href="documents.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:document-text-linear" width="24" height="24"></iconify-icon></a>
+            <a href="recipes.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="24" height="24"></iconify-icon></a>
+            <a href="video.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="24" height="24"></iconify-icon></a>
+            <a href="apps.html" class="h-full flex items-center border-b-[2px] border-emerald-600 px-3 text-emerald-600 dark:text-emerald-400"><iconify-icon icon="solar:calculator-linear" width="24" height="24"></iconify-icon></a>
+            <a href="health-journal.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="24" height="24"></iconify-icon></a>
+        </nav>
+        <div class="flex items-center gap-5">
+            <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:magnifer-linear" width="22" height="22"></iconify-icon></button>
+            <button onclick="toggleDarkMode()" class="text-slate-400 hover:text-slate-600 dark:hover:text-yellow-400 transition-colors"><iconify-icon class="block dark:hidden" icon="solar:moon-linear" width="22" height="22"></iconify-icon><iconify-icon class="hidden dark:block" icon="solar:sun-2-linear" width="22" height="22"></iconify-icon></button>
+            <div class="flex items-center gap-4 border-l border-gray-200 dark:border-dark-border pl-4">
+                <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:bag-3-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">1</span></button>
+                <a href="notifications.html" class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:bell-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">8</span></a>
+                <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:cart-large-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">4</span></button>
+            </div>
+            <div class="flex items-center gap-3 pl-2"><span class="text-sm font-medium text-slate-700 dark:text-slate-200 hidden sm:block">Jan</span><img src="/media/avatars/jan.jpg" alt="Jan" class="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-slate-700"></div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        <!-- SIDEBAR -->
+        <aside class="hidden xl:flex w-[260px] flex-col bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border overflow-y-auto shrink-0 pb-6 transition-colors duration-300">
+            <div class="p-6"><button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:sidebar-minimalistic-linear" width="24" height="24"></iconify-icon></button></div>
+            <nav class="flex-1 px-4 space-y-8">
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Osobisty</div>
+                    <a href="profile.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="20" height="20"></iconify-icon>Profil</a>
+                    <a href="home.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:graph-up-linear" width="20" height="20"></iconify-icon>Oś czasu</a>
+                    <a href="messages.html" class="flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><div class="flex items-center gap-3"><iconify-icon icon="solar:inbox-linear" width="20" height="20"></iconify-icon>Skrzynka</div><span class="bg-gray-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-semibold px-1.5 py-0.5 rounded">3</span></a>
+                    <a href="health-journal.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="20" height="20"></iconify-icon>Dziennik Zdrowia</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Wspólnota</div>
+                    <a href="groups.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="20" height="20"></iconify-icon>Grupy</a>
+                    <a href="members.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="20" height="20"></iconify-icon>Połączenia</a>
+                    <a href="forums.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="20" height="20"></iconify-icon>Dyskusje</a>
+                    <a href="courses.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:diploma-linear" width="20" height="20"></iconify-icon>Kursy</a>
+                    <a href="events.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calendar-linear" width="20" height="20"></iconify-icon>Wydarzenia</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Zdrowie & Wiedza</div>
+                    <a href="recipes.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="20" height="20"></iconify-icon>Przepisy</a>
+                    <a href="video.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="20" height="20"></iconify-icon>Video & Wiedza</a>
+                    <a href="apps.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 rounded-md"><iconify-icon icon="solar:calculator-linear" width="20" height="20"></iconify-icon>Narzędzia</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Multimedia</div>
+                    <a href="photos.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:gallery-linear" width="20" height="20"></iconify-icon>Zdjęcia</a>
+                    <a href="documents.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:folder-linear" width="20" height="20"></iconify-icon>Dokumenty</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Sklep</div>
+                    <a href="shop.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="20" height="20"></iconify-icon>Sklep</a>
+                </div>
+            </nav>
+            <div class="mt-auto px-4 pt-6"><a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:settings-linear" width="20" height="20"></iconify-icon>Ustawienia konta</a></div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="flex-1 overflow-y-auto p-4 lg:p-8">
+            <div class="max-w-5xl mx-auto space-y-6">
+
+                <!-- Title -->
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+                        <iconify-icon icon="solar:calculator-bold-duotone" width="28" height="28" class="text-emerald-500"></iconify-icon>
+                        Narzędzia zdrowotne
+                    </h1>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Kalkulatory, quiz i AI planer — wszystko czego potrzebujesz</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <!-- BMI Calculator -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-6">
+                        <div class="flex items-center gap-2 mb-5">
+                            <iconify-icon icon="solar:scale-bold-duotone" width="22" height="22" class="text-emerald-500"></iconify-icon>
+                            <h2 class="text-base font-bold text-slate-900 dark:text-white">Kalkulator BMI</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 mb-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Waga (kg)</label>
+                                <input id="bmiWeight" type="number" placeholder="78" class="w-full h-10 px-3 bg-gray-50 dark:bg-dark-bg border border-gray-200 dark:border-dark-border rounded-lg text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-400">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Wzrost (cm)</label>
+                                <input id="bmiHeight" type="number" placeholder="178" class="w-full h-10 px-3 bg-gray-50 dark:bg-dark-bg border border-gray-200 dark:border-dark-border rounded-lg text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-400">
+                            </div>
+                        </div>
+                        <button onclick="calcBMI()" class="w-full h-10 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-colors mb-4">Oblicz BMI</button>
+                        <div id="bmiResult" class="hidden bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 rounded-lg p-4 text-center">
+                            <div class="text-3xl font-bold text-emerald-700 dark:text-emerald-300" id="bmiValue">—</div>
+                            <div class="text-xs text-emerald-600 dark:text-emerald-400 mt-1" id="bmiCategory">—</div>
+                        </div>
+                        <div class="mt-3 text-[10px] text-slate-400 dark:text-slate-500">
+                            <span class="inline-block px-1.5 py-0.5 bg-blue-50 dark:bg-blue-500/10 text-blue-500 rounded mr-1">&lt;18.5</span> Niedowaga
+                            <span class="inline-block px-1.5 py-0.5 bg-green-50 dark:bg-green-500/10 text-green-500 rounded mx-1">18.5–24.9</span> Norma
+                            <span class="inline-block px-1.5 py-0.5 bg-amber-50 dark:bg-amber-500/10 text-amber-500 rounded mx-1">25–29.9</span> Nadwaga
+                            <span class="inline-block px-1.5 py-0.5 bg-red-50 dark:bg-red-500/10 text-red-500 rounded mx-1">≥30</span> Otyłość
+                        </div>
+                    </div>
+
+                    <!-- WHR Calculator -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-6">
+                        <div class="flex items-center gap-2 mb-5">
+                            <iconify-icon icon="solar:ruler-angular-bold-duotone" width="22" height="22" class="text-violet-500"></iconify-icon>
+                            <h2 class="text-base font-bold text-slate-900 dark:text-white">Kalkulator WHR</h2>
+                            <span class="text-[10px] text-slate-400">(talia/biodra)</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 mb-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Talia (cm)</label>
+                                <input id="whrWaist" type="number" placeholder="82" class="w-full h-10 px-3 bg-gray-50 dark:bg-dark-bg border border-gray-200 dark:border-dark-border rounded-lg text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-400">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Biodra (cm)</label>
+                                <input id="whrHip" type="number" placeholder="96" class="w-full h-10 px-3 bg-gray-50 dark:bg-dark-bg border border-gray-200 dark:border-dark-border rounded-lg text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-400">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Płeć</label>
+                            <div class="flex gap-2">
+                                <label class="flex-1 h-10 flex items-center justify-center gap-2 border border-gray-200 dark:border-dark-border rounded-lg text-sm cursor-pointer hover:border-violet-300 dark:hover:border-violet-500/30 transition-colors"><input type="radio" name="sex" value="m" checked class="accent-violet-500"> Mężczyzna</label>
+                                <label class="flex-1 h-10 flex items-center justify-center gap-2 border border-gray-200 dark:border-dark-border rounded-lg text-sm cursor-pointer hover:border-violet-300 dark:hover:border-violet-500/30 transition-colors"><input type="radio" name="sex" value="f" class="accent-violet-500"> Kobieta</label>
+                            </div>
+                        </div>
+                        <button onclick="calcWHR()" class="w-full h-10 bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold rounded-lg transition-colors mb-4">Oblicz WHR</button>
+                        <div id="whrResult" class="hidden bg-violet-50 dark:bg-violet-500/10 border border-violet-200 dark:border-violet-500/20 rounded-lg p-4 text-center">
+                            <div class="text-3xl font-bold text-violet-700 dark:text-violet-300" id="whrValue">—</div>
+                            <div class="text-xs text-violet-600 dark:text-violet-400 mt-1" id="whrCategory">—</div>
+                        </div>
+                    </div>
+
+                    <!-- Calorie Calculator -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-6">
+                        <div class="flex items-center gap-2 mb-5">
+                            <iconify-icon icon="solar:fire-bold-duotone" width="22" height="22" class="text-orange-500"></iconify-icon>
+                            <h2 class="text-base font-bold text-slate-900 dark:text-white">Zapotrzebowanie kaloryczne</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 mb-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Wiek</label>
+                                <input id="calAge" type="number" placeholder="35" class="w-full h-10 px-3 bg-gray-50 dark:bg-dark-bg border border-gray-200 dark:border-dark-border rounded-lg text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-400">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Waga (kg)</label>
+                                <input id="calWeight" type="number" placeholder="78" class="w-full h-10 px-3 bg-gray-50 dark:bg-dark-bg border border-gray-200 dark:border-dark-border rounded-lg text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-400">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Wzrost (cm)</label>
+                                <input id="calHeight" type="number" placeholder="178" class="w-full h-10 px-3 bg-gray-50 dark:bg-dark-bg border border-gray-200 dark:border-dark-border rounded-lg text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-400">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">Aktywność</label>
+                                <select id="calActivity" class="w-full h-10 px-3 bg-gray-50 dark:bg-dark-bg border border-gray-200 dark:border-dark-border rounded-lg text-sm text-slate-700 dark:text-slate-200 focus:outline-none appearance-none">
+                                    <option value="1.2">Siedząca</option>
+                                    <option value="1.375" selected>Lekka</option>
+                                    <option value="1.55">Umiarkowana</option>
+                                    <option value="1.725">Wysoka</option>
+                                    <option value="1.9">Bardzo wysoka</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onclick="calcCalories()" class="w-full h-10 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold rounded-lg transition-colors mb-4">Oblicz</button>
+                        <div id="calResult" class="hidden bg-orange-50 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20 rounded-lg p-4">
+                            <div class="grid grid-cols-3 gap-4 text-center">
+                                <div><div class="text-xl font-bold text-orange-700 dark:text-orange-300" id="calBMR">—</div><div class="text-[10px] text-orange-500">BMR (spocz.)</div></div>
+                                <div><div class="text-xl font-bold text-orange-700 dark:text-orange-300" id="calTDEE">—</div><div class="text-[10px] text-orange-500">TDEE (dziennie)</div></div>
+                                <div><div class="text-xl font-bold text-emerald-700 dark:text-emerald-300" id="calDeficit">—</div><div class="text-[10px] text-emerald-500">Redukcja (-500)</div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Meal Planner Mockup -->
+                    <div class="bg-gradient-to-br from-violet-50 to-indigo-50 dark:from-violet-500/10 dark:to-indigo-500/10 rounded-xl border border-violet-200 dark:border-violet-500/20 p-6">
+                        <div class="flex items-center gap-2 mb-5">
+                            <div class="w-8 h-8 rounded-lg bg-violet-500 flex items-center justify-center">
+                                <iconify-icon icon="solar:magic-stick-3-bold" width="18" height="18" class="text-white"></iconify-icon>
+                            </div>
+                            <div>
+                                <h2 class="text-base font-bold text-violet-800 dark:text-violet-200">AI Planer posiłków</h2>
+                                <p class="text-[10px] text-violet-500 dark:text-violet-400">Generowany na podstawie Twoich celów</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3 mb-4">
+                            <div class="bg-white/70 dark:bg-dark-surface/50 rounded-lg p-3 border border-violet-100 dark:border-violet-500/10">
+                                <div class="text-[10px] text-violet-500 font-semibold uppercase mb-1">🌅 Śniadanie · 380 kcal</div>
+                                <div class="text-xs font-medium text-slate-800 dark:text-slate-200">Owsianka z jagodami, orzechami włoskimi i miodem</div>
+                            </div>
+                            <div class="bg-white/70 dark:bg-dark-surface/50 rounded-lg p-3 border border-violet-100 dark:border-violet-500/10">
+                                <div class="text-[10px] text-violet-500 font-semibold uppercase mb-1">☀️ Obiad · 520 kcal</div>
+                                <div class="text-xs font-medium text-slate-800 dark:text-slate-200">Łosoś pieczony z batatami i surówką z kapusty</div>
+                            </div>
+                            <div class="bg-white/70 dark:bg-dark-surface/50 rounded-lg p-3 border border-violet-100 dark:border-violet-500/10">
+                                <div class="text-[10px] text-violet-500 font-semibold uppercase mb-1">🌙 Kolacja · 350 kcal</div>
+                                <div class="text-xs font-medium text-slate-800 dark:text-slate-200">Sałatka z quinoa, awokado, pomidorami i feta</div>
+                            </div>
+                            <div class="bg-white/70 dark:bg-dark-surface/50 rounded-lg p-3 border border-violet-100 dark:border-violet-500/10">
+                                <div class="text-[10px] text-violet-500 font-semibold uppercase mb-1">🥜 Przekąski · 250 kcal</div>
+                                <div class="text-xs font-medium text-slate-800 dark:text-slate-200">Migdały (30g) + jabłko | Jogurt grecki z malinami</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs mb-3">
+                            <span class="text-violet-600 dark:text-violet-400 font-semibold">Łącznie: 1500 kcal</span>
+                            <span class="text-violet-500 dark:text-violet-400">Białko: 85g · Tłuszcz: 55g · Węgle: 160g</span>
+                        </div>
+                        <button class="w-full h-10 bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold rounded-lg transition-colors flex items-center justify-center gap-2">
+                            <iconify-icon icon="solar:magic-stick-3-bold" width="16" height="16"></iconify-icon>
+                            Wygeneruj nowy plan
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Quiz + Shopping List -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Quiz -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-6">
+                        <div class="flex items-center gap-2 mb-5">
+                            <iconify-icon icon="solar:question-circle-bold-duotone" width="22" height="22" class="text-blue-500"></iconify-icon>
+                            <h2 class="text-base font-bold text-slate-900 dark:text-white">Quiz zdrowotny</h2>
+                            <span class="px-2 py-0.5 bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] font-bold rounded-full">Pytanie 1/10</span>
+                        </div>
+                        <div class="mb-4">
+                            <h3 class="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-3">Który z tych produktów zawiera najwięcej omega-3?</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-3 p-3 border border-gray-200 dark:border-dark-border rounded-lg cursor-pointer hover:border-blue-300 dark:hover:border-blue-500/30 transition-colors">
+                                    <input type="radio" name="q1" class="accent-blue-500"><span class="text-sm text-slate-700 dark:text-slate-300">A) Kurczak</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 border border-blue-300 dark:border-blue-500/30 bg-blue-50 dark:bg-blue-500/10 rounded-lg cursor-pointer">
+                                    <input type="radio" name="q1" checked class="accent-blue-500"><span class="text-sm text-slate-700 dark:text-slate-300 font-medium">B) Sardynki</span>
+                                    <span class="ml-auto text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">✅ Poprawnie!</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 border border-gray-200 dark:border-dark-border rounded-lg cursor-pointer hover:border-blue-300 dark:hover:border-blue-500/30 transition-colors">
+                                    <input type="radio" name="q1" class="accent-blue-500"><span class="text-sm text-slate-700 dark:text-slate-300">C) Wieprzowina</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 border border-gray-200 dark:border-dark-border rounded-lg cursor-pointer hover:border-blue-300 dark:hover:border-blue-500/30 transition-colors">
+                                    <input type="radio" name="q1" class="accent-blue-500"><span class="text-sm text-slate-700 dark:text-slate-300">D) Cielęcina</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="bg-emerald-50 dark:bg-emerald-500/10 rounded-lg p-3 text-xs text-emerald-800 dark:text-emerald-300 leading-relaxed">
+                            <strong>Dr Bartek wyjaśnia:</strong> Sardynki to jedno z najlepszych źródeł omega-3 (EPA + DHA). Mała ryba = mało metali ciężkich, a dużo kwasów tłuszczowych.
+                        </div>
+                    </div>
+
+                    <!-- Shopping List Generator -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-6">
+                        <div class="flex items-center gap-2 mb-5">
+                            <iconify-icon icon="solar:clipboard-list-bold-duotone" width="22" height="22" class="text-emerald-500"></iconify-icon>
+                            <h2 class="text-base font-bold text-slate-900 dark:text-white">Lista zakupów</h2>
+                            <span class="px-2 py-0.5 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold rounded-full">Auto-generowana</span>
+                        </div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Na podstawie Twojego planu posiłków na ten tydzień:</p>
+                        <div class="space-y-1.5 max-h-56 overflow-y-auto pr-1">
+                            <div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300"><input type="checkbox" class="accent-emerald-500 rounded"><span>Łosoś świeży — 400g</span></div>
+                            <div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300"><input type="checkbox" class="accent-emerald-500 rounded"><span>Bataty — 500g</span></div>
+                            <div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300"><input type="checkbox" checked class="accent-emerald-500 rounded"><span class="line-through text-slate-400">Płatki owsiane — 500g</span></div>
+                            <div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300"><input type="checkbox" class="accent-emerald-500 rounded"><span>Quinoa — 300g</span></div>
+                            <div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300"><input type="checkbox" class="accent-emerald-500 rounded"><span>Awokado — 3 szt.</span></div>
+                            <div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300"><input type="checkbox" class="accent-emerald-500 rounded"><span>Jagody — 250g</span></div>
+                            <div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300"><input type="checkbox" class="accent-emerald-500 rounded"><span>Szpinak świeży — 200g</span></div>
+                            <div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300"><input type="checkbox" class="accent-emerald-500 rounded"><span>Migdały — 200g</span></div>
+                            <div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300"><input type="checkbox" class="accent-emerald-500 rounded"><span>Jogurt grecki — 400g</span></div>
+                            <div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300"><input type="checkbox" class="accent-emerald-500 rounded"><span>Feta — 200g</span></div>
+                        </div>
+                        <div class="flex gap-2 mt-4">
+                            <button class="flex-1 h-9 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-500/20 transition-colors flex items-center justify-center gap-1.5">
+                                <iconify-icon icon="solar:copy-linear" width="14" height="14"></iconify-icon>
+                                Kopiuj listę
+                            </button>
+                            <button class="flex-1 h-9 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-500/20 transition-colors flex items-center justify-center gap-1.5">
+                                <iconify-icon icon="solar:share-linear" width="14" height="14"></iconify-icon>
+                                Udostępnij
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function calcBMI() {
+            const w = parseFloat(document.getElementById('bmiWeight').value);
+            const h = parseFloat(document.getElementById('bmiHeight').value) / 100;
+            if (!w || !h) return;
+            const bmi = (w / (h * h)).toFixed(1);
+            document.getElementById('bmiValue').textContent = bmi;
+            let cat = '';
+            if (bmi < 18.5) cat = 'Niedowaga';
+            else if (bmi < 25) cat = 'Waga prawidłowa ✅';
+            else if (bmi < 30) cat = 'Nadwaga';
+            else cat = 'Otyłość';
+            document.getElementById('bmiCategory').textContent = cat;
+            document.getElementById('bmiResult').classList.remove('hidden');
+        }
+        function calcWHR() {
+            const waist = parseFloat(document.getElementById('whrWaist').value);
+            const hip = parseFloat(document.getElementById('whrHip').value);
+            if (!waist || !hip) return;
+            const whr = (waist / hip).toFixed(2);
+            const sex = document.querySelector('input[name="sex"]:checked').value;
+            document.getElementById('whrValue').textContent = whr;
+            let cat = '';
+            if (sex === 'm') { cat = whr < 0.9 ? 'Niskie ryzyko zdrowotne ✅' : whr < 1.0 ? 'Umiarkowane ryzyko' : 'Wysokie ryzyko ⚠️'; }
+            else { cat = whr < 0.8 ? 'Niskie ryzyko zdrowotne ✅' : whr < 0.85 ? 'Umiarkowane ryzyko' : 'Wysokie ryzyko ⚠️'; }
+            document.getElementById('whrCategory').textContent = cat;
+            document.getElementById('whrResult').classList.remove('hidden');
+        }
+        function calcCalories() {
+            const age = parseFloat(document.getElementById('calAge').value);
+            const w = parseFloat(document.getElementById('calWeight').value);
+            const h = parseFloat(document.getElementById('calHeight').value);
+            const act = parseFloat(document.getElementById('calActivity').value);
+            if (!age || !w || !h) return;
+            // Mifflin-St Jeor (male default)
+            const bmr = Math.round(10 * w + 6.25 * h - 5 * age + 5);
+            const tdee = Math.round(bmr * act);
+            document.getElementById('calBMR').textContent = bmr;
+            document.getElementById('calTDEE').textContent = tdee;
+            document.getElementById('calDeficit').textContent = tdee - 500;
+            document.getElementById('calResult').classList.remove('hidden');
+        }
+    </script>
+</body></html>

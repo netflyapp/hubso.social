@@ -1,0 +1,260 @@
+<html lang="pl" class="antialiased"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Powiadomienia — Dr Bartek | Społeczność Zdrowia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --font-inter: 'Inter', sans-serif; }
+        body { font-family: var(--font-inter); }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 3px; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { green: '#2D8F4E' }, dark: { bg: '#050505', surface: '#0F1115', border: '#222226' } }, boxShadow: { 'soft': '0 2px 10px rgba(0,0,0,0.03)', 'card': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)', 'dark-card': '0 0 0 1px rgba(255,255,255,0.06), 0 4px 8px rgba(0,0,0,0.2)' }, fontSize: { xxs: '0.625rem' } } }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark') } else { document.documentElement.classList.remove('dark') }
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'; }
+    </script>
+</head>
+<body class="text-slate-600 dark:text-slate-400 bg-[#F7F8FA] dark:bg-dark-bg h-screen flex flex-col overflow-hidden transition-colors duration-300">
+
+    <!-- HEADER -->
+    <header class="h-16 bg-white dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border flex items-center justify-between px-4 lg:px-6 shrink-0 z-50 sticky top-0 transition-colors duration-300">
+        <div class="flex items-center gap-12">
+            <a href="home-full.html" class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-[#2D8F4E] flex items-center justify-center text-white"><iconify-icon icon="solar:heart-pulse-bold" width="20" height="20"></iconify-icon></div>
+                <div class="flex flex-col"><span class="font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-none text-sm">Dr Bartek</span><span class="font-medium text-slate-500 text-xs tracking-tight">Społeczność Zdrowia</span></div>
+            </a>
+        </div>
+        <nav class="hidden md:flex items-center h-full gap-1">
+            <a href="home-full.html" class="h-full flex items-center border-b-[2px] border-emerald-600 px-3 text-emerald-600 dark:text-emerald-400"><iconify-icon icon="solar:feed-linear" width="24" height="24"></iconify-icon></a>
+            <a href="profile.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="24" height="24"></iconify-icon></a>
+            <a href="groups.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="24" height="24"></iconify-icon></a>
+            <a href="messages.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-round-dots-linear" width="24" height="24"></iconify-icon></a>
+            <a href="members.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="24" height="24"></iconify-icon></a>
+            <a href="forums.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="24" height="24"></iconify-icon></a>
+            <a href="courses.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:square-academic-cap-linear" width="24" height="24"></iconify-icon></a>
+            <a href="events.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calendar-linear" width="24" height="24"></iconify-icon></a>
+            <a href="shop.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="24" height="24"></iconify-icon></a>
+            <a href="documents.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:document-text-linear" width="24" height="24"></iconify-icon></a>
+            <a href="recipes.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="24" height="24"></iconify-icon></a>
+            <a href="video.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="24" height="24"></iconify-icon></a>
+            <a href="apps.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calculator-linear" width="24" height="24"></iconify-icon></a>
+            <a href="health-journal.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="24" height="24"></iconify-icon></a>
+        </nav>
+        <div class="flex items-center gap-5">
+            <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:magnifer-linear" width="22" height="22"></iconify-icon></button>
+            <button onclick="toggleDarkMode()" class="text-slate-400 hover:text-slate-600 dark:hover:text-yellow-400 transition-colors"><iconify-icon class="block dark:hidden" icon="solar:moon-linear" width="22" height="22"></iconify-icon><iconify-icon class="hidden dark:block" icon="solar:sun-2-linear" width="22" height="22"></iconify-icon></button>
+            <div class="flex items-center gap-4 border-l border-gray-200 dark:border-dark-border pl-4">
+                <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:bag-3-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">1</span></button>
+                <a href="notifications.html" class="relative text-indigo-600 dark:text-indigo-400"><iconify-icon icon="solar:bell-bold" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">8</span></a>
+                <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:cart-large-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">4</span></button>
+            </div>
+            <div class="flex items-center gap-3 pl-2"><span class="text-sm font-medium text-slate-700 dark:text-slate-200 hidden sm:block">Jan</span><img src="/media/avatars/jan.jpg" alt="Jan" class="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-slate-700"></div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        <!-- SIDEBAR -->
+        <aside class="hidden xl:flex w-[260px] flex-col bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border overflow-y-auto shrink-0 pb-6 transition-colors duration-300">
+            <div class="p-6"><button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:sidebar-minimalistic-linear" width="24" height="24"></iconify-icon></button></div>
+            <nav class="flex-1 px-4 space-y-8">
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Osobisty</div>
+                    <a href="profile.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="20" height="20"></iconify-icon>Profil</a>
+                    <a href="home.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:graph-up-linear" width="20" height="20"></iconify-icon>Oś czasu</a>
+                    <a href="messages.html" class="flex items-center justify-between px-3 py-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 rounded-md"><div class="flex items-center gap-3"><iconify-icon icon="solar:inbox-linear" width="20" height="20"></iconify-icon>Skrzynka</div><span class="bg-emerald-100 dark:bg-emerald-800 text-emerald-600 dark:text-emerald-400 text-xs font-semibold px-1.5 py-0.5 rounded">3</span></a>
+                    <a href="health-journal.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="20" height="20"></iconify-icon>Dziennik Zdrowia</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Wspólnota</div>
+                    <a href="groups.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="20" height="20"></iconify-icon>Grupy</a>
+                    <a href="members.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="20" height="20"></iconify-icon>Połączenia</a>
+                    <a href="forums.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="20" height="20"></iconify-icon>Dyskusje</a>
+                    <a href="courses.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:diploma-linear" width="20" height="20"></iconify-icon>Kursy</a>
+                    <a href="events.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calendar-linear" width="20" height="20"></iconify-icon>Wydarzenia</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Zdrowie & Wiedza</div>
+                    <a href="recipes.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="20" height="20"></iconify-icon>Przepisy</a>
+                    <a href="video.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="20" height="20"></iconify-icon>Video & Wiedza</a>
+                    <a href="apps.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calculator-linear" width="20" height="20"></iconify-icon>Narzędzia</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Multimedia</div>
+                    <a href="photos.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:gallery-linear" width="20" height="20"></iconify-icon>Zdjęcia</a>
+                    <a href="documents.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:folder-linear" width="20" height="20"></iconify-icon>Dokumenty</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Sklep</div>
+                    <a href="shop.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="20" height="20"></iconify-icon>Sklep</a>
+                </div>
+            </nav>
+            <div class="mt-auto px-4 pt-6"><a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:settings-linear" width="20" height="20"></iconify-icon>Ustawienia konta</a></div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="flex-1 overflow-y-auto p-4 lg:p-8">
+            <div class="max-w-3xl mx-auto">
+                <!-- Header -->
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Powiadomienia</h1>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">8 nieprzeczytanych</p>
+                    </div>
+                    <button class="text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors">Oznacz jako przeczytane</button>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex items-center gap-2 mb-6">
+                    <button class="px-4 py-1.5 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-full text-xs font-medium text-slate-700 dark:text-slate-200">Wszystkie</button>
+                    <button class="px-4 py-1.5 bg-gray-100 dark:bg-dark-surface border border-transparent dark:border-dark-border rounded-full text-xs font-medium text-slate-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-800 transition-colors">Nieprzeczytane</button>
+                    <button class="px-4 py-1.5 bg-gray-100 dark:bg-dark-surface border border-transparent dark:border-dark-border rounded-full text-xs font-medium text-slate-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-800 transition-colors">Wzmianki</button>
+                    <button class="px-4 py-1.5 bg-gray-100 dark:bg-dark-surface border border-transparent dark:border-dark-border rounded-full text-xs font-medium text-slate-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-800 transition-colors">Polubienia</button>
+                </div>
+
+                <!-- Today section -->
+                <div class="mb-4"><p class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Dzisiaj</p></div>
+                <div class="space-y-2 mb-8">
+                    <!-- Unread: Like -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-4 flex items-start gap-4 border-l-[3px] border-l-indigo-600 dark:border-l-indigo-400">
+                        <div class="w-10 h-10 rounded-full bg-pink-50 dark:bg-pink-500/10 flex items-center justify-center shrink-0"><iconify-icon icon="solar:heart-bold" width="20" height="20" class="text-pink-500"></iconify-icon></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <p class="text-sm text-slate-700 dark:text-slate-200"><span class="font-semibold">Anna Nowak</span> i <span class="font-semibold">3 osoby</span> polubiły Twój post</p>
+                                <span class="text-[10px] text-slate-400 shrink-0 mt-0.5">5 min</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1 truncate">"Mój weekendowy projekt w React..."</p>
+                        </div>
+                        <img src="/media/avatars/anna.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                    </div>
+                    <!-- Unread: Comment -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-4 flex items-start gap-4 border-l-[3px] border-l-indigo-600 dark:border-l-indigo-400">
+                        <div class="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center shrink-0"><iconify-icon icon="solar:chat-round-dots-bold" width="20" height="20" class="text-blue-500"></iconify-icon></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <p class="text-sm text-slate-700 dark:text-slate-200"><span class="font-semibold">Tomasz Zieliński</span> skomentował Twój post</p>
+                                <span class="text-[10px] text-slate-400 shrink-0 mt-0.5">12 min</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1 truncate">"Super robota! Jakich bibliotek użyłeś do state managementu?"</p>
+                        </div>
+                        <img src="/media/avatars/tomek.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                    </div>
+                    <!-- Unread: Connection -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-4 flex items-start gap-4 border-l-[3px] border-l-indigo-600 dark:border-l-indigo-400">
+                        <div class="w-10 h-10 rounded-full bg-green-50 dark:bg-green-500/10 flex items-center justify-center shrink-0"><iconify-icon icon="solar:user-plus-bold" width="20" height="20" class="text-green-500"></iconify-icon></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <p class="text-sm text-slate-700 dark:text-slate-200"><span class="font-semibold">Marta Wiśniewska</span> chce się z Tobą połączyć</p>
+                                <span class="text-[10px] text-slate-400 shrink-0 mt-0.5">28 min</span>
+                            </div>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button class="px-3 py-1 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium rounded-lg transition-colors">Zaakceptuj</button>
+                                <button class="px-3 py-1 bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium rounded-lg transition-colors">Odrzuć</button>
+                            </div>
+                        </div>
+                        <img src=\"/media/avatars/marta.jpg\" class=\"w-9 h-9 rounded-full shrink-0\" alt=\"\">
+                    </div>
+                    <!-- Unread: Group -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-4 flex items-start gap-4 border-l-[3px] border-l-indigo-600 dark:border-l-indigo-400">
+                        <div class="w-10 h-10 rounded-full bg-purple-50 dark:bg-purple-500/10 flex items-center justify-center shrink-0"><iconify-icon icon="solar:users-group-rounded-bold" width="20" height="20" class="text-purple-500"></iconify-icon></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <p class="text-sm text-slate-700 dark:text-slate-200">Nowy post w grupie <span class="font-semibold">Programiści</span></p>
+                                <span class="text-[10px] text-slate-400 shrink-0 mt-0.5">1 godz.</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1 truncate">Piotr Mazur: "Kto używa Bun zamiast Node?"</p>
+                        </div>
+                        <img src="/media/avatars/piotr.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                    </div>
+                    <!-- Unread: Mention -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-4 flex items-start gap-4 border-l-[3px] border-l-indigo-600 dark:border-l-indigo-400">
+                        <div class="w-10 h-10 rounded-full bg-amber-50 dark:bg-amber-500/10 flex items-center justify-center shrink-0"><iconify-icon icon="solar:mention-circle-bold" width="20" height="20" class="text-amber-500"></iconify-icon></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <p class="text-sm text-slate-700 dark:text-slate-200"><span class="font-semibold">Ewa Kamińska</span> wspomniała o Tobie w komentarzu</p>
+                                <span class="text-[10px] text-slate-400 shrink-0 mt-0.5">2 godz.</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1 truncate">"@Jan co myślisz o tym podejściu?"</p>
+                        </div>
+                        <img src="/media/avatars/ewa.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                    </div>
+                </div>
+
+                <!-- Yesterday section -->
+                <div class="mb-4"><p class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Wczoraj</p></div>
+                <div class="space-y-2 mb-8">
+                    <!-- Read: Like -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-4 flex items-start gap-4 opacity-70">
+                        <div class="w-10 h-10 rounded-full bg-pink-50 dark:bg-pink-500/10 flex items-center justify-center shrink-0"><iconify-icon icon="solar:heart-bold" width="20" height="20" class="text-pink-500"></iconify-icon></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <p class="text-sm text-slate-700 dark:text-slate-200"><span class="font-semibold">Katarzyna Lewandowska</span> polubiła Twoje zdjęcie</p>
+                                <span class="text-[10px] text-slate-400 shrink-0 mt-0.5">wczoraj</span>
+                            </div>
+                        </div>
+                        <img src="/media/avatars/kasia.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                    </div>
+                    <!-- Read: Group join -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-4 flex items-start gap-4 opacity-70">
+                        <div class="w-10 h-10 rounded-full bg-green-50 dark:bg-green-500/10 flex items-center justify-center shrink-0"><iconify-icon icon="solar:check-circle-bold" width="20" height="20" class="text-green-500"></iconify-icon></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <p class="text-sm text-slate-700 dark:text-slate-200">Twoja prośba o dołączenie do grupy <span class="font-semibold">Miłośnicy gór</span> została zaakceptowana</p>
+                                <span class="text-[10px] text-slate-400 shrink-0 mt-0.5">wczoraj</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Read: Event -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-4 flex items-start gap-4 opacity-70">
+                        <div class="w-10 h-10 rounded-full bg-indigo-50 dark:bg-indigo-500/10 flex items-center justify-center shrink-0"><iconify-icon icon="solar:calendar-bold" width="20" height="20" class="text-indigo-500"></iconify-icon></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <p class="text-sm text-slate-700 dark:text-slate-200"><span class="font-semibold">Marta Wiśniewska</span> zaprosiła Cię na wydarzenie</p>
+                                <span class="text-[10px] text-slate-400 shrink-0 mt-0.5">wczoraj</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">Warsztaty latte art — Sobota 18 sty, 14:00</p>
+                        </div>
+                        <img src=\"/media/avatars/marta.jpg\" class=\"w-9 h-9 rounded-full shrink-0\" alt=\"\">
+                    </div>
+                </div>
+
+                <!-- This Week -->
+                <div class="mb-4"><p class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">W tym tygodniu</p></div>
+                <div class="space-y-2">
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-4 flex items-start gap-4 opacity-70">
+                        <div class="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center shrink-0"><iconify-icon icon="solar:chat-round-dots-bold" width="20" height="20" class="text-blue-500"></iconify-icon></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <p class="text-sm text-slate-700 dark:text-slate-200"><span class="font-semibold">Adam Wójcik</span> odpowiedział na Twój komentarz w dyskusji</p>
+                                <span class="text-[10px] text-slate-400 shrink-0 mt-0.5">3d</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1 truncate">"Zgadzam się z Twoim podejściem do..."</p>
+                        </div>
+                        <img src="/media/avatars/adam.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                    </div>
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-4 flex items-start gap-4 opacity-70">
+                        <div class="w-10 h-10 rounded-full bg-pink-50 dark:bg-pink-500/10 flex items-center justify-center shrink-0"><iconify-icon icon="solar:heart-bold" width="20" height="20" class="text-pink-500"></iconify-icon></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <p class="text-sm text-slate-700 dark:text-slate-200"><span class="font-semibold">Zofia Dąbrowska</span> i <span class="font-semibold">5 osób</span> polubiło Twój post w grupie Programiści</p>
+                                <span class="text-[10px] text-slate-400 shrink-0 mt-0.5">5d</span>
+                            </div>
+                        </div>
+                        <img src="/media/avatars/zofia.jpg" class="w-9 h-9 rounded-full shrink-0" alt="">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body></html>

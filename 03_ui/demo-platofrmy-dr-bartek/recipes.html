@@ -1,0 +1,345 @@
+<html lang="pl" class="antialiased"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przepisy — Dr Bartek | Społeczność Zdrowia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --font-inter: 'Inter', sans-serif; }
+        body { font-family: var(--font-inter); }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 3px; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { green: '#2D8F4E' }, dark: { bg: '#050505', surface: '#0F1115', border: '#222226' } }, boxShadow: { 'soft': '0 2px 10px rgba(0,0,0,0.03)', 'card': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)', 'dark-card': '0 0 0 1px rgba(255,255,255,0.06), 0 4px 8px rgba(0,0,0,0.2)' }, fontSize: { xxs: '0.625rem' } } }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark') } else { document.documentElement.classList.remove('dark') }
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'; }
+    </script>
+</head>
+<body class="text-slate-600 dark:text-slate-400 bg-[#F7F8FA] dark:bg-dark-bg h-screen flex flex-col overflow-hidden transition-colors duration-300">
+
+    <!-- HEADER -->
+    <header class="h-16 bg-white dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border flex items-center justify-between px-4 lg:px-6 shrink-0 z-50 sticky top-0 transition-colors duration-300">
+        <div class="flex items-center gap-12">
+            <a href="home-full.html" class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-[#2D8F4E] flex items-center justify-center text-white"><iconify-icon icon="solar:heart-pulse-bold" width="20" height="20"></iconify-icon></div>
+                <div class="flex flex-col"><span class="font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-none text-sm">Dr Bartek</span><span class="font-medium text-slate-500 text-xs tracking-tight">Społeczność Zdrowia</span></div>
+            </a>
+        </div>
+        <nav class="hidden md:flex items-center h-full gap-1">
+            <a href="home-full.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:feed-linear" width="24" height="24"></iconify-icon></a>
+            <a href="profile.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="24" height="24"></iconify-icon></a>
+            <a href="groups.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="24" height="24"></iconify-icon></a>
+            <a href="messages.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-round-dots-linear" width="24" height="24"></iconify-icon></a>
+            <a href="members.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="24" height="24"></iconify-icon></a>
+            <a href="forums.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="24" height="24"></iconify-icon></a>
+            <a href="courses.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:square-academic-cap-linear" width="24" height="24"></iconify-icon></a>
+            <a href="events.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calendar-linear" width="24" height="24"></iconify-icon></a>
+            <a href="shop.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="24" height="24"></iconify-icon></a>
+            <a href="documents.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:document-text-linear" width="24" height="24"></iconify-icon></a>
+            <a href="recipes.html" class="h-full flex items-center border-b-[2px] border-emerald-600 px-3 text-emerald-600 dark:text-emerald-400"><iconify-icon icon="solar:chef-hat-linear" width="24" height="24"></iconify-icon></a>
+            <a href="video.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="24" height="24"></iconify-icon></a>
+            <a href="apps.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calculator-linear" width="24" height="24"></iconify-icon></a>
+            <a href="health-journal.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="24" height="24"></iconify-icon></a>
+        </nav>
+        <div class="flex items-center gap-5">
+            <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:magnifer-linear" width="22" height="22"></iconify-icon></button>
+            <button onclick="toggleDarkMode()" class="text-slate-400 hover:text-slate-600 dark:hover:text-yellow-400 transition-colors"><iconify-icon class="block dark:hidden" icon="solar:moon-linear" width="22" height="22"></iconify-icon><iconify-icon class="hidden dark:block" icon="solar:sun-2-linear" width="22" height="22"></iconify-icon></button>
+            <div class="flex items-center gap-4 border-l border-gray-200 dark:border-dark-border pl-4">
+                <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:bag-3-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">1</span></button>
+                <a href="notifications.html" class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:bell-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">8</span></a>
+                <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:cart-large-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">4</span></button>
+            </div>
+            <div class="flex items-center gap-3 pl-2"><span class="text-sm font-medium text-slate-700 dark:text-slate-200 hidden sm:block">Jan</span><img src="/media/avatars/jan.jpg" alt="Jan" class="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-slate-700"></div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        <!-- SIDEBAR -->
+        <aside class="hidden xl:flex w-[260px] flex-col bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border overflow-y-auto shrink-0 pb-6 transition-colors duration-300">
+            <div class="p-6"><button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:sidebar-minimalistic-linear" width="24" height="24"></iconify-icon></button></div>
+            <nav class="flex-1 px-4 space-y-8">
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Osobisty</div>
+                    <a href="profile.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="20" height="20"></iconify-icon>Profil</a>
+                    <a href="home.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:graph-up-linear" width="20" height="20"></iconify-icon>Oś czasu</a>
+                    <a href="messages.html" class="flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><div class="flex items-center gap-3"><iconify-icon icon="solar:inbox-linear" width="20" height="20"></iconify-icon>Skrzynka</div><span class="bg-gray-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-semibold px-1.5 py-0.5 rounded">3</span></a>
+                    <a href="health-journal.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="20" height="20"></iconify-icon>Dziennik Zdrowia</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Wspólnota</div>
+                    <a href="groups.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="20" height="20"></iconify-icon>Grupy</a>
+                    <a href="members.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="20" height="20"></iconify-icon>Połączenia</a>
+                    <a href="forums.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="20" height="20"></iconify-icon>Dyskusje</a>
+                    <a href="courses.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:diploma-linear" width="20" height="20"></iconify-icon>Kursy</a>
+                    <a href="events.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calendar-linear" width="20" height="20"></iconify-icon>Wydarzenia</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Zdrowie & Wiedza</div>
+                    <a href="recipes.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 rounded-md"><iconify-icon icon="solar:chef-hat-linear" width="20" height="20"></iconify-icon>Przepisy</a>
+                    <a href="video.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="20" height="20"></iconify-icon>Video & Wiedza</a>
+                    <a href="apps.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calculator-linear" width="20" height="20"></iconify-icon>Narzędzia</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Multimedia</div>
+                    <a href="photos.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:gallery-linear" width="20" height="20"></iconify-icon>Zdjęcia</a>
+                    <a href="documents.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:folder-linear" width="20" height="20"></iconify-icon>Dokumenty</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Sklep</div>
+                    <a href="shop.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="20" height="20"></iconify-icon>Sklep</a>
+                </div>
+            </nav>
+            <div class="mt-auto px-4 pt-6"><a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:settings-linear" width="20" height="20"></iconify-icon>Ustawienia konta</a></div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="flex-1 overflow-y-auto p-4 lg:p-8">
+            <div class="max-w-6xl mx-auto space-y-6">
+
+                <!-- Title -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+                            <iconify-icon icon="solar:chef-hat-bold-duotone" width="28" height="28" class="text-emerald-500"></iconify-icon>
+                            Przepisy zdrowotne
+                        </h1>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Zdrowe przepisy rekomendowane przez Dr Bartka · 24 przepisy</p>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="flex flex-wrap gap-2">
+                    <button class="px-4 py-2 bg-emerald-600 text-white text-xs font-semibold rounded-lg">Wszystkie</button>
+                    <button class="px-4 py-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border text-xs font-medium text-slate-600 dark:text-slate-300 rounded-lg hover:border-emerald-300 dark:hover:border-emerald-500/30 transition-colors">🥣 Śniadania</button>
+                    <button class="px-4 py-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border text-xs font-medium text-slate-600 dark:text-slate-300 rounded-lg hover:border-emerald-300 dark:hover:border-emerald-500/30 transition-colors">🥗 Obiady</button>
+                    <button class="px-4 py-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border text-xs font-medium text-slate-600 dark:text-slate-300 rounded-lg hover:border-emerald-300 dark:hover:border-emerald-500/30 transition-colors">🍽️ Kolacje</button>
+                    <button class="px-4 py-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border text-xs font-medium text-slate-600 dark:text-slate-300 rounded-lg hover:border-emerald-300 dark:hover:border-emerald-500/30 transition-colors">🥤 Smoothie</button>
+                    <button class="px-4 py-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border text-xs font-medium text-slate-600 dark:text-slate-300 rounded-lg hover:border-emerald-300 dark:hover:border-emerald-500/30 transition-colors">🥜 Przekąski</button>
+                </div>
+
+                <!-- Recipes Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                    <!-- Recipe 1 -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden group hover:shadow-lg transition-shadow">
+                        <div class="h-44 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1517673400267-0251440c45dc?w=600&h=400&fit=crop" alt="Owsianka z jagodami" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-3 left-3 px-2 py-0.5 bg-emerald-600 text-white text-[10px] font-bold rounded-full">🥣 Śniadanie</span>
+                            <span class="absolute top-3 right-3 px-2 py-0.5 bg-white/80 dark:bg-dark-surface/80 text-slate-600 dark:text-slate-300 text-[10px] font-semibold rounded-full backdrop-blur">⏱ 15 min</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Owsianka z jagodami i orzechami</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3 line-clamp-2">Bogata w błonnik i antyoksydanty. Idealna na energetyczny start dnia.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-3 text-[10px] text-slate-400 dark:text-slate-500">
+                                    <span>🔥 320 kcal</span>
+                                    <span>💪 12g białka</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <span class="px-1.5 py-0.5 bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400 text-[9px] font-semibold rounded">Vege</span>
+                                    <span class="px-1.5 py-0.5 bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[9px] font-semibold rounded">GF</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recipe 2 -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden group hover:shadow-lg transition-shadow">
+                        <div class="h-44 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&h=400&fit=crop" alt="Łosoś pieczony" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-3 left-3 px-2 py-0.5 bg-orange-500 text-white text-[10px] font-bold rounded-full">🥗 Obiad</span>
+                            <span class="absolute top-3 right-3 px-2 py-0.5 bg-white/80 dark:bg-dark-surface/80 text-slate-600 dark:text-slate-300 text-[10px] font-semibold rounded-full backdrop-blur">⏱ 35 min</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Łosoś pieczony z warzywami</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3 line-clamp-2">Omega-3, witamina D i białko. Pieczony łosoś z brokułami, batatami i cytryną.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-3 text-[10px] text-slate-400 dark:text-slate-500">
+                                    <span>🔥 480 kcal</span>
+                                    <span>💪 38g białka</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <span class="px-1.5 py-0.5 bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[9px] font-semibold rounded">Omega-3</span>
+                                    <span class="px-1.5 py-0.5 bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[9px] font-semibold rounded">GF</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recipe 3 -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden group hover:shadow-lg transition-shadow">
+                        <div class="h-44 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1638176066666-ffb2f013c7dd?w=600&h=400&fit=crop" alt="Green smoothie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-3 left-3 px-2 py-0.5 bg-green-600 text-white text-[10px] font-bold rounded-full">🥤 Smoothie</span>
+                            <span class="absolute top-3 right-3 px-2 py-0.5 bg-white/80 dark:bg-dark-surface/80 text-slate-600 dark:text-slate-300 text-[10px] font-semibold rounded-full backdrop-blur">⏱ 5 min</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Green power smoothie</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3 line-clamp-2">Szpinak, banan, awokado, imbir i mleko migdałowe. Bomba witaminowa na rano.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-3 text-[10px] text-slate-400 dark:text-slate-500">
+                                    <span>🔥 210 kcal</span>
+                                    <span>💪 6g białka</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <span class="px-1.5 py-0.5 bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400 text-[9px] font-semibold rounded">Vege</span>
+                                    <span class="px-1.5 py-0.5 bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 text-[9px] font-semibold rounded">Detox</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recipe 4 -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden group hover:shadow-lg transition-shadow">
+                        <div class="h-44 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop" alt="Sałatka z quinoa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-3 left-3 px-2 py-0.5 bg-rose-500 text-white text-[10px] font-bold rounded-full">🍽️ Kolacja</span>
+                            <span class="absolute top-3 right-3 px-2 py-0.5 bg-white/80 dark:bg-dark-surface/80 text-slate-600 dark:text-slate-300 text-[10px] font-semibold rounded-full backdrop-blur">⏱ 20 min</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Sałatka z quinoa i hummusem</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3 line-clamp-2">Lekka kolacja z kompletem aminokwasów. Quinoa, ciecierzyca, ogórek, pomidory, mięta.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-3 text-[10px] text-slate-400 dark:text-slate-500">
+                                    <span>🔥 380 kcal</span>
+                                    <span>💪 15g białka</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <span class="px-1.5 py-0.5 bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400 text-[9px] font-semibold rounded">Vegan</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recipe 5 -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden group hover:shadow-lg transition-shadow">
+                        <div class="h-44 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=600&h=400&fit=crop" alt="Energy balls" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-3 left-3 px-2 py-0.5 bg-amber-600 text-white text-[10px] font-bold rounded-full">🥜 Przekąska</span>
+                            <span class="absolute top-3 right-3 px-2 py-0.5 bg-white/80 dark:bg-dark-surface/80 text-slate-600 dark:text-slate-300 text-[10px] font-semibold rounded-full backdrop-blur">⏱ 10 min</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Energy balls z daktylami</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3 line-clamp-2">Bez cukru, bez pieczenia. Daktyle, orzechy, kakao, wiórki kokosowe. Idealne na &quot;wilczy głód&quot;.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-3 text-[10px] text-slate-400 dark:text-slate-500">
+                                    <span>🔥 150 kcal/szt</span>
+                                    <span>💪 4g białka</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <span class="px-1.5 py-0.5 bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400 text-[9px] font-semibold rounded">Vegan</span>
+                                    <span class="px-1.5 py-0.5 bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 text-[9px] font-semibold rounded">No sugar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recipe 6 -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden group hover:shadow-lg transition-shadow">
+                        <div class="h-44 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&h=400&fit=crop" alt="Jajecznica z awokado" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-3 left-3 px-2 py-0.5 bg-emerald-600 text-white text-[10px] font-bold rounded-full">🥣 Śniadanie</span>
+                            <span class="absolute top-3 right-3 px-2 py-0.5 bg-white/80 dark:bg-dark-surface/80 text-slate-600 dark:text-slate-300 text-[10px] font-semibold rounded-full backdrop-blur">⏱ 10 min</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Jajecznica z awokado i pomidorami</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3 line-clamp-2">Zdrowe tłuszcze + białko. Na pełnoziarnistym chlebie z rukolą i pestkami dyni.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-3 text-[10px] text-slate-400 dark:text-slate-500">
+                                    <span>🔥 410 kcal</span>
+                                    <span>💪 22g białka</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <span class="px-1.5 py-0.5 bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[9px] font-semibold rounded">GF</span>
+                                    <span class="px-1.5 py-0.5 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-[9px] font-semibold rounded">High protein</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recipe 7 -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden group hover:shadow-lg transition-shadow">
+                        <div class="h-44 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&h=400&fit=crop" alt="Zupa krem z brokułów" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-3 left-3 px-2 py-0.5 bg-orange-500 text-white text-[10px] font-bold rounded-full">🥗 Obiad</span>
+                            <span class="absolute top-3 right-3 px-2 py-0.5 bg-white/80 dark:bg-dark-surface/80 text-slate-600 dark:text-slate-300 text-[10px] font-semibold rounded-full backdrop-blur">⏱ 40 min</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Zupa krem z brokułów</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3 line-clamp-2">Sulforafan, witamina C i K. Kremowa, aromatyczna, z prażonymi pestkami słonecznika.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-3 text-[10px] text-slate-400 dark:text-slate-500">
+                                    <span>🔥 250 kcal</span>
+                                    <span>💪 10g białka</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <span class="px-1.5 py-0.5 bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400 text-[9px] font-semibold rounded">Vege</span>
+                                    <span class="px-1.5 py-0.5 bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[9px] font-semibold rounded">Anti-infla</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recipe 8 -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden group hover:shadow-lg transition-shadow">
+                        <div class="h-44 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=600&h=400&fit=crop" alt="Koktajl jagodowy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-3 left-3 px-2 py-0.5 bg-green-600 text-white text-[10px] font-bold rounded-full">🥤 Smoothie</span>
+                            <span class="absolute top-3 right-3 px-2 py-0.5 bg-white/80 dark:bg-dark-surface/80 text-slate-600 dark:text-slate-300 text-[10px] font-semibold rounded-full backdrop-blur">⏱ 5 min</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Antyoksydacyjny koktajl jagodowy</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3 line-clamp-2">Jagody, borówki, maliny, jogurt grecki, miód. Bogaty w polifenole i probiotyki.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-3 text-[10px] text-slate-400 dark:text-slate-500">
+                                    <span>🔥 190 kcal</span>
+                                    <span>💪 10g białka</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <span class="px-1.5 py-0.5 bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400 text-[9px] font-semibold rounded">Vege</span>
+                                    <span class="px-1.5 py-0.5 bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 text-[9px] font-semibold rounded">Antiox</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recipe 9 -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden group hover:shadow-lg transition-shadow">
+                        <div class="h-44 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&h=400&fit=crop" alt="Curry z ciecierzycy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-3 left-3 px-2 py-0.5 bg-rose-500 text-white text-[10px] font-bold rounded-full">🍽️ Kolacja</span>
+                            <span class="absolute top-3 right-3 px-2 py-0.5 bg-white/80 dark:bg-dark-surface/80 text-slate-600 dark:text-slate-300 text-[10px] font-semibold rounded-full backdrop-blur">⏱ 25 min</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Curry z ciecierzycy i szpinaku</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3 line-clamp-2">Kurkuma, imbir, czosnek — silne właściwości przeciwzapalne. Z ryżem basmati.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-3 text-[10px] text-slate-400 dark:text-slate-500">
+                                    <span>🔥 420 kcal</span>
+                                    <span>💪 18g białka</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <span class="px-1.5 py-0.5 bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400 text-[9px] font-semibold rounded">Vegan</span>
+                                    <span class="px-1.5 py-0.5 bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[9px] font-semibold rounded">Anti-infla</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body></html>

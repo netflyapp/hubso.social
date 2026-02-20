@@ -1,0 +1,515 @@
+<html lang="pl" class="antialiased">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Zdjęcia — Dr Bartek | Społeczność Zdrowia</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <style>:root { --font-inter: 'Inter', sans-serif; } body { font-family: var(--font-inter); } ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 3px; } .dark ::-webkit-scrollbar-thumb { background: #334155; } .no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }</style>
+        <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { green: '#2D8F4E' }, dark: { bg: '#050505', surface: '#0F1115', border: '#222226' } }, boxShadow: { 'soft': '0 2px 10px rgba(0,0,0,0.03)', 'card': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)', 'dark-card': '0 0 0 1px rgba(255,255,255,0.06), 0 4px 8px rgba(0,0,0,0.2)' }, fontSize: { xxs: '0.625rem' } } }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark') } else { document.documentElement.classList.remove('dark') }
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'; }
+    </script>
+    </head>
+    <body class="text-slate-600 dark:text-slate-400 bg-[#F7F8FA] dark:bg-dark-bg h-screen flex flex-col overflow-hidden transition-colors duration-300">
+        <!-- HEADER -->
+        <header class="h-16 bg-white dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border flex items-center justify-between px-4 lg:px-6 shrink-0 z-50 sticky top-0 transition-colors duration-300">
+            <div class="flex items-center gap-12">
+                <a href="home-full.html" class="flex items-center gap-2.5"> <div class="w-8 h-8 rounded-full bg-[#2D8F4E] flex items-center justify-center text-white">
+                        <iconify-icon icon="solar:heart-pulse-bold" width="20" height="20"></iconify-icon>
+                    </div> <div class="flex flex-col">
+                        <span class="font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-none text-sm">Dr Bartek</span>
+                        <span class="font-medium text-slate-500 text-xs tracking-tight">Społeczność Zdrowia</span>
+                    </div> </a>
+            </div>
+            <nav class="hidden md:flex items-center h-full gap-1">
+                <a href="home-full.html" class="h-full flex items-center border-b-[2px] border-emerald-600 px-3 text-emerald-600 dark:text-emerald-400"><iconify-icon icon="solar:feed-linear" width="24" height="24"></iconify-icon></a>
+                <a href="profile.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="24" height="24"></iconify-icon></a>
+                <a href="groups.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="24" height="24"></iconify-icon></a>
+                <a href="messages.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-round-dots-linear" width="24" height="24"></iconify-icon></a>
+                <a href="members.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="24" height="24"></iconify-icon></a>
+                <a href="forums.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="24" height="24"></iconify-icon></a>
+                <a href="courses.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:square-academic-cap-linear" width="24" height="24"></iconify-icon></a>
+                <a href="events.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calendar-linear" width="24" height="24"></iconify-icon></a>
+                <a href="shop.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="24" height="24"></iconify-icon></a>
+                <a href="documents.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:document-text-linear" width="24" height="24"></iconify-icon></a>
+                <a href="recipes.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="24" height="24"></iconify-icon></a>
+                <a href="video.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="24" height="24"></iconify-icon></a>
+                <a href="apps.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calculator-linear" width="24" height="24"></iconify-icon></a>
+                <a href="health-journal.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="24" height="24"></iconify-icon></a>
+            </nav>
+            <div class="flex items-center gap-5">
+                <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <iconify-icon icon="solar:magnifer-linear" width="22" height="22"></iconify-icon>
+                </button>
+                <button onclick="toggleDarkMode()" class="text-slate-400 hover:text-slate-600 dark:hover:text-yellow-400 transition-colors">
+                    <iconify-icon class="block dark:hidden" icon="solar:moon-linear" width="22" height="22"></iconify-icon>
+                    <iconify-icon class="hidden dark:block" icon="solar:sun-2-linear" width="22" height="22"></iconify-icon>
+                </button>
+                <div class="flex items-center gap-4 border-l border-gray-200 dark:border-dark-border pl-4">
+                    <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <iconify-icon icon="solar:bag-3-linear" width="22" height="22"></iconify-icon>
+                        <span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">1</span>
+                    </button>
+                    <a href="notifications.html" class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:bell-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">8</span></a>
+                    <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <iconify-icon icon="solar:cart-large-linear" width="22" height="22"></iconify-icon>
+                        <span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">4</span>
+                    </button>
+                </div>
+                <div class="flex items-center gap-3 pl-2">
+                    <span class="text-sm font-medium text-slate-700 dark:text-slate-200 hidden sm:block">Jan</span>
+                    <img src="/media/avatars/jan.jpg" alt="Jan" class="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-slate-700">
+                </div>
+            </div>
+        </header>
+        <div class="flex flex-1 overflow-hidden">
+            <!-- SIDEBAR -->
+            <aside class="hidden xl:flex w-[260px] flex-col bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border overflow-y-auto shrink-0 pb-6 transition-colors duration-300">
+                <div class="p-6">
+                    <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <iconify-icon icon="solar:sidebar-minimalistic-linear" width="24" height="24"></iconify-icon>
+                    </button>
+                </div>
+                <nav class="flex-1 px-4 space-y-8">
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Osobisty</div>
+                        <a href="profile.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="20" height="20"></iconify-icon>Profil</a>
+                        <a href="home.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:graph-up-linear" width="20" height="20"></iconify-icon>Oś czasu</a>
+                        <a href="messages.html" class="flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><div class="flex items-center gap-3">
+                                <iconify-icon icon="solar:inbox-linear" width="20" height="20"></iconify-icon>                                Skrzynka
+                            </div><span class="bg-gray-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-semibold px-1.5 py-0.5 rounded">3</span></a>
+                        <a href="health-journal.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="20" height="20"></iconify-icon>Dziennik Zdrowia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Wspólnota</div>
+                        <a href="groups.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="20" height="20"></iconify-icon>Grupy</a>
+                        <a href="members.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="20" height="20"></iconify-icon>Połączenia</a>
+                        <a href="forums.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="20" height="20"></iconify-icon>Dyskusje</a>
+                        <a href="courses.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:diploma-linear" width="20" height="20"></iconify-icon>Kursy</a>
+                        <a href="events.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calendar-linear" width="20" height="20"></iconify-icon>Wydarzenia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Zdrowie & Wiedza</div>
+                        <a href="recipes.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="20" height="20"></iconify-icon>Przepisy</a>
+                        <a href="video.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="20" height="20"></iconify-icon>Video & Wiedza</a>
+                        <a href="apps.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calculator-linear" width="20" height="20"></iconify-icon>Narzędzia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Multimedia</div>
+                        <a href="photos.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 rounded-md"><iconify-icon icon="solar:gallery-linear" width="20" height="20"></iconify-icon>Zdjęcia</a>
+                        <a href="documents.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:folder-linear" width="20" height="20"></iconify-icon>Dokumenty</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Sklep</div>
+                        <a href="shop.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="20" height="20"></iconify-icon>Sklep</a>
+                    </div>
+                </nav>
+                <div class="mt-auto px-4 pt-6">
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:settings-linear" width="20" height="20"></iconify-icon>Ustawienia konta</a>
+                </div>
+            </aside>
+            <!-- MAIN -->
+            <main class="flex-1 overflow-y-auto p-4 lg:p-8">
+                <div class="max-w-6xl mx-auto space-y-6">
+                    <!-- Title & Upload -->
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <h1 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Zdjęcia</h1>
+                        <div class="flex items-center gap-3">
+                            <div class="relative w-full sm:w-64">
+                                <iconify-icon icon="solar:magnifer-linear" width="18" height="18" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></iconify-icon>
+                                <input type="text" placeholder="Szukaj zdjęć..." class="w-full h-10 pl-10 pr-4 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-lg text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 transition-colors">
+                            </div>
+                            <button class="h-10 px-4 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2 shrink-0">
+                                <iconify-icon icon="solar:upload-linear" width="18" height="18"></iconify-icon>
+                                Dodaj zdjęcia
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Tabs -->
+                    <div class="flex items-center gap-6 border-b border-gray-200 dark:border-dark-border">
+                        <button class="pb-3 text-sm font-semibold text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400 -mb-px">Wszystkie zdjęcia</button>
+                        <button class="pb-3 text-sm font-medium text-slate-500 dark:text-slate-400 border-b-2 border-transparent hover:text-slate-700 dark:hover:text-slate-200 -mb-px transition-colors">Albumy</button>
+                    </div>
+                    <!-- Count & Sort -->
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-medium text-slate-500 dark:text-slate-400">42 zdjęcia</span>
+                        <select class="h-9 px-3 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 cursor-pointer">
+                            <option>Najnowsze</option>
+                            <option>Najstarsze</option>
+                            <option>Najpopularniejsze</option>
+                        </select>
+                    </div>
+                    <!-- Albums Section -->
+                    <div class="space-y-4">
+                        <h2 class="text-base font-bold text-slate-900 dark:text-white">Albumy</h2>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <!-- Album 1 -->
+                            <div class="group cursor-pointer">
+                                <div class="relative aspect-[4/3] rounded-xl overflow-hidden mb-3">
+                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" alt="Wakacje" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div class="absolute bottom-3 right-3 px-2 py-1 bg-black/50 backdrop-blur-sm rounded-md text-white text-[11px] font-medium">12 zdjęć</div>
+                                </div>
+                                <h3 class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Wakacje 2025</h3>
+                                <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Utworzono 15.08.2025</p>
+                            </div>
+                            <!-- Album 2 -->
+                            <div class="group cursor-pointer">
+                                <div class="relative aspect-[4/3] rounded-xl overflow-hidden mb-3">
+                                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&q=80" alt="Spotkania" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div class="absolute bottom-3 right-3 px-2 py-1 bg-black/50 backdrop-blur-sm rounded-md text-white text-[11px] font-medium">8 zdjęć</div>
+                                </div>
+                                <h3 class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Spotkania wspólnoty</h3>
+                                <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Utworzono 02.11.2025</p>
+                            </div>
+                            <!-- Album 3 -->
+                            <div class="group cursor-pointer">
+                                <div class="relative aspect-[4/3] rounded-xl overflow-hidden mb-3">
+                                    <img src="https://images.unsplash.com/photo-1493397212122-2b85dda8106b?w=400&q=80" alt="Projekty" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div class="absolute bottom-3 right-3 px-2 py-1 bg-black/50 backdrop-blur-sm rounded-md text-white text-[11px] font-medium">15 zdjęć</div>
+                                </div>
+                                <h3 class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Moje projekty</h3>
+                                <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Utworzono 20.01.2026</p>
+                            </div>
+                            <!-- Album 4 -->
+                            <div class="group cursor-pointer">
+                                <div class="relative aspect-[4/3] rounded-xl overflow-hidden mb-3">
+                                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&q=80" alt="Inspiracje" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div class="absolute bottom-3 right-3 px-2 py-1 bg-black/50 backdrop-blur-sm rounded-md text-white text-[11px] font-medium">7 zdjęć</div>
+                                </div>
+                                <h3 class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Inspiracje</h3>
+                                <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Utworzono 05.02.2026</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- All Photos Grid -->
+                    <div class="space-y-4">
+                        <h2 class="text-base font-bold text-slate-900 dark:text-white">Ostatnie zdjęcia</h2>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                            <!-- Photo 1 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            12
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            3
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 2 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            8
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            1
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 3 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            24
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            5
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 4 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            6
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            2
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 5 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1493397212122-2b85dda8106b?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            15
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            4
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 6 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            31
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            7
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 7 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            9
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            0
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 8 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            18
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            3
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 9 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            5
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            1
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 10 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1520483601560-389dff434fdf?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            22
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            6
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 11 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            4
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            0
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 12 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            14
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            2
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 13 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            7
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            1
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 14 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            11
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            3
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Photo 15 -->
+                            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&q=80" alt="Zdjęcie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-200"></div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:heart-bold" width="16" height="16"></iconify-icon>                                            3
+                                        </div>
+                                        <div class="flex items-center gap-1.5 text-white text-xs font-medium">
+                                            <iconify-icon icon="solar:chat-round-dots-bold" width="16" height="16"></iconify-icon>                                            0
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-7 h-7 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+                                        <iconify-icon icon="solar:menu-dots-bold" width="14" height="14"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="flex items-center justify-center gap-2 pt-4">
+                        <button class="w-9 h-9 flex items-center justify-center rounded-full bg-indigo-600 text-white text-sm font-semibold">1</button>
+                        <button class="w-9 h-9 flex items-center justify-center rounded-full text-slate-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-800 text-sm font-medium transition-colors">2</button>
+                        <button class="w-9 h-9 flex items-center justify-center rounded-full text-slate-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-800 text-sm font-medium transition-colors">3</button>
+                        <button class="w-9 h-9 flex items-center justify-center rounded-full text-slate-400 dark:text-slate-500 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors">
+                            <iconify-icon icon="solar:alt-arrow-right-linear" width="16" height="16"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

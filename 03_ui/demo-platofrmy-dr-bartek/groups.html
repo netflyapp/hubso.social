@@ -1,0 +1,280 @@
+<html lang="pl" class="antialiased"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupy — Dr Bartek | Społeczność Zdrowia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --font-inter: 'Inter', sans-serif; }
+        body { font-family: var(--font-inter); }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 3px; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { green: '#2D8F4E' }, dark: { bg: '#050505', surface: '#0F1115', border: '#222226' } }, boxShadow: { 'soft': '0 2px 10px rgba(0,0,0,0.03)', 'card': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)', 'dark-card': '0 0 0 1px rgba(255,255,255,0.06), 0 4px 8px rgba(0,0,0,0.2)' }, fontSize: { xxs: '0.625rem' } } }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark') } else { document.documentElement.classList.remove('dark') }
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'; }
+    </script>
+</head>
+<body class="text-slate-600 dark:text-slate-400 bg-[#F7F8FA] dark:bg-dark-bg h-screen flex flex-col overflow-hidden transition-colors duration-300">
+
+    <!-- HEADER -->
+    <header class="h-16 bg-white dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border flex items-center justify-between px-4 lg:px-6 shrink-0 z-50 sticky top-0 transition-colors duration-300">
+        <div class="flex items-center gap-12">
+            <a href="home-full.html" class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-[#2D8F4E] flex items-center justify-center text-white"><iconify-icon icon="solar:heart-pulse-bold" width="20" height="20"></iconify-icon></div>
+                <div class="flex flex-col"><span class="font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-none text-sm">Dr Bartek</span><span class="font-medium text-slate-500 text-xs tracking-tight">Społeczność Zdrowia</span></div>
+            </a>
+        </div>
+        <nav class="hidden md:flex items-center h-full gap-1">
+            <a href="home-full.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:feed-linear" width="24" height="24"></iconify-icon></a>
+            <a href="profile.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="24" height="24"></iconify-icon></a>
+            <a href="groups.html" class="h-full flex items-center border-b-[2px] border-emerald-600 px-3 text-emerald-600 dark:text-emerald-400"><iconify-icon icon="solar:users-group-rounded-linear" width="24" height="24"></iconify-icon></a>
+            <a href="messages.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-round-dots-linear" width="24" height="24"></iconify-icon></a>
+            <a href="members.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="24" height="24"></iconify-icon></a>
+            <a href="forums.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="24" height="24"></iconify-icon></a>
+            <a href="courses.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:square-academic-cap-linear" width="24" height="24"></iconify-icon></a>
+            <a href="events.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calendar-linear" width="24" height="24"></iconify-icon></a>
+            <a href="shop.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="24" height="24"></iconify-icon></a>
+            <a href="documents.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:document-text-linear" width="24" height="24"></iconify-icon></a>
+            <a href="recipes.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="24" height="24"></iconify-icon></a>
+            <a href="video.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="24" height="24"></iconify-icon></a>
+            <a href="apps.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calculator-linear" width="24" height="24"></iconify-icon></a>
+            <a href="health-journal.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="24" height="24"></iconify-icon></a>
+        </nav>
+        <div class="flex items-center gap-5">
+            <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:magnifer-linear" width="22" height="22"></iconify-icon></button>
+            <button onclick="toggleDarkMode()" class="text-slate-400 hover:text-slate-600 dark:hover:text-yellow-400 transition-colors"><iconify-icon class="block dark:hidden" icon="solar:moon-linear" width="22" height="22"></iconify-icon><iconify-icon class="hidden dark:block" icon="solar:sun-2-linear" width="22" height="22"></iconify-icon></button>
+            <div class="flex items-center gap-4 border-l border-gray-200 dark:border-dark-border pl-4">
+                <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:bag-3-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">1</span></button>
+                <a href="notifications.html" class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:bell-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">8</span></a>
+                <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:cart-large-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">4</span></button>
+            </div>
+            <div class="flex items-center gap-3 pl-2"><span class="text-sm font-medium text-slate-700 dark:text-slate-200 hidden sm:block">Jan</span><img src="/media/avatars/jan.jpg" alt="Jan" class="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-slate-700"></div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        <!-- SIDEBAR -->
+        <aside class="hidden xl:flex w-[260px] flex-col bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border overflow-y-auto shrink-0 pb-6 transition-colors duration-300">
+            <div class="p-6"><button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:sidebar-minimalistic-linear" width="24" height="24"></iconify-icon></button></div>
+            <nav class="flex-1 px-4 space-y-8">
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Osobisty</div>
+                    <a href="profile.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="20" height="20"></iconify-icon>Profil</a>
+                    <a href="home.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:graph-up-linear" width="20" height="20"></iconify-icon>Oś czasu</a>
+                    <a href="messages.html" class="flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><div class="flex items-center gap-3"><iconify-icon icon="solar:inbox-linear" width="20" height="20"></iconify-icon>Skrzynka</div><span class="bg-gray-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-semibold px-1.5 py-0.5 rounded">3</span></a>
+                    <a href="health-journal.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="20" height="20"></iconify-icon>Dziennik Zdrowia</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Wspólnota</div>
+                    <a href="groups.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 rounded-md"><iconify-icon icon="solar:users-group-rounded-linear" width="20" height="20"></iconify-icon>Grupy</a>
+                    <a href="members.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="20" height="20"></iconify-icon>Połączenia</a>
+                    <a href="forums.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="20" height="20"></iconify-icon>Dyskusje</a>
+                    <a href="courses.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:diploma-linear" width="20" height="20"></iconify-icon>Kursy</a>
+                    <a href="events.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calendar-linear" width="20" height="20"></iconify-icon>Wydarzenia</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Zdrowie & Wiedza</div>
+                    <a href="recipes.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="20" height="20"></iconify-icon>Przepisy</a>
+                    <a href="video.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="20" height="20"></iconify-icon>Video & Wiedza</a>
+                    <a href="apps.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calculator-linear" width="20" height="20"></iconify-icon>Narzędzia</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Multimedia</div>
+                    <a href="photos.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:gallery-linear" width="20" height="20"></iconify-icon>Zdjęcia</a>
+                    <a href="documents.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:folder-linear" width="20" height="20"></iconify-icon>Dokumenty</a>
+                </div>
+                <div class="space-y-1">
+                    <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Sklep</div>
+                    <a href="shop.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="20" height="20"></iconify-icon>Sklep</a>
+                </div>
+            </nav>
+            <div class="mt-auto px-4 pt-6"><a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:settings-linear" width="20" height="20"></iconify-icon>Ustawienia konta</a></div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="flex-1 overflow-y-auto p-4 lg:p-8">
+            <div class="max-w-6xl mx-auto">
+                <!-- Header -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Grupy</h1>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">12 aktywnych grup</p>
+                    </div>
+                    <button class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2">
+                        <iconify-icon icon="solar:add-circle-linear" width="18" height="18"></iconify-icon>
+                        Utwórz grupę
+                    </button>
+                </div>
+
+                <!-- Tabs + Sort -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                    <div class="flex items-center gap-2">
+                        <button class="px-4 py-1.5 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-full text-xs font-medium text-slate-700 dark:text-slate-200">Wszystkie grupy</button>
+                        <button class="px-4 py-1.5 bg-gray-100 dark:bg-dark-surface border border-transparent dark:border-dark-border rounded-full text-xs font-medium text-slate-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-800 transition-colors">Grupy</button>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+                        <span>Sortuj:</span>
+                        <button class="flex items-center gap-1 hover:text-slate-700 dark:hover:text-slate-200">Ostatnio aktywne <iconify-icon icon="solar:alt-arrow-down-linear" width="12" height="12"></iconify-icon></button>
+                    </div>
+                </div>
+
+                <!-- Groups Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <!-- Group 1 — Dieta Śródziemnomorska -->
+                    <a href="group-detail.html" class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border transition-all hover:shadow-md dark:hover:shadow-lg group">
+                        <div class="h-32 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=300&fit=crop" alt="Dieta Śródziemnomorska" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-semibold text-slate-900 dark:text-white">Dieta Śródziemnomorska</h3>
+                                <span class="flex items-center gap-1 text-[10px] font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-500/10 px-2 py-0.5 rounded-full"><iconify-icon icon="solar:globe-linear" width="10" height="10"></iconify-icon>Publiczna</span>
+                            </div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">Przepisy, wskazówki i dyskusje o diecie śródziemnomorskiej. Oliwa, ryby, warzywa i zdrowe tłuszcze.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex -space-x-2">
+                                        <img src="/media/avatars/anna.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                        <img src="/media/avatars/tomek.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                        <img src="/media/avatars/marta.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                    </div>
+                                    <span class="text-xs text-slate-400">128 członków</span>
+                                </div>
+                                <span class="px-3 py-1 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium rounded-lg">Dołączono</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Group 2 — Zdrowe Gotowanie -->
+                    <a href="group-detail.html" class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border transition-all hover:shadow-md dark:hover:shadow-lg group">
+                        <div class="h-32 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=300&fit=crop" alt="Zdrowe Gotowanie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-semibold text-slate-900 dark:text-white">Zdrowe Gotowanie</h3>
+                                <span class="flex items-center gap-1 text-[10px] font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-500/10 px-2 py-0.5 rounded-full"><iconify-icon icon="solar:globe-linear" width="10" height="10"></iconify-icon>Publiczna</span>
+                            </div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">Przepisy prozdrowotne, gotowanie na parze, zdrowe zamienniki i meal prep na cały tydzień.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex -space-x-2">
+                                        <img src="/media/avatars/ewa.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                        <img src="/media/avatars/marta.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                    </div>
+                                    <span class="text-xs text-slate-400">95 członków</span>
+                                </div>
+                                <span class="px-3 py-1 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium rounded-lg">Dołączono</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Group 3 — Suplementacja i Witaminy -->
+                    <a href="group-detail.html" class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border transition-all hover:shadow-md dark:hover:shadow-lg group">
+                        <div class="h-32 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1550572017-edd951b55104?w=600&h=300&fit=crop" alt="Suplementacja" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-semibold text-slate-900 dark:text-white">Suplementacja i Witaminy</h3>
+                                <span class="flex items-center gap-1 text-[10px] font-medium text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10 px-2 py-0.5 rounded-full"><iconify-icon icon="solar:lock-linear" width="10" height="10"></iconify-icon>Premium</span>
+                            </div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">Witamina D, omega-3, magnez, probiotyki — co naprawdę działa? Doradzamy na bazie badań naukowych.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex -space-x-2">
+                                        <img src="/media/avatars/jan.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                        <img src="/media/avatars/zofia.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                        <img src="/media/avatars/adam.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                        <img src="/media/avatars/piotr.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                    </div>
+                                    <span class="text-xs text-slate-400">210 członków</span>
+                                </div>
+                                <span class="px-3 py-1 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium rounded-lg">Dołączono</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Group 4 — Trening & Aktywność -->
+                    <a href="group-detail.html" class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border transition-all hover:shadow-md dark:hover:shadow-lg group">
+                        <div class="h-32 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=300&fit=crop" alt="Trening" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-semibold text-slate-900 dark:text-white">Trening & Aktywność Fizyczna</h3>
+                                <span class="flex items-center gap-1 text-[10px] font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-500/10 px-2 py-0.5 rounded-full"><iconify-icon icon="solar:globe-linear" width="10" height="10"></iconify-icon>Publiczna</span>
+                            </div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">Ćwiczenia, treningi siłowe, cardio, joga i spacery. Dzielimy się motywacją i wynikami!</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex -space-x-2">
+                                        <img src="/media/avatars/michal.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                        <img src="/media/avatars/ewa.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                    </div>
+                                    <span class="text-xs text-slate-400">78 członków</span>
+                                </div>
+                                <button class="px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium rounded-lg transition-colors">Dołącz</button>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Group 5 — Zdrowie Jelit i Mikrobiom -->
+                    <a href="group-detail.html" class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border transition-all hover:shadow-md dark:hover:shadow-lg group">
+                        <div class="h-32 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=300&fit=crop" alt="Zdrowie Jelit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-semibold text-slate-900 dark:text-white">Zdrowie Jelit i Mikrobiom</h3>
+                                <span class="flex items-center gap-1 text-[10px] font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-500/10 px-2 py-0.5 rounded-full"><iconify-icon icon="solar:globe-linear" width="10" height="10"></iconify-icon>Publiczna</span>
+                            </div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">Probiotyki, prebiotyki, fermentacja i oś jelitowo-mózgowa. Zdrowe jelita to zdrowe ciało.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex -space-x-2">
+                                        <img src="/media/avatars/kasia.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                        <img src="/media/avatars/tomek.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                    </div>
+                                    <span class="text-xs text-slate-400">64 członków</span>
+                                </div>
+                                <button class="px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium rounded-lg transition-colors">Dołącz</button>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Group 6 — Poranny Dziennik Zdrowia -->
+                    <a href="group-detail.html" class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border transition-all hover:shadow-md dark:hover:shadow-lg group">
+                        <div class="h-32 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=300&fit=crop" alt="Poranny Dziennik" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-semibold text-slate-900 dark:text-white">Poranny Dziennik Zdrowia</h3>
+                                <span class="flex items-center gap-1 text-[10px] font-medium text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10 px-2 py-0.5 rounded-full"><iconify-icon icon="solar:lock-linear" width="10" height="10"></iconify-icon>Kohortowa</span>
+                            </div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">Grupa wsparcia dla uczestników 8-tygodniowego programu. Dzienniki, wyzwania i motywacja poranna.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex -space-x-2">
+                                        <img src="/media/avatars/kasia.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                        <img src="/media/avatars/piotr.jpg" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                    </div>
+                                    <span class="text-xs text-slate-400">42 członków</span>
+                                </div>
+                                <span class="px-3 py-1 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium rounded-lg">Dołączono</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body></html>

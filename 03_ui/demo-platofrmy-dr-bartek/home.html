@@ -1,0 +1,336 @@
+<html lang="pl" class="antialiased">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Oś czasu — Dr Bartek | Społeczność Zdrowia</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <style>:root { --font-inter: 'Inter', sans-serif; } body { font-family: var(--font-inter); } ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 3px; } .dark ::-webkit-scrollbar-thumb { background: #334155; } .no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }</style>
+        <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { green: '#2D8F4E' }, dark: { bg: '#050505', surface: '#0F1115', border: '#222226' } }, boxShadow: { 'soft': '0 2px 10px rgba(0,0,0,0.03)', 'card': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)', 'dark-card': '0 0 0 1px rgba(255,255,255,0.06), 0 4px 8px rgba(0,0,0,0.2)' }, fontSize: { xxs: '0.625rem' } } }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark') } else { document.documentElement.classList.remove('dark') }
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'; }
+    </script>
+    </head>
+    <body class="text-slate-600 dark:text-slate-400 bg-[#F7F8FA] dark:bg-dark-bg h-screen flex flex-col overflow-hidden transition-colors duration-300">
+        <!-- HEADER -->
+        <header class="h-16 bg-white dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border flex items-center justify-between px-4 lg:px-6 shrink-0 z-50 sticky top-0 transition-colors duration-300">
+            <div class="flex items-center gap-12">
+                <a href="home-full.html" class="flex items-center gap-2.5"> <div class="w-8 h-8 rounded-full bg-[#2D8F4E] flex items-center justify-center text-white">
+                        <iconify-icon icon="solar:heart-pulse-bold" width="20" height="20"></iconify-icon>
+                    </div> <div class="flex flex-col">
+                        <span class="font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-none text-sm">Dr Bartek</span>
+                        <span class="font-medium text-slate-500 text-xs tracking-tight">Społeczność Zdrowia</span>
+                    </div> </a>
+            </div>
+            <nav class="hidden md:flex items-center h-full gap-1">
+                <a href="home-full.html" class="h-full flex items-center border-b-[2px] border-emerald-600 px-3 text-emerald-600 dark:text-emerald-400"><iconify-icon icon="solar:feed-linear" width="24" height="24"></iconify-icon></a>
+                <a href="profile.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="24" height="24"></iconify-icon></a>
+                <a href="groups.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="24" height="24"></iconify-icon></a>
+                <a href="messages.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-round-dots-linear" width="24" height="24"></iconify-icon></a>
+                <a href="members.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="24" height="24"></iconify-icon></a>
+                <a href="forums.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="24" height="24"></iconify-icon></a>
+                <a href="courses.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:square-academic-cap-linear" width="24" height="24"></iconify-icon></a>
+                <a href="events.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calendar-linear" width="24" height="24"></iconify-icon></a>
+                <a href="shop.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="24" height="24"></iconify-icon></a>
+                <a href="documents.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:document-text-linear" width="24" height="24"></iconify-icon></a>
+                <a href="recipes.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="24" height="24"></iconify-icon></a>
+                <a href="video.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="24" height="24"></iconify-icon></a>
+                <a href="apps.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calculator-linear" width="24" height="24"></iconify-icon></a>
+                <a href="health-journal.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="24" height="24"></iconify-icon></a>
+            </nav>
+            <div class="flex items-center gap-5">
+                <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <iconify-icon icon="solar:magnifer-linear" width="22" height="22"></iconify-icon>
+                </button>
+                <button onclick="toggleDarkMode()" class="text-slate-400 hover:text-slate-600 dark:hover:text-yellow-400 transition-colors">
+                    <iconify-icon class="block dark:hidden" icon="solar:moon-linear" width="22" height="22"></iconify-icon>
+                    <iconify-icon class="hidden dark:block" icon="solar:sun-2-linear" width="22" height="22"></iconify-icon>
+                </button>
+                <div class="flex items-center gap-4 border-l border-gray-200 dark:border-dark-border pl-4">
+                    <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <iconify-icon icon="solar:bag-3-linear" width="22" height="22"></iconify-icon>
+                        <span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">1</span>
+                    </button>
+                    <a href="notifications.html" class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:bell-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">8</span></a>
+                    <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <iconify-icon icon="solar:cart-large-linear" width="22" height="22"></iconify-icon>
+                        <span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#2D8F4E] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">4</span>
+                    </button>
+                </div>
+                <div class="flex items-center gap-3 pl-2">
+                    <span class="text-sm font-medium text-slate-700 dark:text-slate-200 hidden sm:block">Jan</span>
+                    <img src="/media/avatars/jan.jpg" alt="Jan" class="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-slate-700">
+                </div>
+            </div>
+        </header>
+        <div class="flex flex-1 overflow-hidden">
+            <!-- SIDEBAR -->
+            <aside class="hidden xl:flex w-[260px] flex-col bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border overflow-y-auto shrink-0 pb-6 transition-colors duration-300">
+                <div class="p-6">
+                    <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <iconify-icon icon="solar:sidebar-minimalistic-linear" width="24" height="24"></iconify-icon>
+                    </button>
+                </div>
+                <nav class="flex-1 px-4 space-y-8">
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Osobisty</div>
+                        <a href="profile.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="20" height="20"></iconify-icon>Profil</a>
+                        <a href="home.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 rounded-md"><iconify-icon icon="solar:graph-up-linear" width="20" height="20"></iconify-icon>Oś czasu</a>
+                        <a href="messages.html" class="flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><div class="flex items-center gap-3">
+                                <iconify-icon icon="solar:inbox-linear" width="20" height="20"></iconify-icon>                                Skrzynka
+                            </div><span class="bg-gray-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-semibold px-1.5 py-0.5 rounded">3</span></a>
+                        <a href="health-journal.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:heart-pulse-linear" width="20" height="20"></iconify-icon>Dziennik Zdrowia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Wspólnota</div>
+                        <a href="groups.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="20" height="20"></iconify-icon>Grupy</a>
+                        <a href="members.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="20" height="20"></iconify-icon>Połączenia</a>
+                        <a href="forums.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="20" height="20"></iconify-icon>Dyskusje</a>
+                        <a href="courses.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:diploma-linear" width="20" height="20"></iconify-icon>Kursy</a>
+                        <a href="events.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calendar-linear" width="20" height="20"></iconify-icon>Wydarzenia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Zdrowie & Wiedza</div>
+                        <a href="recipes.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chef-hat-linear" width="20" height="20"></iconify-icon>Przepisy</a>
+                        <a href="video.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:videocamera-linear" width="20" height="20"></iconify-icon>Video & Wiedza</a>
+                        <a href="apps.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calculator-linear" width="20" height="20"></iconify-icon>Narzędzia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Multimedia</div>
+                        <a href="photos.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:gallery-linear" width="20" height="20"></iconify-icon>Zdjęcia</a>
+                        <a href="documents.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:folder-linear" width="20" height="20"></iconify-icon>Dokumenty</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Sklep</div>
+                        <a href="shop.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="20" height="20"></iconify-icon>Sklep</a>
+                    </div>
+                </nav>
+                <div class="mt-auto px-4 pt-6">
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:settings-linear" width="20" height="20"></iconify-icon>Ustawienia konta</a>
+                </div>
+            </aside>
+            <!-- MAIN -->
+            <main class="flex-1 overflow-y-auto p-4 lg:p-8">
+                <div class="max-w-2xl mx-auto space-y-6">
+                    <h1 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Oś czasu</h1>
+                    <!-- Composer -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card p-5 border border-transparent dark:border-dark-border transition-colors">
+                        <div class="flex gap-4 mb-4">
+                            <img src="/media/avatars/jan.jpg" alt="User" class="w-10 h-10 rounded-full object-cover ring-2 ring-white dark:ring-dark-surface">
+                            <input type="text" placeholder="Podziel się tym, co myślisz, Jan..." class="flex-1 h-10 bg-transparent border-none p-0 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-600 focus:ring-0 focus:outline-none">
+                        </div>
+                        <div class="flex items-center gap-1 border-t border-gray-100 dark:border-white/5 pt-3">
+                            <button class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-gray-50 dark:hover:bg-white/5 rounded-full transition-colors">
+                                <iconify-icon icon="solar:camera-linear" width="20" height="20"></iconify-icon>
+                            </button>
+                            <button class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-gray-50 dark:hover:bg-white/5 rounded-full transition-colors">
+                                <iconify-icon icon="solar:videocamera-record-linear" width="20" height="20"></iconify-icon>
+                            </button>
+                            <button class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-gray-50 dark:hover:bg-white/5 rounded-full transition-colors">
+                                <iconify-icon icon="solar:file-linear" width="20" height="20"></iconify-icon>
+                            </button>
+                            <button class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-gray-50 dark:hover:bg-white/5 rounded-full transition-colors">
+                                <span class="border border-current rounded text-[10px] px-1 font-bold">GIF</span>
+                            </button>
+                            <button class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-gray-50 dark:hover:bg-white/5 rounded-full transition-colors">
+                                <iconify-icon icon="solar:chart-square-linear" width="20" height="20"></iconify-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Filters -->
+                    <div class="flex flex-wrap gap-2">
+                        <button class="px-4 py-1.5 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-full text-xs font-medium text-slate-700 dark:text-slate-200">Wszystko</button>
+                        <button class="px-4 py-1.5 bg-gray-100 dark:bg-dark-surface border border-transparent dark:border-dark-border rounded-full text-xs font-medium text-slate-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-800 transition-colors">Ogłoszenie</button>
+                        <button class="px-4 py-1.5 bg-gray-100 dark:bg-dark-surface border border-transparent dark:border-dark-border rounded-full text-xs font-medium text-slate-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-800 transition-colors">Zdrowie</button>
+                        <button class="px-4 py-1.5 bg-gray-100 dark:bg-dark-surface border border-transparent dark:border-dark-border rounded-full text-xs font-medium text-slate-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-800 transition-colors">Przepisy</button>
+                        <button class="px-3 py-1.5 bg-gray-100 dark:bg-dark-surface border border-transparent dark:border-dark-border rounded-full text-xs font-medium text-slate-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-800 flex items-center gap-1 transition-colors">Więcej 
+                            <iconify-icon icon="solar:alt-arrow-down-linear" width="12" height="12"></iconify-icon>
+                        </button>
+                    </div>
+                    <!-- Sort -->
+                    <div class="flex items-center justify-between">
+                        <button class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+                            <iconify-icon icon="solar:magnifer-linear" width="16" height="16"></iconify-icon>
+                        </button>
+                        <div class="flex items-center gap-4 text-xs font-medium text-slate-500 dark:text-slate-400">
+                            <button class="flex items-center gap-1 hover:text-slate-700 dark:hover:text-slate-200">Pokazywać wszystkie aktualizacje 
+                                <iconify-icon icon="solar:alt-arrow-down-linear" width="12" height="12"></iconify-icon>
+                            </button>
+                            <button class="flex items-center gap-1 hover:text-slate-700 dark:hover:text-slate-200">przez nowe posty 
+                                <iconify-icon icon="solar:alt-arrow-down-linear" width="12" height="12"></iconify-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Post 1 -->
+                    <article class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border transition-colors">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex gap-3">
+                                    <img src="/media/avatars/jan.jpg" alt="Jan" class="w-10 h-10 rounded-full object-cover">
+                                    <div>
+                                        <div class="text-sm font-medium text-slate-900 dark:text-white">Jan Kowalski <span class="text-slate-500 dark:text-slate-400 font-normal">opublikował aktualizację</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500 mt-0.5">
+                                            <span>2 godz. temu</span>
+                                            <span>•</span>
+                                            <div class="flex items-center gap-1">
+                                                <iconify-icon icon="solar:globe-linear" width="12" height="12"></iconify-icon>                                                Aktualności
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                                    <iconify-icon icon="solar:menu-dots-linear" width="20" height="20"></iconify-icon>
+                                </button>
+                            </div>
+                            <h3 class="text-base font-semibold text-slate-900 dark:text-slate-100 mb-2">Piękny zachód słońca nad morzem 🌅</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Spędziliśmy niesamowity weekend na wybrzeżu. Polecam każdemu!</p>
+                            <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-slate-900 group cursor-pointer border border-transparent dark:border-white/10">
+                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="Video" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-12 h-12 bg-black/50 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform">
+                                        <iconify-icon icon="solar:play-bold" width="20" height="20" class="text-white ml-0.5"></iconify-icon>
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-3 left-3 px-1.5 py-0.5 bg-black/70 rounded text-[10px] font-medium text-white">2:34</div>
+                            </div>
+                            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-50 dark:border-white/5">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex -space-x-1">
+                                        <div class="w-5 h-5 rounded-full bg-[#2D8F4E] flex items-center justify-center border border-white dark:border-dark-surface z-10">
+                                            <iconify-icon icon="solar:heart-bold" width="10" height="10" class="text-white"></iconify-icon>
+                                        </div>
+                                        <div class="w-5 h-5 rounded-full bg-indigo-500 flex items-center justify-center border border-white dark:border-dark-surface">
+                                            <iconify-icon icon="solar:like-bold" width="10" height="10" class="text-white"></iconify-icon>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400 hover:underline cursor-pointer">Ty, Ania i 4 inne osoby</span>
+                                </div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 hover:underline cursor-pointer">5 komentarzy</div>
+                            </div>
+                        </div>
+                        <div class="flex border-t border-gray-100 dark:border-white/5">
+                            <button class="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                <iconify-icon icon="solar:heart-bold" width="16" height="16" class="text-[#2D8F4E]"></iconify-icon>
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Miłość</span>
+                            </button>
+                            <span class="w-px bg-gray-100 dark:bg-white/5"></span>
+                            <button class="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                <iconify-icon icon="solar:chat-line-linear" width="16" height="16" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Komentarz</span>
+                            </button>
+                        </div>
+                    </article>
+                    <!-- Post 2 -->
+                    <article class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border transition-colors">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex gap-3">
+                                    <img src="/media/avatars/anna.jpg" alt="Ania" class="w-10 h-10 rounded-full object-cover">
+                                    <div>
+                                        <div class="text-sm font-medium text-slate-900 dark:text-white">Anna Nowak <span class="text-slate-500 dark:text-slate-400 font-normal">opublikowała zdjęcie</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500 mt-0.5">
+                                            <span>5 godz. temu</span>
+                                            <span>•</span>
+                                            <div class="flex items-center gap-1">
+                                                <iconify-icon icon="solar:users-group-rounded-linear" width="12" height="12"></iconify-icon>                                                Miłośnicy kawy
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                                    <iconify-icon icon="solar:menu-dots-linear" width="20" height="20"></iconify-icon>
+                                </button>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Poraneczna kawa w moim ulubionym miejscu ☕ Kto jeszcze tak zaczyna dzień?</p>
+                            <div class="rounded-lg overflow-hidden border border-transparent dark:border-white/10">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80" alt="Kawa" class="w-full aspect-[4/3] object-cover">
+                            </div>
+                            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-50 dark:border-white/5">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex -space-x-1">
+                                        <div class="w-5 h-5 rounded-full bg-indigo-500 flex items-center justify-center border border-white dark:border-dark-surface z-10">
+                                            <iconify-icon icon="solar:like-bold" width="10" height="10" class="text-white"></iconify-icon>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400 hover:underline cursor-pointer">12 osób</span>
+                                </div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 hover:underline cursor-pointer">3 komentarze</div>
+                            </div>
+                        </div>
+                        <div class="flex border-t border-gray-100 dark:border-white/5">
+                            <button class="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                <iconify-icon icon="solar:like-linear" width="16" height="16" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Lubię to</span>
+                            </button>
+                            <span class="w-px bg-gray-100 dark:bg-white/5"></span>
+                            <button class="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                <iconify-icon icon="solar:chat-line-linear" width="16" height="16" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Komentarz</span>
+                            </button>
+                        </div>
+                    </article>
+                    <!-- Post 3 — text -->
+                    <article class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border transition-colors">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex gap-3">
+                                    <img src="media/avatars/2.jpg" alt="Marta" class="w-10 h-10 rounded-full object-cover">
+                                    <div>
+                                        <div class="text-sm font-medium text-slate-900 dark:text-white">Marta Wiśniewska <span class="text-slate-500 dark:text-slate-400 font-normal">opublikowała aktualizację</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500 mt-0.5">
+                                            <span>wczoraj</span>
+                                            <span>•</span>
+                                            <div class="flex items-center gap-1">
+                                                <iconify-icon icon="solar:globe-linear" width="12" height="12"></iconify-icon>                                                Aktualności
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                                    <iconify-icon icon="solar:menu-dots-linear" width="20" height="20"></iconify-icon>
+                                </button>
+                            </div>
+                            <h3 class="text-base font-semibold text-slate-900 dark:text-slate-100 mb-2">Szukam rekomendacji książek 📚</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300">Cześć! Właśnie skończyłam czytać "Atomowe nawyki" i szukam czegoś podobnego. Interesuje mnie rozwój osobisty i produktywność. Macie jakieś sprawdzone propozycje? 🙏</p>
+                            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-50 dark:border-white/5">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex -space-x-1">
+                                        <div class="w-5 h-5 rounded-full bg-[#2D8F4E] flex items-center justify-center border border-white dark:border-dark-surface z-10">
+                                            <iconify-icon icon="solar:heart-bold" width="10" height="10" class="text-white"></iconify-icon>
+                                        </div>
+                                        <div class="w-5 h-5 rounded-full bg-indigo-500 flex items-center justify-center border border-white dark:border-dark-surface">
+                                            <iconify-icon icon="solar:like-bold" width="10" height="10" class="text-white"></iconify-icon>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400 hover:underline cursor-pointer">23 osoby</span>
+                                </div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 hover:underline cursor-pointer">8 komentarzy</div>
+                            </div>
+                        </div>
+                        <div class="flex border-t border-gray-100 dark:border-white/5">
+                            <button class="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                <iconify-icon icon="solar:like-linear" width="16" height="16" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Lubię to</span>
+                            </button>
+                            <span class="w-px bg-gray-100 dark:bg-white/5"></span>
+                            <button class="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                <iconify-icon icon="solar:chat-line-linear" width="16" height="16" class="text-slate-400 dark:text-slate-500"></iconify-icon>
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Komentarz</span>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

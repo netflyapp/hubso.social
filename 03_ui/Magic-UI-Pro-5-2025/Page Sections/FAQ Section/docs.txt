@@ -1,0 +1,3 @@
+Note: Some of the components here make use of the shadcn library such as Accordion.
+
+Please follow instructions there to get started. 

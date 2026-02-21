@@ -1,0 +1,249 @@
+<html lang="pl" class="antialiased">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kursy — Nazwa Społeczności</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <style>:root { --font-inter: 'Inter', sans-serif; } body { font-family: var(--font-inter); } ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 3px; } .dark ::-webkit-scrollbar-thumb { background: #334155; } .no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }</style>
+        <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { primary: '#4F46E5' }, dark: { bg: '#050505', surface: '#0F1115', border: '#222226' } }, boxShadow: { 'soft': '0 2px 10px rgba(0,0,0,0.03)', 'card': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)', 'dark-card': '0 0 0 1px rgba(255,255,255,0.06), 0 4px 8px rgba(0,0,0,0.2)' }, fontSize: { xxs: '0.625rem' } } }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark') } else { document.documentElement.classList.remove('dark') }
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'; }
+    </script>
+    </head>
+    <body class="text-slate-600 dark:text-slate-400 bg-[#F7F8FA] dark:bg-dark-bg h-screen flex flex-col overflow-hidden transition-colors duration-300">
+        <!-- HEADER -->
+        <header class="h-16 bg-white dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border flex items-center justify-between px-4 lg:px-6 shrink-0 z-50 sticky top-0 transition-colors duration-300">
+            <div class="flex items-center gap-12">
+                <a href="index.html" class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-[#4F46E5] flex items-center justify-center text-white"><iconify-icon icon="solar:users-group-rounded-bold" width="20" height="20"></iconify-icon></div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-none text-sm">Nazwa Społeczności</span>
+                        <span class="font-medium text-slate-500 text-xs tracking-tight">Społeczność online</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="hidden md:flex items-center h-full gap-1">
+                <a href="index.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:feed-linear" width="24" height="24"></iconify-icon></a>
+                <a href="profile.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="24" height="24"></iconify-icon></a>
+                <a href="groups.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="24" height="24"></iconify-icon></a>
+                <a href="messages.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-round-dots-linear" width="24" height="24"></iconify-icon></a>
+                <a href="members.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="24" height="24"></iconify-icon></a>
+                <a href="forums.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="24" height="24"></iconify-icon></a>
+                <a href="courses.html" class="h-full flex items-center border-b-[2px] border-indigo-600 px-3 text-indigo-600 dark:text-indigo-400"><iconify-icon icon="solar:square-academic-cap-linear" width="24" height="24"></iconify-icon></a>
+                <a href="events.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:calendar-linear" width="24" height="24"></iconify-icon></a>
+                <a href="#" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="24" height="24"></iconify-icon></a>
+                <a href="#" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:document-text-linear" width="24" height="24"></iconify-icon></a>
+            </nav>
+            <div class="flex items-center gap-5">
+                <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:magnifer-linear" width="22" height="22"></iconify-icon></button>
+                <button onclick="toggleDarkMode()" class="text-slate-400 hover:text-slate-600 dark:hover:text-yellow-400 transition-colors">
+                    <iconify-icon class="block dark:hidden" icon="solar:moon-linear" width="22" height="22"></iconify-icon>
+                    <iconify-icon class="hidden dark:block" icon="solar:sun-2-linear" width="22" height="22"></iconify-icon>
+                </button>
+                <div class="flex items-center gap-4 border-l border-gray-200 dark:border-dark-border pl-4">
+                    <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:bell-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#4F46E5] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">5</span></button>
+                    <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:cart-large-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#4F46E5] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">2</span></button>
+                </div>
+                <div class="flex items-center gap-3 pl-2">
+                    <span class="text-sm font-medium text-slate-700 dark:text-slate-200 hidden sm:block">Jan</span>
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Jan" class="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-slate-700">
+                </div>
+            </div>
+        </header>
+        <div class="flex flex-1 overflow-hidden">
+            <!-- SIDEBAR -->
+            <aside class="hidden xl:flex w-[260px] flex-col bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border overflow-y-auto shrink-0 pb-6 transition-colors duration-300">
+                <div class="p-6"><button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:sidebar-minimalistic-linear" width="24" height="24"></iconify-icon></button></div>
+                <nav class="flex-1 px-4 space-y-8">
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Osobisty</div>
+                        <a href="profile.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="20" height="20"></iconify-icon>Profil</a>
+                        <a href="home.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:graph-up-linear" width="20" height="20"></iconify-icon>Oś czasu</a>
+                        <a href="messages.html" class="flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><div class="flex items-center gap-3"><iconify-icon icon="solar:inbox-linear" width="20" height="20"></iconify-icon>Skrzynka</div><span class="bg-gray-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-semibold px-1.5 py-0.5 rounded">3</span></a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Wspólnota</div>
+                        <a href="groups.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="20" height="20"></iconify-icon>Grupy</a>
+                        <a href="members.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="20" height="20"></iconify-icon>Połączenia</a>
+                        <a href="forums.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="20" height="20"></iconify-icon>Dyskusje</a>
+                        <a href="courses.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10 rounded-md"><iconify-icon icon="solar:diploma-linear" width="20" height="20"></iconify-icon>Kursy</a>
+                        <a href="events.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:calendar-linear" width="20" height="20"></iconify-icon>Wydarzenia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Multimedia</div>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:gallery-linear" width="20" height="20"></iconify-icon>Zdjęcia</a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:folder-linear" width="20" height="20"></iconify-icon>Dokumenty</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Sklep</div>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="20" height="20"></iconify-icon>Sklep</a>
+                    </div>
+                </nav>
+                <div class="mt-auto px-4 pt-6">
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:settings-linear" width="20" height="20"></iconify-icon>Ustawienia konta</a>
+                </div>
+            </aside>
+            <!-- MAIN -->
+            <main class="flex-1 overflow-y-auto p-4 lg:p-8">
+                <div class="max-w-7xl mx-auto space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                        <div>
+                            <h1 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Kursy i materiały</h1>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Ucz się z najlepszymi materiałami przygotowanymi specjalnie dla członków</p>
+                        </div>
+                        <div class="relative w-full sm:w-72">
+                            <iconify-icon icon="solar:magnifer-linear" width="16" height="16" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></iconify-icon>
+                            <input type="text" placeholder="Szukaj kursów..." class="w-full pl-9 pr-3 py-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-lg text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm transition-shadow">
+                        </div>
+                    </div>
+                    <!-- Tabs -->
+                    <div class="flex items-center gap-1 bg-gray-100 dark:bg-dark-surface rounded-lg p-1 w-fit">
+                        <button class="px-4 py-2 bg-white dark:bg-slate-800 shadow-sm rounded-md text-xs font-semibold text-slate-900 dark:text-white">Wszystko</button>
+                        <button class="px-4 py-2 rounded-md text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors">Kursy</button>
+                        <button class="px-4 py-2 rounded-md text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors">Ebook</button>
+                        <button class="px-4 py-2 rounded-md text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors">Video</button>
+                    </div>
+                    <!-- Filters -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <button class="flex items-center gap-2 h-9 px-3 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 hover:bg-gray-50 dark:hover:bg-white/5 shadow-sm transition-colors">
+                                <iconify-icon icon="solar:filter-linear" width="14" height="14"></iconify-icon>Kategoria
+                                <iconify-icon icon="solar:alt-arrow-down-linear" width="12" height="12"></iconify-icon>
+                            </button>
+                            <button class="flex items-center gap-2 h-9 px-3 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 hover:bg-gray-50 dark:hover:bg-white/5 shadow-sm transition-colors">
+                                Sortuj: Najnowsze
+                                <iconify-icon icon="solar:alt-arrow-down-linear" width="12" height="12"></iconify-icon>
+                            </button>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button class="w-8 h-8 rounded-md bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center"><iconify-icon icon="solar:widget-5-bold" width="16" height="16"></iconify-icon></button>
+                            <button class="w-8 h-8 rounded-md text-slate-400 hover:bg-gray-100 dark:hover:bg-white/5 flex items-center justify-center transition-colors"><iconify-icon icon="solar:list-bold" width="16" height="16"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <!-- Cohort Course Banner -->
+                    <div class="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-700 rounded-2xl shadow-lg border border-indigo-500/20">
+                        <div class="absolute inset-0 opacity-10">
+                            <div class="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full -translate-y-1/2 translate-x-1/3"></div>
+                        </div>
+                        <div class="relative p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/20 backdrop-blur-sm text-white text-[10px] font-bold rounded-full uppercase tracking-wider"><span class="w-1.5 h-1.5 bg-yellow-300 rounded-full animate-pulse"></span>Cohort · 8 tygodni</span>
+                                    <span class="px-2.5 py-1 bg-yellow-400/20 text-yellow-200 text-[10px] font-bold rounded-full uppercase tracking-wider">Nowy!</span>
+                                </div>
+                                <h2 class="text-xl sm:text-2xl font-extrabold text-white leading-tight mb-2">Program Masterclass: Buduj swoją społeczność</h2>
+                                <p class="text-indigo-100/80 text-sm leading-relaxed mb-4">8-tygodniowy program z mentorem. Sesje Q&A na żywo, praktyczne zadania i certyfikat ukończenia.</p>
+                                <div class="flex flex-wrap items-center gap-3 mb-5">
+                                    <div class="flex items-center gap-1.5 text-indigo-200 text-xs"><iconify-icon icon="solar:calendar-bold" width="14" height="14"></iconify-icon>Start: 3 mar 2026</div>
+                                    <div class="flex items-center gap-1.5 text-indigo-200 text-xs"><iconify-icon icon="solar:users-group-rounded-bold" width="14" height="14"></iconify-icon>47/60 miejsc</div>
+                                    <div class="flex items-center gap-1.5 text-indigo-200 text-xs"><iconify-icon icon="solar:video-frame-play-horizontal-bold" width="14" height="14"></iconify-icon>20 lekcji live</div>
+                                </div>
+                                <a href="#" class="h-10 px-6 bg-white hover:bg-indigo-50 text-indigo-700 text-sm font-bold rounded-xl transition-colors inline-flex items-center gap-2 shadow-sm"><iconify-icon icon="solar:arrow-right-bold" width="16" height="16"></iconify-icon>Dołącz do programu</a>
+                            </div>
+                            <div class="hidden sm:flex shrink-0 flex-col items-center gap-2">
+                                <div class="w-20 h-20 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                                    <iconify-icon icon="solar:square-academic-cap-bold" width="40" height="40" class="text-white"></iconify-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Course Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        <!-- Course 1 -->
+                        <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border hover:shadow-lg transition-all duration-200 group cursor-pointer">
+                            <div class="relative aspect-[16/10] overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <span class="absolute top-3 left-3 px-2 py-0.5 bg-red-500 text-white text-[10px] font-bold rounded-full uppercase">Video</span>
+                                <span class="absolute top-3 right-3 px-2 py-0.5 bg-amber-500 text-white text-[10px] font-bold rounded-full flex items-center gap-1"><iconify-icon icon="solar:play-circle-bold" width="10" height="10"></iconify-icon>W trakcie</span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2">Podstawy marketingu cyfrowego</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Autor kursu</p>
+                                <div class="mt-3">
+                                    <div class="flex items-center justify-between text-[10px] text-slate-400 mb-1"><span>Postęp</span><span>45%</span></div>
+                                    <div class="w-full bg-gray-100 dark:bg-slate-800 rounded-full h-1.5"><div class="bg-amber-500 h-1.5 rounded-full" style="width: 45%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Course 2 -->
+                        <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border hover:shadow-lg transition-all duration-200 group cursor-pointer">
+                            <div class="relative aspect-[16/10] overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <span class="absolute top-3 left-3 px-2 py-0.5 bg-emerald-500 text-white text-[10px] font-bold rounded-full uppercase">Ebook</span>
+                                <span class="absolute top-3 right-3 px-2 py-0.5 bg-emerald-500 text-white text-[10px] font-bold rounded-full flex items-center gap-1"><iconify-icon icon="solar:check-circle-bold" width="10" height="10"></iconify-icon>Ukończony</span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2">Produktywność i zarządzanie czasem</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Autor kursu</p>
+                                <div class="mt-3">
+                                    <div class="flex items-center justify-between text-[10px] text-slate-400 mb-1"><span>Postęp</span><span>100%</span></div>
+                                    <div class="w-full bg-gray-100 dark:bg-slate-800 rounded-full h-1.5"><div class="bg-emerald-500 h-1.5 rounded-full" style="width: 100%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Course 3 -->
+                        <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border hover:shadow-lg transition-all duration-200 group cursor-pointer">
+                            <div class="relative aspect-[16/10] overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <span class="absolute top-3 left-3 px-2 py-0.5 bg-red-500 text-white text-[10px] font-bold rounded-full uppercase">Video</span>
+                                <span class="absolute top-3 right-3 px-2 py-0.5 bg-sky-500 text-white text-[10px] font-bold rounded-full">Rozpocznij</span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2">Leadership i budowanie zespołu</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Autor kursu</p>
+                            </div>
+                        </div>
+                        <!-- Course 4 -->
+                        <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border hover:shadow-lg transition-all duration-200 group cursor-pointer">
+                            <div class="relative aspect-[16/10] overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <span class="absolute top-3 left-3 px-2 py-0.5 bg-red-500 text-white text-[10px] font-bold rounded-full uppercase">Video</span>
+                                <span class="absolute top-3 right-3 px-2 py-0.5 bg-sky-500 text-white text-[10px] font-bold rounded-full">Rozpocznij</span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2">Wprowadzenie do programowania</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Autor kursu</p>
+                            </div>
+                        </div>
+                        <!-- Course 5 -->
+                        <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border hover:shadow-lg transition-all duration-200 group cursor-pointer">
+                            <div class="relative aspect-[16/10] overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=250&fit=crop" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <span class="absolute top-3 left-3 px-2 py-0.5 bg-emerald-500 text-white text-[10px] font-bold rounded-full uppercase">Ebook</span>
+                                <span class="absolute top-3 right-3 px-2 py-0.5 bg-sky-500 text-white text-[10px] font-bold rounded-full">Rozpocznij</span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2">Finanse osobiste od podstaw</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Autor kursu</p>
+                            </div>
+                        </div>
+                        <!-- Course 6 -->
+                        <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card overflow-hidden border border-transparent dark:border-dark-border hover:shadow-lg transition-all duration-200 group cursor-pointer">
+                            <div class="relative aspect-[16/10] overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=250&fit=crop" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <span class="absolute top-3 left-3 px-2 py-0.5 bg-red-500 text-white text-[10px] font-bold rounded-full uppercase">Video</span>
+                                <span class="absolute top-3 right-3 px-2 py-0.5 bg-amber-500 text-white text-[10px] font-bold rounded-full flex items-center gap-1"><iconify-icon icon="solar:play-circle-bold" width="10" height="10"></iconify-icon>W trakcie</span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2">Komunikacja i wystąpienia publiczne</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Autor kursu</p>
+                                <div class="mt-3">
+                                    <div class="flex items-center justify-between text-[10px] text-slate-400 mb-1"><span>Postęp</span><span>20%</span></div>
+                                    <div class="w-full bg-gray-100 dark:bg-slate-800 rounded-full h-1.5"><div class="bg-amber-500 h-1.5 rounded-full" style="width: 20%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

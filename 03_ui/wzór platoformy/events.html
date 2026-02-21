@@ -1,0 +1,333 @@
+<html lang="pl" class="antialiased">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Wydarzenia — Nazwa Społeczności</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <style>:root { --font-inter: 'Inter', sans-serif; } body { font-family: var(--font-inter); } ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 3px; } .dark ::-webkit-scrollbar-thumb { background: #334155; } .no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }</style>
+        <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { primary: '#4F46E5' }, dark: { bg: '#050505', surface: '#0F1115', border: '#222226' } }, boxShadow: { 'soft': '0 2px 10px rgba(0,0,0,0.03)', 'card': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)', 'dark-card': '0 0 0 1px rgba(255,255,255,0.06), 0 4px 8px rgba(0,0,0,0.2)' }, fontSize: { xxs: '0.625rem' } } }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark') } else { document.documentElement.classList.remove('dark') }
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'; }
+    </script>
+    </head>
+    <body class="text-slate-600 dark:text-slate-400 bg-[#F7F8FA] dark:bg-dark-bg h-screen flex flex-col overflow-hidden transition-colors duration-300">
+        <!-- HEADER -->
+        <header class="h-16 bg-white dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border flex items-center justify-between px-4 lg:px-6 shrink-0 z-50 sticky top-0 transition-colors duration-300">
+            <div class="flex items-center gap-12">
+                <a href="index.html" class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-[#4F46E5] flex items-center justify-center text-white"><iconify-icon icon="solar:users-group-rounded-bold" width="20" height="20"></iconify-icon></div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-none text-sm">Nazwa Społeczności</span>
+                        <span class="font-medium text-slate-500 text-xs tracking-tight">Społeczność online</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="hidden md:flex items-center h-full gap-1">
+                <a href="index.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:feed-linear" width="24" height="24"></iconify-icon></a>
+                <a href="profile.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="24" height="24"></iconify-icon></a>
+                <a href="groups.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="24" height="24"></iconify-icon></a>
+                <a href="messages.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-round-dots-linear" width="24" height="24"></iconify-icon></a>
+                <a href="members.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="24" height="24"></iconify-icon></a>
+                <a href="forums.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="24" height="24"></iconify-icon></a>
+                <a href="courses.html" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:square-academic-cap-linear" width="24" height="24"></iconify-icon></a>
+                <a href="events.html" class="h-full flex items-center border-b-[2px] border-indigo-600 px-3 text-indigo-600 dark:text-indigo-400"><iconify-icon icon="solar:calendar-linear" width="24" height="24"></iconify-icon></a>
+                <a href="#" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="24" height="24"></iconify-icon></a>
+                <a href="#" class="h-full flex items-center border-b-[2px] border-transparent px-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"><iconify-icon icon="solar:document-text-linear" width="24" height="24"></iconify-icon></a>
+            </nav>
+            <div class="flex items-center gap-5">
+                <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:magnifer-linear" width="22" height="22"></iconify-icon></button>
+                <button onclick="toggleDarkMode()" class="text-slate-400 hover:text-slate-600 dark:hover:text-yellow-400 transition-colors">
+                    <iconify-icon class="block dark:hidden" icon="solar:moon-linear" width="22" height="22"></iconify-icon>
+                    <iconify-icon class="hidden dark:block" icon="solar:sun-2-linear" width="22" height="22"></iconify-icon>
+                </button>
+                <div class="flex items-center gap-4 border-l border-gray-200 dark:border-dark-border pl-4">
+                    <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:bell-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#4F46E5] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">5</span></button>
+                    <button class="relative text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:cart-large-linear" width="22" height="22"></iconify-icon><span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#4F46E5] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-dark-surface">2</span></button>
+                </div>
+                <div class="flex items-center gap-3 pl-2">
+                    <span class="text-sm font-medium text-slate-700 dark:text-slate-200 hidden sm:block">Jan</span>
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Jan" class="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-slate-700">
+                </div>
+            </div>
+        </header>
+        <div class="flex flex-1 overflow-hidden">
+            <!-- SIDEBAR -->
+            <aside class="hidden xl:flex w-[260px] flex-col bg-white dark:bg-dark-surface border-r border-gray-200 dark:border-dark-border overflow-y-auto shrink-0 pb-6 transition-colors duration-300">
+                <div class="p-6"><button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><iconify-icon icon="solar:sidebar-minimalistic-linear" width="24" height="24"></iconify-icon></button></div>
+                <nav class="flex-1 px-4 space-y-8">
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Osobisty</div>
+                        <a href="profile.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-circle-linear" width="20" height="20"></iconify-icon>Profil</a>
+                        <a href="home.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:graph-up-linear" width="20" height="20"></iconify-icon>Oś czasu</a>
+                        <a href="messages.html" class="flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><div class="flex items-center gap-3"><iconify-icon icon="solar:inbox-linear" width="20" height="20"></iconify-icon>Skrzynka</div><span class="bg-gray-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-semibold px-1.5 py-0.5 rounded">3</span></a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Wspólnota</div>
+                        <a href="groups.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:users-group-rounded-linear" width="20" height="20"></iconify-icon>Grupy</a>
+                        <a href="members.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:user-plus-linear" width="20" height="20"></iconify-icon>Połączenia</a>
+                        <a href="forums.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:chat-line-linear" width="20" height="20"></iconify-icon>Dyskusje</a>
+                        <a href="courses.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:diploma-linear" width="20" height="20"></iconify-icon>Kursy</a>
+                        <a href="events.html" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10 rounded-md"><iconify-icon icon="solar:calendar-linear" width="20" height="20"></iconify-icon>Wydarzenia</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Multimedia</div>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:gallery-linear" width="20" height="20"></iconify-icon>Zdjęcia</a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:folder-linear" width="20" height="20"></iconify-icon>Dokumenty</a>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="px-3 mb-2 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Sklep</div>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:bag-4-linear" width="20" height="20"></iconify-icon>Sklep</a>
+                    </div>
+                </nav>
+                <div class="mt-auto px-4 pt-6">
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"><iconify-icon icon="solar:settings-linear" width="20" height="20"></iconify-icon>Ustawienia konta</a>
+                </div>
+            </aside>
+            <!-- MAIN -->
+            <main class="flex-1 overflow-y-auto p-4 lg:p-8">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <!-- Events List -->
+                        <div class="flex-1 space-y-6">
+                            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                                <div>
+                                    <h1 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Wydarzenia</h1>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Spotkania, webinary i wyzwania społeczności</p>
+                                </div>
+                                <button class="h-10 px-5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg transition-colors flex items-center gap-2">
+                                    <iconify-icon icon="solar:add-circle-linear" width="18" height="18"></iconify-icon>Utwórz wydarzenie
+                                </button>
+                            </div>
+                            <!-- Event 1 — LIVE Now -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden transition-colors hover:shadow-lg">
+                                <div class="flex">
+                                    <div class="w-20 sm:w-24 bg-gradient-to-b from-red-500 to-rose-600 flex flex-col items-center justify-center text-white shrink-0 py-4">
+                                        <span class="text-xs font-semibold uppercase">Mar</span>
+                                        <span class="text-3xl font-extrabold leading-none mt-1">12</span>
+                                        <span class="text-[10px] mt-1 opacity-80">Śr · 18:00</span>
+                                    </div>
+                                    <div class="p-4 flex-1 min-w-0">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="px-2 py-0.5 bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-300 text-[10px] font-bold rounded-full flex items-center gap-1"><span class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span>LIVE teraz</span>
+                                        </div>
+                                        <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">Q&A na żywo z zespołem</h3>
+                                        <p class="text-xs text-slate-400 mt-1 line-clamp-2">Cotygodniowe spotkanie Q&A. Zadawaj pytania, dziel się pomysłami i poznaj plany na przyszłość.</p>
+                                        <div class="flex items-center gap-3 mt-3">
+                                            <div class="flex -space-x-2">
+                                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=30&h=30&fit=crop" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=30&h=30&fit=crop" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=30&h=30&fit=crop" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                            </div>
+                                            <span class="text-[10px] text-slate-400">47 uczestników</span>
+                                            <a href="#" class="ml-auto h-7 px-3 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1"><iconify-icon icon="solar:play-bold" width="12" height="12"></iconify-icon>Dołącz</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Event 2 — Challenge -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden transition-colors hover:shadow-lg">
+                                <div class="flex">
+                                    <div class="w-20 sm:w-24 bg-gradient-to-b from-rose-500 to-pink-600 flex flex-col items-center justify-center text-white shrink-0 py-4">
+                                        <span class="text-xs font-semibold uppercase">Mar</span>
+                                        <span class="text-3xl font-extrabold leading-none mt-1">15</span>
+                                        <span class="text-[10px] mt-1 opacity-80">Sob · 10:00</span>
+                                    </div>
+                                    <div class="p-4 flex-1 min-w-0">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="px-2 py-0.5 bg-rose-100 dark:bg-rose-500/20 text-rose-700 dark:text-rose-300 text-[10px] font-bold rounded-full">Wyzwanie</span>
+                                        </div>
+                                        <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">7-dniowe wyzwanie produktywności</h3>
+                                        <p class="text-xs text-slate-400 mt-1 line-clamp-2">Codzienne zadania i checklisty. Zbuduj nawyki, które zmienią Twój dzień pracy.</p>
+                                        <div class="flex items-center gap-3 mt-3">
+                                            <div class="flex -space-x-2">
+                                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=30&h=30&fit=crop" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=30&h=30&fit=crop" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                            </div>
+                                            <span class="text-[10px] text-slate-400">32 uczestników</span>
+                                            <a href="#" class="ml-auto h-7 px-3 bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold rounded-lg transition-colors">Dołącz</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Event 3 — Webinar -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden transition-colors hover:shadow-lg">
+                                <div class="flex">
+                                    <div class="w-20 sm:w-24 bg-gradient-to-b from-teal-500 to-emerald-600 flex flex-col items-center justify-center text-white shrink-0 py-4">
+                                        <span class="text-xs font-semibold uppercase">Mar</span>
+                                        <span class="text-3xl font-extrabold leading-none mt-1">18</span>
+                                        <span class="text-[10px] mt-1 opacity-80">Wt · 19:00</span>
+                                    </div>
+                                    <div class="p-4 flex-1 min-w-0">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="px-2 py-0.5 bg-teal-100 dark:bg-teal-500/20 text-teal-700 dark:text-teal-300 text-[10px] font-bold rounded-full">Webinar</span>
+                                        </div>
+                                        <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">Jak budować zaangażowaną społeczność online</h3>
+                                        <p class="text-xs text-slate-400 mt-1 line-clamp-2">Praktyczne porady, case studies i sprawdzone strategie budowania community.</p>
+                                        <div class="flex items-center gap-3 mt-3">
+                                            <div class="flex -space-x-2">
+                                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=30&h=30&fit=crop" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                            </div>
+                                            <span class="text-[10px] text-slate-400">89 zapisanych</span>
+                                            <a href="#" class="ml-auto h-7 px-3 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-lg transition-colors">Zapisz się</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Event 4 — Workshop -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden transition-colors hover:shadow-lg">
+                                <div class="flex">
+                                    <div class="w-20 sm:w-24 bg-gradient-to-b from-indigo-500 to-violet-600 flex flex-col items-center justify-center text-white shrink-0 py-4">
+                                        <span class="text-xs font-semibold uppercase">Mar</span>
+                                        <span class="text-3xl font-extrabold leading-none mt-1">22</span>
+                                        <span class="text-[10px] mt-1 opacity-80">Sob · 11:00</span>
+                                    </div>
+                                    <div class="p-4 flex-1 min-w-0">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="px-2 py-0.5 bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold rounded-full">Warsztat</span>
+                                        </div>
+                                        <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">Warsztat: tworzenie contentu, który angażuje</h3>
+                                        <p class="text-xs text-slate-400 mt-1 line-clamp-2">Hands-on workshop z ekspertem. Nauczysz się tworzyć posty, reels i artykuły.</p>
+                                        <div class="flex items-center gap-3 mt-3">
+                                            <div class="flex -space-x-2">
+                                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=30&h=30&fit=crop" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=30&h=30&fit=crop" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                            </div>
+                                            <span class="text-[10px] text-slate-400">24 zapisanych</span>
+                                            <a href="#" class="ml-auto h-7 px-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg transition-colors">Zapisz się</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Event 5 — Conference -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden transition-colors hover:shadow-lg">
+                                <div class="flex">
+                                    <div class="w-20 sm:w-24 bg-gradient-to-b from-purple-500 to-fuchsia-600 flex flex-col items-center justify-center text-white shrink-0 py-4">
+                                        <span class="text-xs font-semibold uppercase">Apr</span>
+                                        <span class="text-3xl font-extrabold leading-none mt-1">05</span>
+                                        <span class="text-[10px] mt-1 opacity-80">Sob · 10:00</span>
+                                    </div>
+                                    <div class="p-4 flex-1 min-w-0">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="px-2 py-0.5 bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 text-[10px] font-bold rounded-full">Konferencja</span>
+                                        </div>
+                                        <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">Community Summit 2026</h3>
+                                        <p class="text-xs text-slate-400 mt-1 line-clamp-2">Całodniowa konferencja online z prelekcjami, panelami i networkingiem. 8 prelegentów.</p>
+                                        <div class="flex items-center gap-3 mt-3">
+                                            <div class="flex -space-x-2">
+                                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=30&h=30&fit=crop" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=30&h=30&fit=crop" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=30&h=30&fit=crop" class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface" alt="">
+                                            </div>
+                                            <span class="text-[10px] text-slate-400">156 zapisanych</span>
+                                            <a href="#" class="ml-auto h-7 px-3 bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold rounded-lg transition-colors">Zapisz się</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Event 6 — Challenge -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border overflow-hidden transition-colors hover:shadow-lg">
+                                <div class="flex">
+                                    <div class="w-20 sm:w-24 bg-gradient-to-b from-sky-500 to-blue-600 flex flex-col items-center justify-center text-white shrink-0 py-4">
+                                        <span class="text-xs font-semibold uppercase">Apr</span>
+                                        <span class="text-3xl font-extrabold leading-none mt-1">10</span>
+                                        <span class="text-[10px] mt-1 opacity-80">Czw · 09:00</span>
+                                    </div>
+                                    <div class="p-4 flex-1 min-w-0">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="px-2 py-0.5 bg-sky-100 dark:bg-sky-500/20 text-sky-700 dark:text-sky-300 text-[10px] font-bold rounded-full">Wyzwanie</span>
+                                        </div>
+                                        <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">30-dniowe wyzwanie twórczości</h3>
+                                        <p class="text-xs text-slate-400 mt-1 line-clamp-2">Codziennie twórz coś nowego. Zdjęcie, tekst, nagranie — liczy się regularność!</p>
+                                        <div class="flex items-center gap-3 mt-3">
+                                            <span class="text-[10px] text-slate-400">65 zapisanych</span>
+                                            <a href="#" class="ml-auto h-7 px-3 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-lg transition-colors">Dołącz</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Right Sidebar -->
+                        <div class="w-full lg:w-80 shrink-0 space-y-6">
+                            <!-- Host Card -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-5 transition-colors">
+                                <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Organizator</h3>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-500/20 flex items-center justify-center"><iconify-icon icon="solar:users-group-rounded-bold" width="24" height="24" class="text-indigo-600 dark:text-indigo-400"></iconify-icon></div>
+                                    <div>
+                                        <div class="text-sm font-bold text-slate-900 dark:text-slate-100">Nazwa Społeczności</div>
+                                        <div class="text-xs text-slate-400">Zespół organizacyjny</div>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">Organizujemy regularne spotkania, webinary i wyzwania, żeby nasza społeczność stale rosła i się rozwijała.</p>
+                            </div>
+                            <!-- Mini Calendar -->
+                            <div class="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-5 transition-colors">
+                                <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Kalendarz</h3>
+                                <div class="space-y-3">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-2 h-2 rounded-full bg-red-500 shrink-0"></div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="text-xs font-semibold text-slate-700 dark:text-slate-200 truncate">Q&A na żywo</div>
+                                            <div class="text-[10px] text-slate-400">12 Mar · 18:00</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-2 h-2 rounded-full bg-rose-500 shrink-0"></div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="text-xs font-semibold text-slate-700 dark:text-slate-200 truncate">Wyzwanie produktywności</div>
+                                            <div class="text-[10px] text-slate-400">15 Mar · 10:00</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-2 h-2 rounded-full bg-teal-500 shrink-0"></div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="text-xs font-semibold text-slate-700 dark:text-slate-200 truncate">Webinar: Community building</div>
+                                            <div class="text-[10px] text-slate-400">18 Mar · 19:00</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-2 h-2 rounded-full bg-indigo-500 shrink-0"></div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="text-xs font-semibold text-slate-700 dark:text-slate-200 truncate">Warsztat: Content</div>
+                                            <div class="text-[10px] text-slate-400">22 Mar · 11:00</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-2 h-2 rounded-full bg-purple-500 shrink-0"></div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="text-xs font-semibold text-slate-700 dark:text-slate-200 truncate">Community Summit</div>
+                                            <div class="text-[10px] text-slate-400">5 Apr · 10:00</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-2 h-2 rounded-full bg-sky-500 shrink-0"></div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="text-xs font-semibold text-slate-700 dark:text-slate-200 truncate">Wyzwanie twórczości</div>
+                                            <div class="text-[10px] text-slate-400">10 Apr · 09:00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Info -->
+                            <div class="bg-indigo-50 dark:bg-indigo-500/10 rounded-xl p-5 border border-indigo-100 dark:border-indigo-500/20">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <iconify-icon icon="solar:info-circle-bold" width="16" height="16" class="text-indigo-600 dark:text-indigo-400"></iconify-icon>
+                                    <span class="text-xs font-bold text-indigo-700 dark:text-indigo-300">Strefy czasowe</span>
+                                </div>
+                                <p class="text-xs text-indigo-600/80 dark:text-indigo-300/80 leading-relaxed">Wszystkie godziny podane w czasie polskim (CET/CEST). Nagrania dostępne po wydarzeniu w sekcji Dokumenty.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

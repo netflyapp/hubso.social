@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "react",
+    "types": ["node", "jest"]
+  },
+  "include": ["../../apps/web/src/**/*"],
+  "exclude": ["node_modules", "dist", ".next"]
+}

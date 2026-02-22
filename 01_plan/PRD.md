@@ -1,6 +1,6 @@
 # Hubso.social — Product Requirements Document (PRD)
 
-> **Wersja:** 4.0  
+> **Wersja:** 4.1  
 > **Data:** 2026-02-21  
 > **Status:** Draft  
 > **Autor:** Miłosz Zając  
@@ -38,6 +38,7 @@
 22. [Metryki sukcesu](#22-metryki-sukcesu)
 23. [Ryzyka i mitygacja](#23-ryzyka-i-mitygacja)
 24. [Zasady dla developera / AI](#24-zasady-dla-developera--ai)
+25. [Narzędzia AI-assisted development](#25-narzędzia-ai-assisted-development)
 
 ---
 
@@ -1593,6 +1594,48 @@ Hubso **nie pobiera prowizji od transakcji** wewnątrz społeczności (membershi
 
 ---
 
-*PRD v4.0 — Hubso.social — Luty 2026*  
+## 25. Narzędzia AI-assisted development
+
+Projekt korzysta z ekosystemu narzędzi AI wspomagających development. Konfiguracja jest częścią repozytorium.
+
+### MCP Servers (Model Context Protocol)
+
+MCP pozwala AI asystentom (GitHub Copilot, Claude Code) na bezpośredni dostęp do zewnętrznych narzędzi i dokumentacji.
+
+| MCP Server | Pakiet | Zastosowanie |
+|------------|--------|-------------|
+| **shadcn** | `shadcn@latest mcp` | Przeglądanie, wyszukiwanie i instalacja komponentów shadcn/ui przez AI, dostęp do registry |
+| **Context7** | `@upstash/context7-mcp` | Aktualna dokumentacja bibliotek (Next.js, NestJS, Prisma, React Native itp.) w kontekście AI |
+
+Konfiguracja:
+- **VS Code (GitHub Copilot):** `.vscode/mcp.json`
+- **Claude Code:** `.mcp.json`
+
+### Agentic Skills (60 skilli)
+
+Zestaw 60 specjalistycznych umiejętności z [antigravity-awesome-skills](https://github.com/anthropics/antigravity-awesome-skills) dostępnych w `.claude/skills/` jako symlinki. Pokrywają:
+
+| Kategoria | Przykładowe skille |
+|-----------|-------------------|
+| Frontend Web | `nextjs-best-practices`, `react-patterns`, `tailwind-patterns`, `zustand-store-ts` |
+| Mobile | `react-native-architecture`, `expo-deployment`, `mobile-design` |
+| Backend | `nestjs-expert`, `graphql-architect`, `bullmq-specialist`, `nodejs-best-practices` |
+| Database | `prisma-expert`, `postgresql`, `database-architect` |
+| Testing | `playwright-skill`, `testing-patterns`, `tdd-workflow`, `e2e-testing-patterns` |
+| Infrastruktura | `docker-expert`, `monorepo-architect`, `turborepo-caching` |
+| Bezpieczeństwo | `security-auditor`, `api-security-best-practices` |
+| Architektura | `software-architecture`, `clean-code`, `architecture-decision-records` |
+
+### Instrukcje per narzędzie
+
+| Narzędzie | Plik konfiguracyjny | Zawartość |
+|-----------|--------------------|-----------|
+| **Claude Code** | `CLAUDE.md` + `.claude/skills/` | Auto-ładowany kontekst projektu + 60 skilli |
+| **VS Code Copilot** | `.github/copilot-instructions.md` + `.vscode/settings.json` | Instrukcje code generation, review, testów, commitów |
+| **MCP (oba)** | `.vscode/mcp.json` + `.mcp.json` | shadcn + Context7 MCP servers |
+
+---
+
+*PRD v4.1 — Hubso.social — Luty 2026*  
 *Stack: Next.js 15 (Web, SPA + SSR) + React Native (Mobile, Faza 2) + NestJS + PostgreSQL*  
 *Następna rewizja: po zakończeniu Sprint 1*

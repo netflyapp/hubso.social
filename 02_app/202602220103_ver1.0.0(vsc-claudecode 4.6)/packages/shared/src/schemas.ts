@@ -51,7 +51,7 @@ export type CreateCommunityInput = z.infer<typeof createCommunitySchema>;
 
 // Post Schemas
 export const createPostSchema = z.object({
-  spaceId: z.string(),
+  spaceId: z.string().optional(), // optional — backend picks default POSTS space when omitted
   content: z.any(), // Tiptap JSON
   type: z.enum(['TEXT', 'IMAGE', 'VIDEO', 'POLL', 'LINK', 'EMBED']).default('TEXT'),
 });
@@ -66,3 +66,37 @@ export const sendMessageSchema = z.object({
 });
 
 export type SendMessageInput = z.infer<typeof sendMessageSchema>;
+
+// Comment Schemas
+export const createCommentSchema = z.object({
+  content: z.string().min(1, 'Komentarz nie może być pusty').max(2000),
+  parentId: z.string().optional(),
+});
+
+export type CreateCommentInput = z.infer<typeof createCommentSchema>;
+
+// Reaction Schemas
+export const reactionTypes = ['LIKE', 'LOVE', 'WOW', 'FIRE', 'SAD', 'ANGRY'] as const;
+export type ReactionType = (typeof reactionTypes)[number];
+
+export const toggleReactionSchema = z.object({
+  targetType: z.enum(['Post', 'Comment']),
+  targetId: z.string().min(1),
+  type: z.enum(reactionTypes),
+});
+
+export type ToggleReactionInput = z.infer<typeof toggleReactionSchema>;
+
+// Profile Schemas
+export const updateProfileSchema = z.object({
+  displayName: z.string().min(1, 'Wymagane').max(50, 'Maks. 50 znaków').optional(),
+  bio: z.string().max(500, 'Maks. 500 znaków').optional(),
+  username: z
+    .string()
+    .min(3, 'Min. 3 znaki')
+    .max(30, 'Maks. 30 znaków')
+    .regex(/^[a-z0-9_]+$/, 'Tylko małe litery, cyfry i podkreślnik')
+    .optional(),
+});
+
+export type UpdateProfileInput = z.infer<typeof updateProfileSchema>;

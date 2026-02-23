@@ -1,63 +1,91 @@
 'use client';
 
 import { Icon } from '@iconify/react';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { useTheme } from 'next-themes';
-import { mockPosts } from '@/lib/mock-data/posts';
-import { mockUsers } from '@/lib/mock-data/users';
+import { toast } from 'sonner';
+import { postsApi, communitiesApi, type PostItem, type CommunityItem } from '@/lib/api';
+import { useAuthStore } from '@/stores/useAuthStore';
+import { PostCard } from '@/components/feed/PostCard';
 
-type Post = (typeof mockPosts)[number] & { id: string };
+const PLACEHOLDER_AVATAR =
+  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80';
+
+const MAX_POST_LENGTH = 500;
 
 export default function ChannelPage() {
   const { setTheme, theme } = useTheme();
   const [selectedFilter, setSelectedFilter] = useState('all');
 
+  // Auth
+  const user = useAuthStore((s) => s.user);
+  const authorAvatar = user?.avatarUrl ?? PLACEHOLDER_AVATAR;
+  const authorDisplayName = user?.displayName ?? user?.username ?? 'Ty';
+
   // Composer state
   const [composerOpen, setComposerOpen] = useState(false);
   const [composerText, setComposerText] = useState('');
-  const [localPosts, setLocalPosts] = useState<Post[]>(mockPosts as Post[]);
+  const [submitting, setSubmitting] = useState(false);
+  const [communities, setCommunities] = useState<CommunityItem[]>([]);
+  const [selectedCommunity, setSelectedCommunity] = useState<CommunityItem | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Like / bookmark state
-  const [likedPosts, setLikedPosts] = useState<Set<string>>(new Set());
-  const [bookmarkedPosts, setBookmarkedPosts] = useState<Set<string>>(new Set());
+  // Auto-resize textarea
+  const autoResize = useCallback(() => {
+    const el = textareaRef.current;
+    if (!el) return;
+    el.style.height = 'auto';
+    el.style.height = `${el.scrollHeight}px`;
+  }, []);
+
+  // Load communities when composer opens for the first time
+  useEffect(() => {
+    if (!composerOpen || communities.length > 0) return;
+    communitiesApi.list().then((list) => {
+      setCommunities(list);
+      if (!selectedCommunity && list.length > 0) setSelectedCommunity(list[0]);
+    }).catch(() => {});
+  }, [composerOpen, communities.length, selectedCommunity]);
+
+  function openComposer() {
+    setComposerOpen(true);
+    setTimeout(() => textareaRef.current?.focus(), 50);
+  }
+
+  function closeComposer() {
+    setComposerOpen(false);
+    setComposerText('');
+  }
+
+  // Feed state
+  const [posts, setPosts] = useState<PostItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    postsApi
+      .feed()
+      .then((res) => setPosts(res.data))
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  // Pinned post local like (demo only)
   const [pinnedLiked, setPinnedLiked] = useState(false);
 
-  function toggleLike(postId: string) {
-    setLikedPosts((prev) => {
-      const next = new Set(prev);
-      next.has(postId) ? next.delete(postId) : next.add(postId);
-      return next;
-    });
-  }
-
-  function toggleBookmark(postId: string) {
-    setBookmarkedPosts((prev) => {
-      const next = new Set(prev);
-      next.has(postId) ? next.delete(postId) : next.add(postId);
-      return next;
-    });
-  }
-
-  function submitPost() {
-    if (!composerText.trim()) return;
-    const newPost: Post = {
-      id: `local-${Date.now()}`,
-      authorId: mockUsers[0]?.id ?? 'user-1',
-      authorName: mockUsers[0]?.name ?? 'Jan Kowalski',
-      authorAvatar: mockUsers[0]?.avatar ?? '',
-      content: composerText.trim(),
-      type: 'TEXT',
-      likes: 0,
-      comments: 0,
-      shares: 0,
-      createdAt: new Date().toISOString(),
-      image: undefined,
-      spaceId: null,
-    } as unknown as Post;
-    setLocalPosts((prev) => [newPost, ...prev]);
-    setComposerText('');
-    setComposerOpen(false);
+  async function submitPost() {
+    if (!composerText.trim() || submitting) return;
+    const slug = selectedCommunity?.slug ?? posts[0]?.communitySlug ?? 'programisci-indie';
+    setSubmitting(true);
+    try {
+      const created = await postsApi.create(slug, { content: composerText.trim(), type: 'TEXT' });
+      setPosts((prev) => [created, ...prev]);
+      toast.success(`Post opublikowany w „${created.communityName ?? slug}"!`);
+      closeComposer();
+    } catch {
+      toast.error('Nie udało się opublikować posta. Spróbuj ponownie.');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -119,16 +147,10 @@ export default function ChannelPage() {
               <span className="text-[10px] text-slate-400">16 osób</span>
             </div>
             <div className="grid grid-cols-4 gap-2">
-              {mockUsers.slice(0, 8).map((user) => (
-                <a key={user.id} href="#" className="group text-center">
-                  <img
-                    src={user.avatar}
-                    alt={user.name}
-                    className="w-10 h-10 rounded-full mx-auto group-hover:ring-2 ring-indigo-400 transition-all"
-                  />
-                  <span className="text-[9px] text-slate-400 mt-0.5 block truncate">
-                    {user.name.split(' ')[0]}
-                  </span>
+              {[...Array(8)].map((_, i) => (
+                <a key={i} href="#" className="group text-center">
+                  <div className="w-10 h-10 rounded-full mx-auto bg-slate-200 dark:bg-slate-700 group-hover:ring-2 ring-indigo-400 transition-all" />
+                  <span className="text-[9px] text-slate-400 mt-0.5 block truncate">Członek</span>
                 </a>
               ))}
             </div>
@@ -174,47 +196,88 @@ export default function ChannelPage() {
           <div className="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-4 transition-colors">
             <div className="flex items-start gap-3">
               <img
-                src={mockUsers[0]?.avatar || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80'}
-                alt=""
-                className="w-9 h-9 rounded-full shrink-0"
+                src={authorAvatar}
+                alt={authorDisplayName}
+                className="w-9 h-9 rounded-full shrink-0 object-cover"
               />
               <div className="flex-1">
                 {!composerOpen ? (
                   <div
                     role="button"
                     tabIndex={0}
-                    onClick={() => { setComposerOpen(true); setTimeout(() => textareaRef.current?.focus(), 50); }}
-                    onKeyDown={(e) => { if (e.key === 'Enter') { setComposerOpen(true); setTimeout(() => textareaRef.current?.focus(), 50); } }}
+                    onClick={openComposer}
+                    onKeyDown={(e) => { if (e.key === 'Enter') openComposer(); }}
                     className="bg-gray-50 dark:bg-slate-800/50 rounded-xl px-4 py-3 text-sm text-slate-400 cursor-text hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors select-none"
                   >
-                    O czym myślisz, {mockUsers[0]?.name?.split(' ')[0] || 'Przyjacielu'}?
+                    O czym myślisz, {authorDisplayName}?
                   </div>
                 ) : (
                   <div>
+                    {/* Community selector — shows when multiple communities loaded */}
+                    {communities.length > 1 && (
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                        <span className="text-[11px] text-slate-400 shrink-0">Gdzie:</span>
+                        {communities.map((c) => (
+                          <button
+                            key={c.id}
+                            onClick={() => setSelectedCommunity(c)}
+                            className={`px-2.5 py-1 text-[11px] font-semibold rounded-full border transition-colors ${
+                              selectedCommunity?.id === c.id
+                                ? 'bg-indigo-600 text-white border-indigo-600'
+                                : 'text-slate-500 dark:text-slate-400 border-gray-200 dark:border-dark-border hover:border-indigo-300 dark:hover:border-indigo-500/50'
+                            }`}
+                          >
+                            {c.name}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                     <textarea
                       ref={textareaRef}
                       value={composerText}
-                      onChange={(e) => setComposerText(e.target.value)}
-                      onKeyDown={(e) => { if (e.key === 'Escape') { setComposerOpen(false); setComposerText(''); } }}
-                      placeholder={`O czym myślisz, ${mockUsers[0]?.name?.split(' ')[0] || 'Przyjacielu'}?`}
+                      maxLength={MAX_POST_LENGTH}
+                      onChange={(e) => {
+                        setComposerText(e.target.value);
+                        autoResize();
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Escape') { closeComposer(); return; }
+                        if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+                          e.preventDefault();
+                          submitPost();
+                        }
+                      }}
+                      placeholder="O czym myślisz?"
                       rows={3}
-                      className="w-full bg-gray-50 dark:bg-slate-800/50 rounded-xl px-4 py-3 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 resize-none transition-colors"
+                      className="w-full bg-gray-50 dark:bg-slate-800/50 rounded-xl px-4 py-3 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 resize-none overflow-hidden transition-colors"
+                      style={{ minHeight: '80px' }}
                     />
                     <div className="flex items-center justify-between mt-2">
-                      <span className="text-[11px] text-slate-400">{composerText.length}/500</span>
+                      <span className={`text-[11px] transition-colors ${
+                        composerText.length >= MAX_POST_LENGTH
+                          ? 'text-red-500 font-semibold'
+                          : composerText.length > MAX_POST_LENGTH * 0.8
+                          ? 'text-amber-500'
+                          : 'text-slate-400'
+                      }`}>
+                        {composerText.length}/{MAX_POST_LENGTH}
+                      </span>
                       <div className="flex items-center gap-2">
+                        <span className="hidden sm:inline text-[10px] text-slate-300 dark:text-slate-600">
+                          ⌘↵ aby wysłać
+                        </span>
                         <button
-                          onClick={() => { setComposerOpen(false); setComposerText(''); }}
+                          onClick={closeComposer}
                           className="px-3 py-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
                         >
                           Anuluj
                         </button>
                         <button
                           onClick={submitPost}
-                          disabled={!composerText.trim()}
+                          disabled={!composerText.trim() || submitting || composerText.length > MAX_POST_LENGTH}
                           className="px-4 py-1.5 text-xs font-semibold rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed bg-indigo-600 hover:bg-indigo-700 text-white"
                         >
-                          Opublikuj
+                          {submitting ? 'Wysyłanie…' : 'Opublikuj'}
                         </button>
                       </div>
                     </div>
@@ -222,28 +285,28 @@ export default function ChannelPage() {
                 )}
                 <div className="flex items-center gap-1 mt-3">
                   <button
-                    onClick={() => { setComposerOpen(true); setTimeout(() => textareaRef.current?.focus(), 50); }}
+                    onClick={openComposer}
                     className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                   >
                     <Icon icon="solar:gallery-linear" width={16} height={16} className="text-emerald-500" />
                     Zdjęcie
                   </button>
                   <button
-                    onClick={() => { setComposerOpen(true); setTimeout(() => textareaRef.current?.focus(), 50); }}
+                    onClick={openComposer}
                     className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                   >
                     <Icon icon="solar:videocamera-linear" width={16} height={16} className="text-blue-500" />
                     Video
                   </button>
                   <button
-                    onClick={() => { setComposerOpen(true); setTimeout(() => textareaRef.current?.focus(), 50); }}
+                    onClick={openComposer}
                     className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                   >
                     <Icon icon="solar:link-round-linear" width={16} height={16} className="text-orange-500" />
                     Link
                   </button>
                   <button
-                    onClick={() => { setComposerOpen(true); setTimeout(() => textareaRef.current?.focus(), 50); }}
+                    onClick={openComposer}
                     className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 rounded-md hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                   >
                     <Icon icon="solar:chart-2-linear" width={16} height={16} className="text-purple-500" />
@@ -327,69 +390,36 @@ export default function ChannelPage() {
           </div>
 
           {/* Posts Feed */}
-          {localPosts.map((post) => {
-            const liked = likedPosts.has(post.id);
-            const bookmarked = bookmarkedPosts.has(post.id);
-            return (
-            <div key={post.id} className="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-4 transition-colors">
-              <div className="flex items-start gap-3">
-                <img src={post.authorAvatar} alt="" className="w-9 h-9 rounded-full shrink-0" />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-bold text-slate-900 dark:text-slate-100">
-                      {post.authorName}
-                    </span>
-                    <span className="text-[10px] text-slate-400">
-                      · {new Date(post.createdAt).toLocaleDateString('pl')}
-                    </span>
-                  </div>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
-                    {post.content}
-                  </p>
-                  {post.image && (
-                    <div className="relative mt-3 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 aspect-video">
-                      <img src={post.image} alt="" className="w-full h-full object-cover" />
-                      {post.type === 'VIDEO' && (
-                        <>
-                          <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                            <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
-                              <Icon icon="solar:play-bold" width={24} height={24} className="text-slate-700 ml-1" />
-                            </div>
-                          </div>
-                          <span className="absolute bottom-3 right-3 px-2 py-0.5 bg-black/70 text-white text-[10px] font-medium rounded">
-                            5:32
-                          </span>
-                        </>
-                      )}
+          {loading && (
+            <div className="space-y-4">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="bg-white dark:bg-dark-surface rounded-xl shadow-card dark:shadow-dark-card border border-transparent dark:border-dark-border p-4 animate-pulse">
+                  <div className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-700 shrink-0" />
+                    <div className="flex-1 space-y-2">
+                      <div className="h-3 bg-slate-200 dark:bg-slate-700 rounded w-1/4" />
+                      <div className="h-3 bg-slate-200 dark:bg-slate-700 rounded w-full" />
+                      <div className="h-3 bg-slate-200 dark:bg-slate-700 rounded w-3/4" />
                     </div>
-                  )}
-                  <div className="flex items-center gap-4 mt-3 text-xs text-slate-400">
-                    <button
-                      onClick={() => toggleLike(post.id)}
-                      className={`flex items-center gap-1 transition-colors ${liked ? 'text-indigo-600 dark:text-indigo-400' : 'hover:text-indigo-600 dark:hover:text-indigo-400'}`}
-                    >
-                      <Icon icon={liked ? 'solar:like-bold' : 'solar:like-linear'} width={16} height={16} />
-                      {post.likes + (liked ? 1 : 0)}
-                    </button>
-                    <button className="flex items-center gap-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                      <Icon icon="solar:chat-round-dots-linear" width={16} height={16} />
-                      {post.comments}
-                    </button>
-                    <button className="flex items-center gap-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                      <Icon icon="solar:share-linear" width={16} height={16} />
-                    </button>
-                    <button
-                      onClick={() => toggleBookmark(post.id)}
-                      className={`ml-auto transition-colors ${bookmarked ? 'text-indigo-600 dark:text-indigo-400' : 'hover:text-indigo-600 dark:hover:text-indigo-400'}`}
-                    >
-                      <Icon icon={bookmarked ? 'solar:bookmark-bold' : 'solar:bookmark-linear'} width={16} height={16} />
-                    </button>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-            );
-          })}
+          )}
+
+          {!loading && posts.length === 0 && (
+            <div className="text-center py-12 text-slate-400">
+              <Icon icon="solar:chat-round-dots-linear" width={40} height={40} className="mx-auto mb-3 opacity-30" />
+              <p className="text-sm">Brak postów. Bądź pierwszym który coś napisze!</p>
+            </div>
+          )}
+
+          {!loading && posts.map((post) => (
+            <PostCard
+              key={post.id}
+              post={post}
+            />
+          ))}
         </div>
 
         {/* RIGHT COLUMN - Stats + Activity (lg only) */}

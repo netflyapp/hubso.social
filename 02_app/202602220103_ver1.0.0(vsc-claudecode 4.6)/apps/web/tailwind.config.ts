@@ -1,7 +1,8 @@
 import type { Config } from 'tailwindcss';
+import baseConfig from '../../packages/config/tailwind.config';
 
 const config = {
-  ...require('../../packages/config/tailwind.config.ts'),
+  ...baseConfig,
   content: [
     './src/**/*.{ts,tsx}',
     '../../packages/ui/src/**/*.{ts,tsx}',

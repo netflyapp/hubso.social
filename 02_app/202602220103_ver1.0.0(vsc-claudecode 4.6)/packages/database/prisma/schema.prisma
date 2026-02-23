@@ -16,6 +16,7 @@ model User {
   id        String   @id @default(cuid())
   email     String   @unique
   username  String   @unique
+  displayName String?
   passwordHash String
   avatarUrl String?
   bio       String?
@@ -35,6 +36,7 @@ model User {
   conversations ConversationParticipant[]
   messages Message[]
   events   EventAttendee[]
+  createdEvents Event[]
   notifications Notification[]
   uploadedMedia MediaFile[]
   auditLogs AuditLog[]
@@ -73,7 +75,6 @@ model Community {
   spaceGroups SpaceGroup[]
   spaces    Space[]
   groups    Group[]
-  events    Event[]
   plugins   Plugin[]
   webhooks  Webhook[]
   auditLogs AuditLog[]
@@ -243,17 +244,19 @@ model Reaction {
   id        String   @id @default(cuid())
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  targetType String  // "Post" | "Comment" | "Message"
-  targetId  String
+  targetType String  // "Post" | "Comment"
   type      ReactionType
   createdAt DateTime @default(now())
 
-  post    Post? @relation(fields: [targetId], references: [id], onDelete: Cascade)
-  comment Comment? @relation(fields: [targetId], references: [id], onDelete: Cascade)
+  postId    String?
+  post      Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  commentId String?
+  comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, targetType, targetId])
+  @@unique([userId, targetType, postId, commentId])
   @@index([userId])
-  @@index([targetId])
+  @@index([postId])
+  @@index([commentId])
 }
 
 enum ReactionType {

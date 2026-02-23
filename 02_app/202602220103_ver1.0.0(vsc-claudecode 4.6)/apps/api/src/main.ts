@@ -3,6 +3,8 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import { Logger } from '@nestjs/common';
+import * as express from 'express';
+import * as path from 'path';
 
 const logger = new Logger('Main');
 
@@ -10,7 +12,14 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Security
-  app.use(helmet());
+  app.use(helmet({
+    // Allow cross-origin images (avatars served from API, displayed in web)
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+  }));
+
+  // Static file serving — uploads (avatars, etc.)
+  const uploadsDir = path.resolve(process.cwd(), 'uploads');
+  app.use('/uploads', express.static(uploadsDir));
 
   // CORS
   app.enableCors({

@@ -2,26 +2,48 @@
 
 import { useState } from "react"
 import { useTheme } from "next-themes"
+import { useRouter } from "next/navigation"
 import { Icon } from "@iconify/react"
-import { Bell, Search, Settings, LogOut } from "lucide-react"
+import { Bell, Search, Settings, LogOut, User } from "lucide-react"
 import { Button } from "@hubso/ui"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
   Avatar,
   AvatarImage,
   AvatarFallback,
 } from "@hubso/ui"
 import Link from "next/link"
+import { useAuthStore } from "@/stores/useAuthStore"
+
+/** Zwraca inicjały z displayName lub username */
+function getInitials(displayName: string | null, username: string): string {
+  const name = displayName ?? username
+  return name
+    .split(' ')
+    .map((part) => part[0]?.toUpperCase() ?? '')
+    .slice(0, 2)
+    .join('')
+}
 
 export function AppHeader() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const router = useRouter()
+
+  const user = useAuthStore((s) => s.user)
+  const logout = useAuthStore((s) => s.logout)
 
   // Prevent hydration mismatch
   if (!mounted) setMounted(true)
+
+  const handleLogout = () => {
+    logout()
+    router.push('/login')
+  }
 
   const navItems = [
     { icon: "solar:home-2-linear", label: "Home", href: "/" },
@@ -100,17 +122,38 @@ export function AppHeader() {
           {/* User Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="rounded-full">
+              <Button variant="ghost" size="icon" className="rounded-full" title={user?.displayName ?? user?.username ?? 'User'}>
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80" />
-                  <AvatarFallback>JK</AvatarFallback>
+                  {user?.avatarUrl && (
+                    <AvatarImage src={user.avatarUrl} alt={user.displayName ?? user.username} />
+                  )}
+                  <AvatarFallback className="bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 text-xs font-semibold">
+                    {user
+                      ? getInitials(user.displayName, user.username)
+                      : <User className="w-4 h-4" />
+                    }
+                  </AvatarFallback>
                 </Avatar>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
+            <DropdownMenuContent align="end" className="w-52">
+              {/* User info */}
+              {user && (
+                <>
+                  <div className="px-3 py-2">
+                    <p className="text-sm font-semibold text-slate-800 dark:text-slate-100 truncate">
+                      {user.displayName ?? user.username}
+                    </p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
+                      {user.email}
+                    </p>
+                  </div>
+                  <DropdownMenuSeparator />
+                </>
+              )}
               <DropdownMenuItem asChild>
                 <Link href="/profile/me" className="cursor-pointer">
-                  <span className="mr-2">👤</span>
+                  <User className="w-4 h-4 mr-2" />
                   Profile
                 </Link>
               </DropdownMenuItem>
@@ -120,17 +163,13 @@ export function AppHeader() {
                   Settings
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <button
-                  onClick={() => {
-                    // TODO: Implement logout
-                    console.log("Logging out...")
-                  }}
-                  className="w-full text-left cursor-pointer"
-                >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Sign Out
-                </button>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                onClick={handleLogout}
+                className="text-red-600 dark:text-red-400 cursor-pointer focus:text-red-600 focus:bg-red-50 dark:focus:bg-red-900/20"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Sign Out
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

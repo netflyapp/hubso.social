@@ -25,4 +25,14 @@ export class AuthController {
   async refresh(@Body() input: { refreshToken: string }) {
     return this.authService.refresh(input.refreshToken);
   }
+
+  /**
+   * DEV ONLY: generuje wygasły access token dla testów interceptora.
+   * Używa istniejącego refreshToken, generuje accessToken z TTL = -1s (już wygasły).
+   */
+  @Post('dev/expired-token')
+  @HttpCode(200)
+  async devExpiredToken(@Body() input: { refreshToken: string }) {
+    return this.authService.generateExpiredToken(input.refreshToken);
+  }
 }

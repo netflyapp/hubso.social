@@ -8,14 +8,12 @@ import { Button, Input } from "@hubso/ui"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Icon } from "@iconify/react"
-import { authApi, ApiError } from "@/lib/api"
-import { tokenStore } from "@/lib/auth"
+import { useAuthStore } from "@/stores/useAuthStore"
 
 export default function RegisterPage() {
-  const [isLoading, setIsLoading] = useState(false)
+  const { register: registerUser, isLoading, error: storeError } = useAuthStore()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
-  const [apiError, setApiError] = useState<string | null>(null)
   const router = useRouter()
   const { register, handleSubmit, formState: { errors }, watch } = useForm({
     resolver: zodResolver(registerSchema),
@@ -24,26 +22,10 @@ export default function RegisterPage() {
   const password = watch("password")
 
   const onSubmit = async (data: any) => {
-    setIsLoading(true)
-    setApiError(null)
-    try {
-      await authApi.register({
-        email: data.email,
-        password: data.password,
-        displayName: data.name,
-      })
-      // After register, auto-login
-      const loginResult = await authApi.login({ email: data.email, password: data.password })
-      tokenStore.setTokens(loginResult.accessToken, loginResult.refreshToken)
+    await registerUser(data.email, data.password, data.name)
+    // If no error → redirect
+    if (!useAuthStore.getState().error) {
       router.push('/')
-    } catch (err) {
-      if (err instanceof ApiError) {
-        setApiError(err.status === 409 ? 'This email is already registered.' : err.message)
-      } else {
-        setApiError('Unable to connect to server. Please try again.')
-      }
-    } finally {
-      setIsLoading(false)
     }
   }
 
@@ -66,10 +48,10 @@ export default function RegisterPage() {
 
       {/* Form Card */}
       <div className="bg-white dark:bg-dark-surface border border-slate-200 dark:border-dark-border rounded-lg p-6 space-y-4">
-        {apiError && (
+        {storeError && (
           <div className="flex items-center gap-2 p-3 rounded-md bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-sm">
             <Icon icon="solar:danger-linear" width={16} className="shrink-0" />
-            {apiError}
+            {storeError}
           </div>
         )}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

@@ -2,8 +2,14 @@
   "name": "@hubso/shared",
   "version": "1.0.0",
   "private": true,
+  "main": "./src/index.js",
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "require": "./src/index.js",
+      "import": "./src/index.js",
+      "types": "./src/index.d.ts",
+      "default": "./src/index.ts"
+    }
   },
   "dependencies": {
     "zod": "^3.22.4"

@@ -17,6 +17,7 @@ const sidebarItems = [
   {
     title: "Wspólnota",
     items: [
+      { icon: "solar:planet-linear", label: "Społeczności", href: "/communities" },
       { icon: "solar:users-group-rounded-linear", label: "Grupy", href: "/groups" },
       { icon: "solar:people-nearby-linear", label: "Połączenia", href: "/members" },
       { icon: "solar:chat-round-dots-linear", label: "Dyskusje", href: "/forums" },

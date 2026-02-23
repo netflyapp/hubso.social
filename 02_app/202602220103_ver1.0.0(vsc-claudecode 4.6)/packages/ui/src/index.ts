@@ -5,7 +5,7 @@ export { Avatar, AvatarFallback, AvatarImage } from './avatar';
 export { Input } from './input';
 export { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
 export { Dialog, DialogTrigger, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './dialog';
-export { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './dropdown-menu';
+export { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './dropdown-menu';
 export { Sheet, SheetContent, SheetTrigger } from './sheet';
 export { ScrollArea } from './scroll-area';
 export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip';

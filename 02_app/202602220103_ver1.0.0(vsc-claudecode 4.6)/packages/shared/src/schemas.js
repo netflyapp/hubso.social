@@ -38,7 +38,7 @@ exports.createCommunitySchema = zod_1.z.object({
 });
 // Post Schemas
 exports.createPostSchema = zod_1.z.object({
-    spaceId: zod_1.z.string(),
+    spaceId: zod_1.z.string().optional(),
     content: zod_1.z.any(), // Tiptap JSON
     type: zod_1.z.enum(['TEXT', 'IMAGE', 'VIDEO', 'POLL', 'LINK', 'EMBED']).default('TEXT'),
 });
@@ -48,4 +48,22 @@ exports.sendMessageSchema = zod_1.z.object({
     content: zod_1.z.string().min(1, 'Message cannot be empty'),
     type: zod_1.z.enum(['TEXT', 'IMAGE', 'FILE', 'VOICE', 'VIDEO']).default('TEXT'),
 });
-//# sourceMappingURL=schemas.js.map
+
+// Comment Schemas
+exports.createCommentSchema = zod_1.z.object({
+    content: zod_1.z.string().min(1, 'Komentarz nie moze byc pusty').max(2000),
+    parentId: zod_1.z.string().optional(),
+});
+// Reaction Schemas
+exports.reactionTypes = ['LIKE', 'LOVE', 'WOW', 'FIRE', 'SAD', 'ANGRY'];
+exports.toggleReactionSchema = zod_1.z.object({
+    targetType: zod_1.z.enum(['Post', 'Comment']),
+    targetId: zod_1.z.string().min(1),
+    type: zod_1.z.enum(exports.reactionTypes),
+});
+//# sourceMappingURL=schemas.js.map// Profile Schemas
+exports.updateProfileSchema = zod_1.z.object({
+    displayName: zod_1.z.string().min(1).max(50).optional(),
+    bio: zod_1.z.string().max(500).optional(),
+    username: zod_1.z.string().min(3).max(30).regex(/^[a-z0-9_]+$/).optional(),
+});

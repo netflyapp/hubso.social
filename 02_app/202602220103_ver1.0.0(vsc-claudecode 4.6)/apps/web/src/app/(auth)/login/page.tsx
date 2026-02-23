@@ -8,13 +8,11 @@ import { Button, Input } from "@hubso/ui"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Icon } from "@iconify/react"
-import { authApi, ApiError } from "@/lib/api"
-import { tokenStore } from "@/lib/auth"
+import { useAuthStore } from "@/stores/useAuthStore"
 
 export default function LoginPage() {
-  const [isLoading, setIsLoading] = useState(false)
+  const { login, isLoading, error: storeError } = useAuthStore()
   const [showPassword, setShowPassword] = useState(false)
-  const [apiError, setApiError] = useState<string | null>(null)
   const router = useRouter()
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(loginSchema),
@@ -22,20 +20,10 @@ export default function LoginPage() {
   })
 
   const onSubmit = async (data: any) => {
-    setIsLoading(true)
-    setApiError(null)
-    try {
-      const result = await authApi.login({ email: data.email, password: data.password })
-      tokenStore.setTokens(result.accessToken, result.refreshToken)
+    await login(data.email, data.password)
+    // If no error → redirect
+    if (!useAuthStore.getState().error) {
       router.push('/')
-    } catch (err) {
-      if (err instanceof ApiError) {
-        setApiError(err.status === 401 ? 'Invalid email or password.' : err.message)
-      } else {
-        setApiError('Unable to connect to server. Please try again.')
-      }
-    } finally {
-      setIsLoading(false)
     }
   }
 
@@ -58,10 +46,10 @@ export default function LoginPage() {
 
       {/* Form Card */}
       <div className="bg-white dark:bg-dark-surface border border-slate-200 dark:border-dark-border rounded-lg p-6 space-y-4">
-        {apiError && (
+        {storeError && (
           <div className="flex items-center gap-2 p-3 rounded-md bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-sm">
             <Icon icon="solar:danger-linear" width={16} className="shrink-0" />
-            {apiError}
+            {storeError}
           </div>
         )}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

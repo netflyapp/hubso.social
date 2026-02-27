@@ -2,8 +2,11 @@ import {
   Injectable,
   NotFoundException,
   BadRequestException,
+  Optional,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { GamificationService } from '../gamification/gamification.service';
+import { PointReason } from '@prisma/client';
 
 export type ReactionType = 'LIKE' | 'LOVE' | 'WOW' | 'FIRE' | 'SAD' | 'ANGRY';
 export type TargetType = 'Post' | 'Comment';
@@ -16,7 +19,10 @@ export interface ToggleReactionInput {
 
 @Injectable()
 export class ReactionsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    @Optional() private gamificationService?: GamificationService,
+  ) {}
 
   async toggle(userId: string, input: ToggleReactionInput) {
     const { targetType, targetId, type } = input;
@@ -70,6 +76,35 @@ export class ReactionsService {
         },
       });
       userReaction = type;
+
+      // Award gamification points (fire & forget)
+      if (this.gamificationService) {
+        try {
+          let communityId: string | undefined;
+          let contentAuthorId: string | undefined;
+          if (targetType === 'Post') {
+            const p = await this.prisma.post.findUnique({
+              where: { id: targetId },
+              select: { authorId: true, space: { select: { communityId: true } } },
+            });
+            communityId = p?.space?.communityId;
+            contentAuthorId = p?.authorId;
+          } else {
+            const c = await this.prisma.comment.findUnique({
+              where: { id: targetId },
+              select: { authorId: true, post: { select: { space: { select: { communityId: true } } } } },
+            });
+            communityId = c?.post?.space?.communityId;
+            contentAuthorId = c?.authorId;
+          }
+          if (communityId) {
+            this.gamificationService.awardPoints(userId, communityId, PointReason.REACTION_GIVEN, undefined, targetType, targetId).catch(() => {});
+            if (contentAuthorId && contentAuthorId !== userId) {
+              this.gamificationService.awardPoints(contentAuthorId, communityId, PointReason.REACTION_RECEIVED, undefined, targetType, targetId).catch(() => {});
+            }
+          }
+        } catch { /* ignore gamification errors */ }
+      }
     }
 
     // Recompute grouped counts

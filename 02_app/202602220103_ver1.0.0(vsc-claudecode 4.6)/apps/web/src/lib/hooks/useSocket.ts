@@ -9,6 +9,7 @@ interface UseSocketEvents {
   onUserOffline?: (data: any) => void;
   onConversationUserJoined?: (data: any) => void;
   onConversationUserLeft?: (data: any) => void;
+  onNotificationReceived?: (notification: any) => void;
   onConnected?: () => void;
   onDisconnected?: () => void;
   onError?: (error: any) => void;
@@ -61,6 +62,7 @@ export function useSocket(events?: UseSocketEvents) {
     socketService.on('user:offline', events?.onUserOffline || (() => {}));
     socketService.on('conversation:user-joined', events?.onConversationUserJoined || (() => {}));
     socketService.on('conversation:user-left', events?.onConversationUserLeft || (() => {}));
+    socketService.on('notifications:receive', events?.onNotificationReceived || (() => {}));
 
     // Cleanup
     return () => {

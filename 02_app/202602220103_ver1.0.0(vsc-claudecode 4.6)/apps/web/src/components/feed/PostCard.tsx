@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { commentsApi, reactionsApi, type CommentItem, type ReactionType } from '@/lib/api';
 import { useAuthStore } from '@/stores/useAuthStore';
 import type { PostItem } from '@/lib/api';
+import { TiptapRenderer } from '@/components/editor/TiptapEditor';
 
 const PLACEHOLDER_AVATAR =
   'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80';
@@ -170,7 +171,7 @@ export function PostCard({ post }: PostCardProps) {
       {/* Post body */}
       <div className="p-4">
         <div className="flex items-start gap-3">
-          <img src={postAuthorAvatar} alt="" className="w-9 h-9 rounded-full shrink-0 object-cover" />
+          <img src={postAuthorAvatar} alt={postAuthorName} className="w-9 h-9 rounded-full shrink-0 object-cover" />
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-sm font-bold text-slate-900 dark:text-slate-100">
@@ -184,7 +185,7 @@ export function PostCard({ post }: PostCardProps) {
               )}
             </div>
             <p className="text-sm text-slate-700 dark:text-slate-300 mt-2 leading-relaxed whitespace-pre-wrap">
-              {contentText}
+              <TiptapRenderer content={post.content} />
             </p>
           </div>
         </div>
@@ -235,11 +236,16 @@ export function PostCard({ post }: PostCardProps) {
           <Icon icon={commentsOpen ? 'solar:chat-round-dots-bold' : 'solar:chat-round-dots-linear'} width={15} height={15} />
           <span>{localCommentsCount > 0 ? localCommentsCount : 'Komentuj'}</span>
         </button>
-        <button className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+        <button
+          onClick={() => { navigator.clipboard.writeText(window.location.origin + '/post/' + post.id); toast.success('Link skopiowany do schowka'); }}
+          aria-label="Udostępnij"
+          className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+        >
           <Icon icon="solar:share-linear" width={15} height={15} />
         </button>
         <button
           onClick={() => setBookmarked((b) => !b)}
+          aria-label={bookmarked ? 'Usuń z zapisanych' : 'Zapisz'}
           className={`ml-auto flex items-center px-2 py-1 rounded-md transition-colors ${
             bookmarked
               ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10'
@@ -302,7 +308,7 @@ export function PostCard({ post }: PostCardProps) {
             <div className="flex items-center gap-2 px-4 py-3">
               <img
                 src={user.avatarUrl ?? PLACEHOLDER_AVATAR}
-                alt=""
+                alt={user.displayName ?? user.username ?? 'Twój avatar'}
                 className="w-7 h-7 rounded-full shrink-0 object-cover"
               />
               <div className="flex-1 flex items-center gap-2 bg-gray-50 dark:bg-slate-800/50 rounded-full pl-3 pr-1.5 py-1">
@@ -327,6 +333,7 @@ export function PostCard({ post }: PostCardProps) {
                 <button
                   onClick={submitComment}
                   disabled={!commentInput.trim() || submitting}
+                  aria-label="Wyślij komentarz"
                   className="shrink-0 w-7 h-7 rounded-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
                 >
                   <Icon icon="solar:arrow-up-linear" width={14} height={14} className="text-white" />
@@ -357,7 +364,7 @@ function CommentRow({ comment, onReply, currentUserId, onDelete, depth = 0 }: Co
   return (
     <div className={depth > 0 ? 'pl-8 border-l-2 border-gray-100 dark:border-dark-border' : ''}>
       <div className="flex items-start gap-2.5">
-        <img src={authorAvatar} alt="" className="w-7 h-7 rounded-full shrink-0 object-cover mt-0.5" />
+        <img src={authorAvatar} alt={authorName} className="w-7 h-7 rounded-full shrink-0 object-cover mt-0.5" />
         <div className="flex-1 min-w-0">
           <div className="bg-gray-50 dark:bg-slate-800/50 rounded-xl px-3 py-2">
             <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 mr-1.5">

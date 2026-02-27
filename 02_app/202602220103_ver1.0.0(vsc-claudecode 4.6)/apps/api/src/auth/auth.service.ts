@@ -25,7 +25,7 @@ export class AuthService {
     }
 
     // Generuj unikalny username z email
-    const baseUsername = input.email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+    const baseUsername = (input.email.split('@')[0] ?? 'user').toLowerCase().replace(/[^a-z0-9]/g, '');
     const suffix = Math.floor(Math.random() * 9000) + 1000;
     const username = `${baseUsername}${suffix}`;
 
@@ -69,7 +69,13 @@ export class AuthService {
       throw new UnauthorizedException('Invalid email or password.');
     }
 
-    const payload = { sub: user.id, email: user.email };
+    // Fetch user role for JWT payload
+    const userData = await this.prisma.user.findUnique({
+      where: { id: user.id },
+      select: { role: true },
+    });
+
+    const payload = { sub: user.id, email: user.email, role: userData?.role || 'MEMBER' };
 
     const accessToken = this.jwtService.sign(payload, {
       secret: this.configService.get('JWT_SECRET'),
@@ -92,14 +98,14 @@ export class AuthService {
 
       const user = await this.prisma.user.findUnique({
         where: { id: payload.sub },
-        select: { id: true, email: true, status: true },
+        select: { id: true, email: true, status: true, role: true },
       });
 
       if (!user || user.status === 'SUSPENDED' || user.status === 'DELETED') {
         throw new UnauthorizedException('Invalid session.');
       }
 
-      const newPayload = { sub: user.id, email: user.email };
+      const newPayload = { sub: user.id, email: user.email, role: user.role };
       const accessToken = this.jwtService.sign(newPayload, {
         secret: this.configService.get('JWT_SECRET'),
         expiresIn: this.configService.get('JWT_EXPIRES_IN') || '15m',

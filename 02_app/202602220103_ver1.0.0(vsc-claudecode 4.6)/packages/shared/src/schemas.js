@@ -67,3 +67,9 @@ exports.updateProfileSchema = zod_1.z.object({
     bio: zod_1.z.string().max(500).optional(),
     username: zod_1.z.string().min(3).max(30).regex(/^[a-z0-9_]+$/).optional(),
 });
+// Profile Schemas
+exports.updateProfileSchema = zod_1.z.object({
+    displayName: zod_1.z.string().min(1).max(50).optional(),
+    bio: zod_1.z.string().max(500).optional(),
+    username: zod_1.z.string().min(3).max(30).optional(),
+});

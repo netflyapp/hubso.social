@@ -11,7 +11,6 @@ class SocketService {
    */
   connect(token: string): SocketIO | null {
     if (this.socket?.connected) {
-      console.log('[Socket] Already connected');
       return this.socket;
     }
 
@@ -26,17 +25,14 @@ class SocketService {
 
     // Connection events
     this.socket.on('connect', () => {
-      console.log('[Socket] Connected:', this.socket?.id);
       this._emit('connected', { socketId: this.socket?.id });
     });
 
     this.socket.on('connect_error', (error: any) => {
-      console.error('[Socket] Connection error:', error);
       this._emit('error', { error });
     });
 
     this.socket.on('disconnect', (reason: string) => {
-      console.log('[Socket] Disconnected:', reason);
       this._emit('disconnected', { reason });
     });
 

@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useTheme } from "next-themes"
 import { useRouter } from "next/navigation"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { Icon } from "@iconify/react"
 import { Bell, Search, Settings, LogOut, User } from "lucide-react"
 import { Button } from "@hubso/ui"
@@ -18,6 +19,8 @@ import {
 } from "@hubso/ui"
 import Link from "next/link"
 import { useAuthStore } from "@/stores/useAuthStore"
+import { notificationsApi } from "@/lib/api"
+import { useSocket } from "@/lib/hooks/useSocket"
 
 /** Zwraca inicjały z displayName lub username */
 function getInitials(displayName: string | null, username: string): string {
@@ -33,9 +36,28 @@ export function AppHeader() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const router = useRouter()
+  const queryClient = useQueryClient()
 
   const user = useAuthStore((s) => s.user)
   const logout = useAuthStore((s) => s.logout)
+
+  // Fetch unread count
+  const { data: unreadData } = useQuery({
+    queryKey: ['notifications-unread'],
+    queryFn: () => notificationsApi.unreadCount(),
+    refetchInterval: 60_000,
+    enabled: !!user,
+  })
+
+  // Real-time: update badge on new notification
+  useSocket({
+    onNotificationReceived: () => {
+      queryClient.invalidateQueries({ queryKey: ['notifications-unread'] })
+      queryClient.invalidateQueries({ queryKey: ['notifications'] })
+    },
+  })
+
+  const unreadCount = unreadData?.count ?? 0
 
   // Prevent hydration mismatch
   if (!mounted) setMounted(true)
@@ -94,15 +116,21 @@ export function AppHeader() {
           </div>
 
           {/* Notifications */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="relative"
-            title="Notifications"
-          >
-            <Bell className="w-5 h-5" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-          </Button>
+          <Link href="/notifications">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative"
+              title="Notifications"
+            >
+              <Bell className="w-5 h-5" />
+              {unreadCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 flex items-center justify-center bg-red-500 text-white text-[10px] font-bold rounded-full">
+                  {unreadCount > 99 ? '99+' : unreadCount}
+                </span>
+              )}
+            </Button>
+          </Link>
 
           {/* Theme Toggle */}
           {mounted && (

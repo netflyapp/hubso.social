@@ -7,6 +7,7 @@ import { resetPasswordSchema } from "@hubso/shared"
 import { Button, Input } from "@hubso/ui"
 import Link from "next/link"
 import { Icon } from "@iconify/react"
+import { toast } from "sonner"
 
 export default function ResetPasswordPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -21,10 +22,11 @@ export default function ResetPasswordPage() {
     setIsLoading(true)
     try {
       // TODO: Call API
-      console.log("Reset password attempt:", data)
       setEmail(data.email)
       await new Promise(resolve => setTimeout(resolve, 1000))
       setIsSubmitted(true)
+    } catch {
+      toast.error('Nie udało się wysłać linku. Spróbuj ponownie.')
     } finally {
       setIsLoading(false)
     }
@@ -41,9 +43,9 @@ export default function ResetPasswordPage() {
             </div>
           </div>
           <div>
-            <h1 className="text-2xl font-semibold text-slate-900 dark:text-white">Check your email</h1>
+            <h1 className="text-2xl font-semibold text-slate-900 dark:text-white">Sprawdź swoją skrzynkę</h1>
             <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-              We sent a password reset link to
+              Wysłaliśmy link do resetowania hasła na adres
             </p>
             <p className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 mt-2 break-all">
               {email}
@@ -54,7 +56,7 @@ export default function ResetPasswordPage() {
         {/* Instructions */}
         <div className="bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 rounded-lg p-4 space-y-2">
           <p className="text-sm text-blue-900 dark:text-blue-200">
-            <span className="font-semibold">Didn't receive it?</span> Check your spam folder or{" "}
+            <span className="font-semibold">Nie otrzymałeś?</span> Sprawdź folder spam lub{" "}
             <button
               onClick={() => {
                 setIsSubmitted(false)
@@ -62,7 +64,7 @@ export default function ResetPasswordPage() {
               }}
               className="text-blue-600 dark:text-blue-300 hover:underline"
             >
-              try another email
+              spróbuj inny email
             </button>
           </p>
         </div>
@@ -74,7 +76,7 @@ export default function ResetPasswordPage() {
             className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
           >
             <Icon icon="solar:arrow-left-linear" width={16} />
-            Back to login
+            Powrót do logowania
           </Link>
         </div>
       </div>
@@ -91,9 +93,9 @@ export default function ResetPasswordPage() {
           </div>
         </div>
         <div>
-          <h1 className="text-2xl font-semibold text-slate-900 dark:text-white">Reset password</h1>
+          <h1 className="text-2xl font-semibold text-slate-900 dark:text-white">Resetowanie hasła</h1>
           <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-            Enter your email and we'll send you a link to reset your password
+            Podaj swój email, a wyślemy Ci link do resetowania hasła
           </p>
         </div>
       </div>
@@ -104,7 +106,7 @@ export default function ResetPasswordPage() {
           {/* Email Field */}
           <div className="space-y-2">
             <label className="block text-sm font-medium text-slate-900 dark:text-white">
-              Email address
+              Adres email
             </label>
             <Input
               {...register("email")}
@@ -130,10 +132,10 @@ export default function ResetPasswordPage() {
             {isLoading ? (
               <>
                 <Icon icon="solar:refresh-linear" width={18} className="animate-spin" />
-                Sending link...
+                Wysyłanie...
               </>
             ) : (
-              "Send reset link"
+              "Wyślij link resetujący"
             )}
           </Button>
         </form>
@@ -146,7 +148,7 @@ export default function ResetPasswordPage() {
           className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
         >
           <Icon icon="solar:arrow-left-linear" width={16} />
-          Back to login
+          Powrót do logowania
         </Link>
       </div>
     </div>

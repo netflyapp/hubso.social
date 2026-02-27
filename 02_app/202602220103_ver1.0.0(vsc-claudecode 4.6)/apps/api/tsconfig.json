@@ -2,10 +2,11 @@
   "extends": "../../packages/config/tsconfig.nestjs.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "types": ["node", "jest", "multer"],
     "paths": {
       "@/*": ["./src/*"],
       "@hubso/database": ["../../packages/database/src"],
-      "@hubso/shared": ["../../packages/shared/src"],
+      "@hubso/shared": ["../../packages/shared/src"]
     }
   },
   "include": ["src/**/*", "../../packages/shared/src/**/*"],

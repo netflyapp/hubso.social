@@ -5,6 +5,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Request,
   UploadedFile,
   UseGuards,
@@ -13,8 +14,9 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiTags, ApiBearerAuth, ApiConsumes, ApiBody } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiConsumes, ApiBody, ApiQuery } from '@nestjs/swagger';
 import { UsersService, UpdateProfileInput } from './users.service';
+import { OptionalJwtAuthGuard } from '../auth/guards/optional-jwt.guard';
 
 const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
 const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB
@@ -23,6 +25,23 @@ const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
+
+  /** GET /users — public paginated member list */
+  @Get()
+  @ApiQuery({ name: 'page', required: false, type: Number })
+  @ApiQuery({ name: 'limit', required: false, type: Number })
+  @ApiQuery({ name: 'search', required: false, type: String })
+  async findAll(
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+    @Query('search') search?: string,
+  ) {
+    return this.usersService.findAll({
+      page: page ? Number(page) : undefined,
+      limit: limit ? Number(limit) : undefined,
+      search: search || undefined,
+    });
+  }
 
   /** GET /users/me — own full profile */
   @Get('me')
@@ -80,7 +99,11 @@ export class UsersController {
 
   /** GET /users/:id — public profile */
   @Get(':id')
-  async getById(@Param('id') id: string) {
-    return this.usersService.findById(id);
+  @UseGuards(OptionalJwtAuthGuard)
+  async getById(
+    @Param('id') id: string,
+    @Request() req: { user?: { userId: string } },
+  ) {
+    return this.usersService.findById(id, req.user?.userId);
   }
 }

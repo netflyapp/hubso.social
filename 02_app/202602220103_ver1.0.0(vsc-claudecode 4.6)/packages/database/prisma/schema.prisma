@@ -20,6 +20,7 @@ model User {
   passwordHash String
   avatarUrl String?
   bio       String?
+  socialLinks Json   @default("{}")
   role      Role     @default(MEMBER)
   status    UserStatus @default(ACTIVE)
   settings  Json     @default("{}")
@@ -40,6 +41,16 @@ model User {
   notifications Notification[]
   uploadedMedia MediaFile[]
   auditLogs AuditLog[]
+  following     Follow[]  @relation("Following")
+  followers     Follow[]  @relation("Followers")
+  followersCount Int      @default(0)
+  followingCount Int      @default(0)
+  enrollments   Enrollment[]
+  pointTransactions PointTransaction[]
+  userBadges    UserBadge[]
+  userLevel     UserLevel?
+  userStreak    UserStreak?
+  challengeParticipations ChallengeParticipation[]
 }
 
 enum Role {
@@ -62,10 +73,13 @@ model Community {
   name      String
   slug      String   @unique
   logoUrl   String?
+  coverUrl  String?
   description String?
   settings  Json     @default("{}")
   plan      CommunityPlan @default(STARTER)
   customDomain String?
+  brandColor  String?
+  brandFont   String?
   ownerId   String
   owner     User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
@@ -75,11 +89,15 @@ model Community {
   spaceGroups SpaceGroup[]
   spaces    Space[]
   groups    Group[]
-  plugins   Plugin[]
+  installedPlugins InstalledPlugin[]
   webhooks  Webhook[]
   auditLogs AuditLog[]
   mediaFiles MediaFile[]
   notifications Notification[]
+  courses   Course[]
+  badges    Badge[]
+  challenges Challenge[]
+  pointTransactions PointTransaction[]
 }
 
 enum CommunityPlan {
@@ -109,6 +127,20 @@ enum MemberRole {
   MODERATOR
   MEMBER
   GUEST
+}
+
+// ==================== Follow ====================
+
+model Follow {
+  followerId  String
+  follower    User     @relation("Following", fields: [followerId], references: [id], onDelete: Cascade)
+  followingId String
+  following   User     @relation("Followers", fields: [followingId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+
+  @@id([followerId, followingId])
+  @@index([followerId])
+  @@index([followingId])
 }
 
 // ==================== Spaces & Content ====================
@@ -182,20 +214,22 @@ enum SpaceMemberRole {
 }
 
 model Post {
-  id          String   @id @default(cuid())
-  spaceId     String
-  space       Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
-  authorId    String
-  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  content     Json     // Tiptap JSON
-  type        PostType @default(TEXT)
-  status      PostStatus @default(PUBLISHED)
-  pinned      Boolean  @default(false)
-  featured    Boolean  @default(false)
+  id             String   @id @default(cuid())
+  spaceId        String
+  space          Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  authorId       String
+  author         User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  content        Json     // Tiptap JSON
+  searchableText String?  // Plain text extracted from content for search
+  type           PostType @default(TEXT)
+  status         PostStatus @default(PUBLISHED)
+  pinned         Boolean  @default(false)
+  featured       Boolean  @default(false)
+  isFlagged      Boolean  @default(false)
   reactionsCount Json @default("{}")
-  metadata    Json     @default("{}")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  metadata       Json     @default("{}")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   comments Comment[]
   reactions Reaction[]
@@ -317,6 +351,7 @@ model Conversation {
   id        String   @id @default(cuid())
   type      ConversationType
   name      String?
+  avatarUrl String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -442,6 +477,8 @@ enum NotificationType {
   EVENT_INVITE
   MEMBER_JOIN
   SPACE_UPDATE
+  FOLLOW
+  COMMUNITY_JOIN
 }
 
 enum NotificationChannel {
@@ -463,10 +500,18 @@ model MediaFile {
   status    MediaStatus @default(PROCESSING)
   type      MediaType
   metadata  Json     @default("{}")
+  // Bunny Stream fields (for VIDEO type)
+  bunnyVideoId    String?   @unique
+  thumbnailUrl    String?
+  hlsUrl          String?
+  previewUrl      String?
+  processingProgress Int?    @default(0)
+  duration        Int?      // Duration in seconds
   createdAt DateTime @default(now())
 
   @@index([uploadedById])
   @@index([communityId])
+  @@index([bunnyVideoId])
 }
 
 enum MediaStatus {
@@ -482,29 +527,129 @@ enum MediaType {
   FILE
 }
 
-// ==================== Plugins ====================
+// ==================== LMS / Courses ====================
 
-model Plugin {
+model Course {
+  id          String   @id @default(cuid())
+  communityId String
+  community   Community @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  title       String
+  slug        String
+  description String?
+  coverUrl    String?
+  status      CourseStatus @default(DRAFT)
+  price       Decimal?  @db.Decimal(10, 2)
+  currency    String    @default("PLN")
+  isFree      Boolean   @default(true)
+  accessType  CourseAccessType @default(PUBLIC)
+  settings    Json      @default("{}")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  modules     CourseModule[]
+  enrollments Enrollment[]
+
+  @@unique([communityId, slug])
+  @@index([communityId])
+  @@index([status])
+}
+
+enum CourseStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum CourseAccessType {
+  PUBLIC      // Dla wszystkich członków community
+  MEMBERS_ONLY // Tylko członkowie premium/płatni
+  PRIVATE     // Tylko zaproszeni
+}
+
+model CourseModule {
   id        String   @id @default(cuid())
-  communityId String?
-  community Community? @relation(fields: [communityId], references: [id], onDelete: Cascade)
-  name      String
-  slug      String   @unique
-  version   String
-  status    PluginStatus @default(ACTIVE)
-  settings  Json     @default("{}")
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title     String
+  description String?
+  position  Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([communityId])
-  @@index([slug])
+  lessons   Lesson[]
+
+  @@index([courseId])
+  @@index([position])
 }
 
-enum PluginStatus {
-  ACTIVE
-  DISABLED
-  ERROR
+model Lesson {
+  id          String   @id @default(cuid())
+  moduleId    String
+  module      CourseModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  content     Json?     // Tiptap JSON content
+  videoUrl    String?
+  videoDuration Int?    // Duration in seconds
+  bunnyVideoId  String?   // Bunny Stream video GUID
+  thumbnailUrl  String?   // Video thumbnail
+  hlsUrl        String?   // HLS playback URL
+  position    Int       @default(0)
+  isFree      Boolean   @default(false)  // Można obejrzeć bez zakupu kursu
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  progress    LessonProgress[]
+
+  @@index([moduleId])
+  @@index([position])
 }
+
+model Enrollment {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  status      EnrollmentStatus @default(ACTIVE)
+  progress    Int      @default(0)  // 0-100 percentage
+  completedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  lessonProgress LessonProgress[]
+
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+  @@index([status])
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  COMPLETED
+  EXPIRED
+  CANCELLED
+}
+
+model LessonProgress {
+  id           String   @id @default(cuid())
+  enrollmentId String
+  enrollment   Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  lessonId     String
+  lesson       Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  completed    Boolean  @default(false)
+  watchTime    Int      @default(0)  // Watched seconds
+  completedAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([enrollmentId, lessonId])
+  @@index([enrollmentId])
+  @@index([lessonId])
+}
+
+// ==================== Plugins (see end of file) ====================
 
 // ==================== Webhooks ====================
 
@@ -542,4 +687,307 @@ model AuditLog {
   @@index([communityId])
   @@index([actorId])
   @@index([createdAt])
+}
+
+// ==================== Gamification ====================
+
+model PointTransaction {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  communityId String
+  community   Community @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  points      Int
+  reason      PointReason
+  referenceType String?    // 'post', 'comment', 'reaction', 'course', 'challenge'
+  referenceId   String?    // ID of the related entity
+  description   String?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([communityId])
+  @@index([userId, communityId])
+  @@index([createdAt])
+}
+
+enum PointReason {
+  POST_CREATED
+  COMMENT_CREATED
+  REACTION_RECEIVED
+  REACTION_GIVEN
+  DAILY_LOGIN
+  COURSE_COMPLETED
+  LESSON_COMPLETED
+  CHALLENGE_COMPLETED
+  BADGE_EARNED
+  STREAK_BONUS
+  ADMIN_GRANT
+  ADMIN_DEDUCT
+  CUSTOM
+}
+
+model Badge {
+  id          String   @id @default(cuid())
+  communityId String
+  community   Community @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  name        String
+  slug        String
+  description String?
+  iconUrl     String?
+  color       String   @default("#3B82F6")
+  category    BadgeCategory @default(ACHIEVEMENT)
+  criteria    Json     @default("{}")  // { type: 'points', threshold: 100 } or { type: 'posts', count: 10 }
+  pointsReward Int     @default(0)
+  isAutomatic Boolean  @default(true)   // auto-awarded when criteria met
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userBadges  UserBadge[]
+
+  @@unique([communityId, slug])
+  @@index([communityId])
+}
+
+enum BadgeCategory {
+  ACHIEVEMENT
+  MILESTONE
+  SPECIAL
+  COMMUNITY
+  STREAK
+  COURSE
+}
+
+model UserBadge {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badgeId   String
+  badge     Badge    @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+  awardedAt DateTime @default(now())
+  awardedBy String?  // admin user id or 'system'
+
+  @@unique([userId, badgeId])
+  @@index([userId])
+  @@index([badgeId])
+}
+
+model UserLevel {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  communityId String
+  level       Int      @default(1)
+  title       UserLevelTitle @default(NEWBIE)
+  totalPoints Int      @default(0)
+  currentLevelPoints Int @default(0)  // points within current level
+  nextLevelThreshold Int @default(100)
+  updatedAt   DateTime @updatedAt
+
+  @@index([communityId])
+  @@index([communityId, totalPoints(sort: Desc)])
+}
+
+enum UserLevelTitle {
+  NEWBIE
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  PRO
+  MASTER
+  LEGEND
+}
+
+model UserStreak {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  communityId   String
+  currentStreak Int      @default(0)
+  longestStreak Int      @default(0)
+  lastActiveDate DateTime?
+  streakStartDate DateTime?
+  updatedAt     DateTime @updatedAt
+
+  @@index([communityId])
+  @@index([communityId, currentStreak(sort: Desc)])
+}
+
+model Challenge {
+  id          String   @id @default(cuid())
+  communityId String
+  community   Community @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  title       String
+  slug        String
+  description String?
+  type        ChallengeType @default(STREAK)
+  durationDays Int     @default(7)     // 7, 21, 30
+  goal        Json     @default("{}")  // { type: 'posts', count: 7 } or { type: 'logins', count: 7 }
+  pointsReward Int     @default(50)
+  badgeReward  String?  // badge ID to award on completion
+  maxParticipants Int?  // null = unlimited
+  startDate   DateTime?
+  endDate     DateTime?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  participants ChallengeParticipation[]
+
+  @@unique([communityId, slug])
+  @@index([communityId])
+}
+
+enum ChallengeType {
+  STREAK        // consecutive days
+  CUMULATIVE    // total over period
+  ONE_TIME      // single achievement
+}
+
+model ChallengeParticipation {
+  id          String   @id @default(cuid())
+  challengeId String
+  challenge   Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  progress    Int      @default(0)
+  status      ChallengeParticipationStatus @default(ACTIVE)
+  completedAt DateTime?
+  joinedAt    DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([challengeId, userId])
+  @@index([userId])
+  @@index([challengeId])
+}
+
+enum ChallengeParticipationStatus {
+  ACTIVE
+  COMPLETED
+  FAILED
+  ABANDONED
+}
+
+// ─── Plugin System ────────────────────────────────────────────────
+
+enum PluginStatus {
+  ACTIVE
+  INACTIVE
+  ERROR
+  INSTALLING
+  UPDATING
+}
+
+enum PluginCategory {
+  LMS
+  E_COMMERCE
+  CRM
+  BOOKING
+  SOCIAL
+  ANALYTICS
+  AI
+  INTEGRATIONS
+  GAMIFICATION
+  HEALTH
+  CONTENT
+  COMMUNICATION
+  OTHER
+}
+
+enum PluginPricing {
+  FREE
+  PAID
+  FREEMIUM
+}
+
+/// Registry of all available plugins (marketplace catalog)
+model Plugin {
+  id          String         @id @default(cuid())
+  pluginId    String         @unique          // e.g. "hubso-courses"
+  name        String
+  description String         @default("")
+  version     String         @default("1.0.0")
+  category    PluginCategory @default(OTHER)
+  pricing     PluginPricing  @default(FREE)
+  price       Float?
+  icon        String?
+  coverImage  String?
+  screenshots Json?                           // string[]
+  tags        Json?                           // string[]
+  authorName  String         @default("Hubso")
+  authorEmail String?
+  authorUrl   String?
+  authorVerified Boolean     @default(false)
+  official    Boolean        @default(false)
+  hubsoVersion String        @default("0.1.0")
+  permissions  Json?                          // string[]
+  dependencies Json?                          // string[]
+  repository  String?
+  docsUrl     String?
+  changelogUrl String?
+  downloads   Int            @default(0)
+  rating      Float          @default(0)
+  ratingCount Int            @default(0)
+  featured    Boolean        @default(false)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  installations InstalledPlugin[]
+
+  @@index([category])
+  @@index([official])
+  @@index([featured])
+}
+
+/// Plugin installed in a specific community
+model InstalledPlugin {
+  id          String       @id @default(cuid())
+  pluginId    String                          // FK to Plugin.pluginId
+  plugin      Plugin       @relation(fields: [pluginId], references: [pluginId], onDelete: Cascade)
+  communityId String
+  community   Community    @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  status      PluginStatus @default(ACTIVE)
+  version     String       @default("1.0.0") // installed version
+  installedBy String?                         // userId who installed
+  installedAt DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  config      Json?                           // plugin-specific config/settings
+
+  settings    PluginSetting[]
+
+  @@unique([pluginId, communityId])
+  @@index([communityId])
+  @@index([pluginId])
+}
+
+/// Key-value settings store for installed plugins
+model PluginSetting {
+  id                String          @id @default(cuid())
+  installedPluginId String
+  installedPlugin   InstalledPlugin @relation(fields: [installedPluginId], references: [id], onDelete: Cascade)
+  key               String
+  value             Json
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  @@unique([installedPluginId, key])
+  @@index([installedPluginId])
+}
+
+/// Event hooks registered by plugins
+model PluginHook {
+  id          String   @id @default(cuid())
+  pluginId    String                           // e.g. "hubso-courses"
+  communityId String
+  event       String                           // e.g. "post.created"
+  priority    Int      @default(0)
+  enabled     Boolean  @default(true)
+  config      Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([pluginId, communityId, event])
+  @@index([communityId])
+  @@index([event])
 }

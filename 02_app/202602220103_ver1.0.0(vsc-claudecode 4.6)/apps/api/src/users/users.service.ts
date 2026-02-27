@@ -11,6 +11,8 @@ export interface UpdateProfileInput {
   displayName?: string;
   bio?: string;
   username?: string;
+  avatarUrl?: string;
+  socialLinks?: Record<string, string>;
 }
 
 @Injectable()
@@ -30,8 +32,11 @@ export class UsersService {
         displayName: true,
         avatarUrl: true,
         bio: true,
+        socialLinks: true,
         role: true,
         status: true,
+        followersCount: true,
+        followingCount: true,
         createdAt: true,
       },
     });
@@ -43,7 +48,43 @@ export class UsersService {
     return user;
   }
 
-  async findById(id: string) {
+  async findAll(params: { page?: number; limit?: number; search?: string }) {
+    const page = params.page ?? 1;
+    const limit = Math.min(params.limit ?? 20, 50);
+    const skip = (page - 1) * limit;
+
+    const where: Record<string, unknown> = { status: 'ACTIVE' };
+    if (params.search) {
+      where.OR = [
+        { username: { contains: params.search, mode: 'insensitive' } },
+        { displayName: { contains: params.search, mode: 'insensitive' } },
+      ];
+    }
+
+    const [users, total] = await Promise.all([
+      this.prisma.user.findMany({
+        where,
+        select: {
+          id: true,
+          username: true,
+          displayName: true,
+          avatarUrl: true,
+          bio: true,
+          role: true,
+          followersCount: true,
+          createdAt: true,
+        },
+        orderBy: { createdAt: 'desc' },
+        skip,
+        take: limit,
+      }),
+      this.prisma.user.count({ where }),
+    ]);
+
+    return { users, total, page, pages: Math.ceil(total / limit) };
+  }
+
+  async findById(id: string, requesterId?: string) {
     const user = await this.prisma.user.findUnique({
       where: { id },
       select: {
@@ -53,7 +94,10 @@ export class UsersService {
         displayName: true,
         avatarUrl: true,
         bio: true,
+        socialLinks: true,
         role: true,
+        followersCount: true,
+        followingCount: true,
         createdAt: true,
       },
     });
@@ -62,7 +106,16 @@ export class UsersService {
       throw new NotFoundException('User not found.');
     }
 
-    return user;
+    let isFollowedByMe = false;
+    if (requesterId && requesterId !== id) {
+      const follow = await this.prisma.follow.findUnique({
+        where: { followerId_followingId: { followerId: requesterId, followingId: id } },
+        select: { followerId: true },
+      });
+      isFollowedByMe = !!follow;
+    }
+
+    return { ...user, isFollowedByMe };
   }
 
   async findByEmail(email: string) {
@@ -92,6 +145,8 @@ export class UsersService {
         ...(data.displayName !== undefined && { displayName: data.displayName }),
         ...(data.bio !== undefined && { bio: data.bio }),
         ...(data.username !== undefined && { username: data.username }),
+        ...(data.avatarUrl !== undefined && { avatarUrl: data.avatarUrl }),
+        ...(data.socialLinks !== undefined && { socialLinks: data.socialLinks }),
       },
       select: {
         id: true,
@@ -100,8 +155,11 @@ export class UsersService {
         displayName: true,
         avatarUrl: true,
         bio: true,
+        socialLinks: true,
         role: true,
         status: true,
+        followersCount: true,
+        followingCount: true,
         createdAt: true,
       },
     });
@@ -139,8 +197,11 @@ export class UsersService {
         displayName: true,
         avatarUrl: true,
         bio: true,
+        socialLinks: true,
         role: true,
         status: true,
+        followersCount: true,
+        followingCount: true,
         createdAt: true,
       },
     });

@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic'
+
 import { Icon } from '@iconify/react';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useTheme } from 'next-themes';
@@ -43,7 +45,7 @@ export default function ChannelPage() {
     if (!composerOpen || communities.length > 0) return;
     communitiesApi.list().then((list) => {
       setCommunities(list);
-      if (!selectedCommunity && list.length > 0) setSelectedCommunity(list[0]);
+      if (!selectedCommunity && list.length > 0) setSelectedCommunity(list[0] ?? null);
     }).catch(() => {});
   }, [composerOpen, communities.length, selectedCommunity]);
 

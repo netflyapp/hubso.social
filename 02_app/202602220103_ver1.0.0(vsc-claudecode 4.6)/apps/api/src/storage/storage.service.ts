@@ -64,8 +64,8 @@ export class StorageService {
       if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
       }
-    } catch (e) {
-      this.logger.warn(`Could not delete file: ${e.message}`);
+    } catch (e: unknown) {
+      this.logger.warn(`Could not delete file: ${(e as Error).message ?? e}`);
     }
   }
 }

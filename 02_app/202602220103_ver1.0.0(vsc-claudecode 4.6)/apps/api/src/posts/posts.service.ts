@@ -2,9 +2,29 @@ import {
   Injectable,
   NotFoundException,
   ForbiddenException,
+  Optional,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { GamificationService } from '../gamification/gamification.service';
+import { PointReason } from '@prisma/client';
 import { CreatePostInput } from '@hubso/shared';
+
+/**
+ * Recursively extract plain text from Tiptap JSON document.
+ * Used for searchable text column.
+ */
+function extractTextFromTiptap(node: any): string {
+  if (!node) return '';
+  if (typeof node === 'string') return node;
+  let text = '';
+  if (node.text) text += node.text;
+  if (Array.isArray(node.content)) {
+    for (const child of node.content) {
+      text += extractTextFromTiptap(child) + ' ';
+    }
+  }
+  return text.trim();
+}
 
 const POST_SELECT = {
   id: true,
@@ -60,7 +80,10 @@ function mapPost(post: any, userReaction?: string | null) {
 
 @Injectable()
 export class PostsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    @Optional() private gamificationService?: GamificationService,
+  ) {}
 
   /** Znajdź domyślny Space POSTS dla community po slugu */
   private async getDefaultSpace(communitySlug: string) {
@@ -77,6 +100,35 @@ export class PostsService {
       );
     }
     return space;
+  }
+
+  /** GET /users/:id/posts — posty danego użytkownika */
+  async findByUser(userId: string, page = 1, limit = 20) {
+    const skip = (page - 1) * limit;
+    const where = {
+      authorId: userId,
+      status: 'PUBLISHED' as const,
+      isFlagged: false,
+    };
+
+    const [total, posts] = await Promise.all([
+      this.prisma.post.count({ where }),
+      this.prisma.post.findMany({
+        where,
+        orderBy: { createdAt: 'desc' },
+        skip,
+        take: limit,
+        select: POST_SELECT,
+      }),
+    ]);
+
+    return {
+      data: posts.map((p) => mapPost(p)),
+      total,
+      page,
+      limit,
+      pages: Math.ceil(total / limit),
+    };
   }
 
   /** GET /posts/feed — ostatnie opublikowane posty ze wszystkich community */
@@ -146,12 +198,14 @@ export class PostsService {
   /** POST /communities/:slug/posts — utwórz post */
   async create(slug: string, input: CreatePostInput, authorId: string) {
     const space = await this.getDefaultSpace(slug);
+    const searchableText = extractTextFromTiptap(input.content);
 
     const post = await this.prisma.post.create({
       data: {
         spaceId: space.id,
         authorId,
         content: input.content as any,
+        searchableText: searchableText || null,
         type: (input.type ?? 'TEXT') as any,
         status: 'PUBLISHED',
         reactionsCount: {},
@@ -159,7 +213,73 @@ export class PostsService {
       select: POST_SELECT,
     });
 
+    // Award gamification points (fire & forget)
+    this.gamificationService
+      ?.awardPoints(authorId, space.communityId, PointReason.POST_CREATED, undefined, 'Post', post.id)
+      .catch(() => {/* ignore */});
+
     return mapPost(post);
+  }
+
+  /** POST /spaces/:id/posts — utwórz post w konkretnym space */
+  async createInSpace(spaceId: string, input: CreatePostInput, authorId: string) {
+    const space = await this.prisma.space.findUnique({
+      where: { id: spaceId },
+      select: { id: true, type: true, communityId: true },
+    });
+    if (!space) throw new NotFoundException('Space not found');
+    const searchableText = extractTextFromTiptap(input.content);
+
+    const post = await this.prisma.post.create({
+      data: {
+        spaceId: space.id,
+        authorId,
+        content: input.content as any,
+        searchableText: searchableText || null,
+        type: (input.type ?? 'TEXT') as any,
+        status: 'PUBLISHED',
+        reactionsCount: {},
+      },
+      select: POST_SELECT,
+    });
+
+    // Award gamification points (fire & forget)
+    this.gamificationService
+      ?.awardPoints(authorId, space.communityId, PointReason.POST_CREATED, undefined, 'Post', post.id)
+      .catch(() => {/* ignore */});
+
+    return mapPost(post);
+  }
+
+  /** GET /spaces/:id/posts — posty w konkretnym space */
+  async findBySpace(spaceId: string, page = 1, limit = 20) {
+    const space = await this.prisma.space.findUnique({
+      where: { id: spaceId },
+      select: { id: true },
+    });
+    if (!space) throw new NotFoundException('Space not found');
+
+    const skip = (page - 1) * limit;
+    const [posts, total] = await Promise.all([
+      this.prisma.post.findMany({
+        where: { spaceId: space.id, status: 'PUBLISHED' },
+        orderBy: [{ pinned: 'desc' }, { createdAt: 'desc' }],
+        skip,
+        take: limit,
+        select: POST_SELECT,
+      }),
+      this.prisma.post.count({
+        where: { spaceId: space.id, status: 'PUBLISHED' },
+      }),
+    ]);
+
+    return {
+      data: posts.map((p: any) => mapPost(p)),
+      total,
+      page,
+      limit,
+      pages: Math.ceil(total / limit),
+    };
   }
 
   /** GET /posts/:id — pojedynczy post */

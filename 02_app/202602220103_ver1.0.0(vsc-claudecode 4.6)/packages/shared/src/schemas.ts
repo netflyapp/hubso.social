@@ -30,15 +30,6 @@ export const resetPasswordSchema = z.object({
 
 export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
 
-// User Schemas
-export const updateProfileSchema = z.object({
-  name: z.string().min(2).optional(),
-  bio: z.string().max(500).optional(),
-  avatarUrl: z.string().url().optional(),
-});
-
-export type UpdateProfileInput = z.infer<typeof updateProfileSchema>;
-
 // Community Schemas
 export const createCommunitySchema = z.object({
   name: z.string().min(2, 'Community name must be at least 2 characters'),

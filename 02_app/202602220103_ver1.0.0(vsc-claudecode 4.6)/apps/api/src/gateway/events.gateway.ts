@@ -6,8 +6,10 @@ import {
   SubscribeMessage,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { Logger, UseGuards } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { MessagesService } from '../messages/messages.service';
+import { PresenceService } from '../presence/presence.service';
 
 interface AuthenticatedSocket extends Socket {
   userId?: string;
@@ -25,7 +27,11 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer() server!: Server;
   private logger = new Logger(EventsGateway.name);
 
-  constructor(private jwtService: JwtService) {}
+  constructor(
+    private jwtService: JwtService,
+    private messagesService: MessagesService,
+    private presenceService: PresenceService,
+  ) {}
 
   /**
    * Handle new WebSocket connection
@@ -53,7 +59,16 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       // Join community room (for shared events)
       socket.join(`community:${socket.communityId}`);
 
+      // Mark online in Redis
+      await this.presenceService.setOnline(socket.userId!);
+
       // Broadcast user online status
+      this.server.to(`community:${socket.communityId}`).emit('presence:update', {
+        userId: socket.userId,
+        online: true,
+        timestamp: new Date(),
+      });
+      // legacy event for backwards compat
       this.server.to(`community:${socket.communityId}`).emit('user:online', {
         userId: socket.userId,
         timestamp: new Date(),
@@ -72,7 +87,15 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     if (socket.userId) {
       this.logger.log(`[DISCONNECT] User ${socket.userId} disconnected (socket: ${socket.id})`);
 
+      // Mark offline in Redis (fire-and-forget)
+      this.presenceService.setOffline(socket.userId).catch(() => {});
+
       // Broadcast user offline status
+      this.server.to(`community:${socket.communityId}`).emit('presence:update', {
+        userId: socket.userId,
+        online: false,
+        timestamp: new Date(),
+      });
       this.server.to(`community:${socket.communityId}`).emit('user:offline', {
         userId: socket.userId,
         timestamp: new Date(),
@@ -81,31 +104,37 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   /**
-   * Message events: client sends "messages:send" with payload
+   * Message events: persists to DB then broadcasts to conversation room
    */
   @SubscribeMessage('messages:send')
-  handleSendMessage(socket: AuthenticatedSocket, data: any) {
-    const { conversationId, content, type = 'text' } = data;
+  async handleSendMessage(socket: AuthenticatedSocket, data: any) {
+    const { conversationId, content, type = 'TEXT' } = data;
 
-    if (!conversationId || !content) {
+    if (!conversationId || !content || !socket.userId) {
       this.logger.warn(`[MSG] Invalid message payload from ${socket.userId}`);
       return;
     }
 
-    const message = {
-      id: `msg-${Date.now()}`,
-      conversationId,
-      senderId: socket.userId,
-      content,
-      type,
-      timestamp: new Date(),
-      read: false,
-    };
+    try {
+      const message = await this.messagesService.sendMessage(
+        conversationId,
+        socket.userId,
+        content,
+        type.toUpperCase() as 'TEXT' | 'IMAGE' | 'FILE' | 'VOICE' | 'VIDEO',
+      );
 
-    // Emit to conversation participants
-    this.server.to(`conversation:${conversationId}`).emit('messages:receive', message);
+      this.server
+        .to(`conversation:${conversationId}`)
+        .emit('messages:receive', message);
 
-    this.logger.log(`[MSG] Message from ${socket.userId} → conversation ${conversationId}`);
+      this.logger.log(
+        `[MSG] User ${socket.userId} → conversation ${conversationId} (id: ${message.id})`,
+      );
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      this.logger.error(`[MSG] Failed to save message: ${msg}`);
+      socket.emit('messages:error', { error: msg });
+    }
   }
 
   /**
@@ -173,6 +202,43 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       conversationId,
       timestamp: new Date(),
     });
+  }
+
+  /**
+   * Presence heartbeat — client sends every ~30s to keep online status alive
+   */
+  @SubscribeMessage('presence:heartbeat')
+  async handleHeartbeat(socket: AuthenticatedSocket) {
+    if (!socket.userId) return;
+    await this.presenceService.heartbeat(socket.userId);
+    socket.emit('presence:heartbeat:ack', { timestamp: new Date() });
+  }
+
+  /**
+   * Mark conversation messages as read (socket-based read receipt)
+   * Emits 'messages:read' back to conversation room so other participants know
+   */
+  @SubscribeMessage('messages:read')
+  async handleMarkRead(socket: AuthenticatedSocket, data: any) {
+    const { conversationId } = data;
+    if (!conversationId || !socket.userId) return;
+
+    try {
+      const result = await this.messagesService.markConversationRead(
+        conversationId,
+        socket.userId,
+      );
+
+      // Notify all participants that messages were read
+      this.server.to(`conversation:${conversationId}`).emit('messages:read:ack', {
+        conversationId,
+        readByUserId: socket.userId,
+        markedRead: result.markedRead,
+        timestamp: new Date(),
+      });
+    } catch {
+      // ignore (e.g. not a participant)
+    }
   }
 
   /**

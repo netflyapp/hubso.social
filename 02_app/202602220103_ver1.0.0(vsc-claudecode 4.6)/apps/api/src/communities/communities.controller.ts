@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Post,
+  Patch,
   Delete,
   Param,
   Body,
@@ -68,5 +69,33 @@ export class CommunitiesController {
     @Request() req: { user: { userId: string } },
   ) {
     return this.communitiesService.leave(slug, req.user.userId);
+  }
+
+  @Get(':slug/members')
+  @UseGuards(OptionalJwtAuthGuard)
+  async getMembers(@Param('slug') slug: string) {
+    return this.communitiesService.getMembers(slug);
+  }
+
+  @Patch(':slug')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
+  async update(
+    @Param('slug') slug: string,
+    @Body() body: { name?: string; description?: string; logoUrl?: string; coverUrl?: string; brandColor?: string; brandFont?: string },
+    @Request() req: { user: { userId: string } },
+  ) {
+    return this.communitiesService.update(slug, req.user.userId, body);
+  }
+
+  @Delete(':slug')
+  @HttpCode(200)
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
+  async remove(
+    @Param('slug') slug: string,
+    @Request() req: { user: { userId: string } },
+  ) {
+    return this.communitiesService.remove(slug, req.user.userId);
   }
 }

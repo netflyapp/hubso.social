@@ -1,12 +1,18 @@
-import { Controller, Post, Body, HttpCode } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Controller, Post, Get, Body, HttpCode, UseGuards, Request, Query } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { RegisterInput, LoginInput } from '@hubso/shared';
+import { CaslAbilityService } from '../casl';
+import { packRules } from '@casl/ability/extra';
 
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private caslAbilityService: CaslAbilityService,
+  ) {}
 
   @Post('register')
   @HttpCode(201)
@@ -34,5 +40,28 @@ export class AuthController {
   @HttpCode(200)
   async devExpiredToken(@Body() input: { refreshToken: string }) {
     return this.authService.generateExpiredToken(input.refreshToken);
+  }
+
+  /**
+   * GET /auth/me/permissions — returns packed CASL rules for the current user.
+   * Optionally accepts ?communityId= for community-scoped permissions.
+   */
+  @Get('me/permissions')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
+  async getMyPermissions(
+    @Request() req: { user: { userId: string } },
+    @Query('communityId') communityId?: string,
+  ) {
+    if (communityId) {
+      const ability = await this.caslAbilityService.forCommunityMember(
+        req.user.userId,
+        communityId,
+      );
+      return { rules: packRules(ability.rules as any) };
+    }
+
+    const ability = await this.caslAbilityService.forUser(req.user.userId);
+    return { rules: packRules(ability.rules as any) };
   }
 }

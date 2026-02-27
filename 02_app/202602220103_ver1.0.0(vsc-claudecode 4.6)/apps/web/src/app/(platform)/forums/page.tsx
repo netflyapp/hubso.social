@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic'
+
 import { Icon } from '@iconify/react';
 import { mockForumCategories, mockForumThreads } from '@/lib/mock-data';
 

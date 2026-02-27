@@ -63,3 +63,45 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* ── Tiptap Mention ── */
+.mention {
+  background-color: hsl(var(--primary) / 0.12);
+  color: hsl(var(--primary));
+  border-radius: 0.25rem;
+  padding: 0.0625rem 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.mention:hover {
+  background-color: hsl(var(--primary) / 0.2);
+}
+
+/* Mention suggestion dropdown */
+.mention-suggestion {
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  padding: 0.25rem;
+  min-width: 14rem;
+  max-height: 16rem;
+  overflow-y: auto;
+}
+
+.mention-suggestion .item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.5rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.mention-suggestion .item:hover,
+.mention-suggestion .item.is-selected {
+  background-color: hsl(var(--muted));
+}

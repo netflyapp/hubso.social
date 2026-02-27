@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic'
+
 import { Icon } from '@iconify/react';
 import { useState, useEffect, useTransition } from 'react';
 import { communitiesApi, CommunityItem } from '@/lib/api';

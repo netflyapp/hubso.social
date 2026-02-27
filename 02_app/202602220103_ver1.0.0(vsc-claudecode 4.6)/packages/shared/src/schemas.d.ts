@@ -112,4 +112,5 @@ export declare const sendMessageSchema: z.ZodObject<{
     type?: "TEXT" | "IMAGE" | "VIDEO" | "FILE" | "VOICE" | undefined;
 }>;
 export type SendMessageInput = z.infer<typeof sendMessageSchema>;
-//# sourceMappingURL=schemas.d.ts.map
+//# sourceMappingURL=schemas.d.ts.mapexport declare const updateProfileSchema: import("zod").ZodObject<{displayName: import("zod").ZodOptional<import("zod").ZodString>; bio: import("zod").ZodOptional<import("zod").ZodString>; username: import("zod").ZodOptional<import("zod").ZodString>;}, "strip", import("zod").ZodTypeAny, {displayName?: string; bio?: string; username?: string;}, {displayName?: string; bio?: string; username?: string;}>;
+export type UpdateProfileInput = import("zod").infer<typeof updateProfileSchema>;

@@ -2,8 +2,11 @@ import {
   Injectable,
   NotFoundException,
   ForbiddenException,
+  Optional,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { GamificationService } from '../gamification/gamification.service';
+import { PointReason } from '@prisma/client';
 
 const COMMENT_SELECT = {
   id: true,
@@ -37,7 +40,10 @@ function mapComment(c: any) {
 
 @Injectable()
 export class CommentsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    @Optional() private gamificationService?: GamificationService,
+  ) {}
 
   async getByPost(postId: string) {
     const exists = await this.prisma.post.findUnique({ where: { id: postId }, select: { id: true } });
@@ -62,7 +68,10 @@ export class CommentsService {
   }
 
   async create(postId: string, authorId: string, data: { content: string; parentId?: string }) {
-    const post = await this.prisma.post.findUnique({ where: { id: postId }, select: { id: true } });
+    const post = await this.prisma.post.findUnique({
+      where: { id: postId },
+      select: { id: true, space: { select: { communityId: true } } },
+    });
     if (!post) throw new NotFoundException('Post nie istnieje');
 
     if (data.parentId) {
@@ -80,8 +89,13 @@ export class CommentsService {
       select: COMMENT_SELECT,
     });
 
-    // Increment commentsCount on Post (stored denormalized in reactionsCount-style field if exists)
-    // For now just return the comment — count is derived from _count
+    // Award gamification points (fire & forget)
+    if (post.space?.communityId) {
+      this.gamificationService
+        ?.awardPoints(authorId, post.space.communityId, PointReason.COMMENT_CREATED, undefined, 'Comment', comment.id)
+        .catch(() => {/* ignore */});
+    }
+
     return mapComment(comment);
   }
 

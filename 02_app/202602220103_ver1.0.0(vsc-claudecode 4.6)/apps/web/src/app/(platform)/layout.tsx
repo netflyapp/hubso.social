@@ -2,6 +2,7 @@ import { AppHeader } from "@/components/layout/app-header"
 import { AppSidebar } from "@/components/layout/app-sidebar"
 import { MobileBottomNav } from "@/components/layout/mobile-bottom-nav"
 import { MobileSidebar } from "@/components/layout/mobile-sidebar"
+import { CommandPalette } from "@/components/CommandPalette"
 
 export default function PlatformLayout({
   children,
@@ -26,6 +27,9 @@ export default function PlatformLayout({
       {/* Mobilna nawigacja */}
       <MobileSidebar />
       <MobileBottomNav />
+
+      {/* Cmd+K command palette */}
+      <CommandPalette />
     </div>
   )
 }

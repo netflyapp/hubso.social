@@ -35,7 +35,7 @@ const config = {
         'dark-card': '0 0 0 1px rgba(255,255,255,0.06), 0 4px 8px rgba(0,0,0,0.2)',
       },
       fontSize: {
-        xxs: ['0.625rem', { lineHeight: '0.75rem' }],
+        xxs: ['0.625rem', { lineHeight: '0.75rem' }] as [string, { lineHeight: string }],
       },
       keyframes: {
         'typing-bounce': {

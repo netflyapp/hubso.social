@@ -35,6 +35,17 @@ export class PostsController {
     return this.postsService.findFeed(page, Math.min(limit, 50), req.user?.userId);
   }
 
+  /** GET /users/:id/posts */
+  @UseGuards(OptionalJwtAuthGuard)
+  @Get('users/:id/posts')
+  getByUser(
+    @Param('id') id: string,
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query('limit', new DefaultValuePipe(20), ParseIntPipe) limit: number,
+  ) {
+    return this.postsService.findByUser(id, page, Math.min(limit, 50));
+  }
+
   /** GET /posts/:id */
   @UseGuards(OptionalJwtAuthGuard)
   @Get('posts/:id')
@@ -71,5 +82,28 @@ export class PostsController {
   @HttpCode(HttpStatus.OK)
   removePost(@Param('id') id: string, @Request() req: any) {
     return this.postsService.remove(id, req.user.userId);
+  }
+
+  /** GET /spaces/:id/posts */
+  @UseGuards(OptionalJwtAuthGuard)
+  @Get('spaces/:id/posts')
+  getBySpace(
+    @Param('id') id: string,
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query('limit', new DefaultValuePipe(20), ParseIntPipe) limit: number,
+  ) {
+    return this.postsService.findBySpace(id, page, Math.min(limit, 50));
+  }
+
+  /** POST /spaces/:id/posts */
+  @UseGuards(AuthGuard('jwt'))
+  @Post('spaces/:id/posts')
+  @HttpCode(HttpStatus.CREATED)
+  createPostInSpace(
+    @Param('id') id: string,
+    @Body(new ZodValidationPipe(createPostSchema)) body: CreatePostInput,
+    @Request() req: any,
+  ) {
+    return this.postsService.createInSpace(id, body, req.user.userId);
   }
 }
